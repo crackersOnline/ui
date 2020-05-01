@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  envName: 'local',
+  searchBaseUrl: 'https://pavo-dev.inbcu.com/api/',
+  userMgmtBaseUrl: 'https://pavo-dev.inbcu.com/api/',
+  apiBaseUrl: '',
 };
 
 /*
