@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/scss/layout.scss",
+              "src/assets/scss/font-awesome/scss/font-awesome.scss"
             ],
             "scripts": []
           },
@@ -92,8 +94,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": [              
+              "src/styles.scss",
+              "src/assets/scss/layout.scss",
+              "src/assets/scss/font-awesome/scss/font-awesome.scss"
             ],
             "scripts": []
           }
