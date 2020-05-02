@@ -5,13 +5,13 @@ import { PagesComponent } from './modules/pages/pages.component';
 
 const routes: Routes = [
   {
-    path:'home',
-    component:PagesComponent
+    path: 'home',
+    component: PagesComponent
   },
   {
-    path:'',
-    redirectTo:'/home',
-    pathMatch:'full'
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
 ];
 
