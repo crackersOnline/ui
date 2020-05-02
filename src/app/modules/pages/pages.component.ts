@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
+  public registerStatus = false;
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -19,4 +20,8 @@ export class PagesComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+
+  enable_register(event) {
+    this.registerStatus = event;
+  }
 }

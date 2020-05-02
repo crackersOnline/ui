@@ -17,14 +17,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  enable_register() {
-    this.status = this.status;
-    console.log('Status', this.status = !this.status);
-  }
-  disable_register() {
-    this.status = this.status;
-    console.log('Status', this.status = !this.status);
-  }
 
   public submit() {
     console.log('submit', this.username, this.password );
