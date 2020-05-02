@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pages',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-
+  public registerStatus:boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
-
+  enable_register(event){
+    this.registerStatus = event;
+  }
 }

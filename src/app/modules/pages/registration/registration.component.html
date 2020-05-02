@@ -1,1 +1,18 @@
-<p>registration works!</p>
+<div class="card alt">
+    <div class="toggle" (click)="enable_register()"></div>
+    <h1 class="title">Register
+        <div class="close" (click)="disable_register()"></div>
+    </h1>
+    <form>
+        <div class="input-container"><input type="text" id="register_username" required="required" /><label for="register_username">Username</label>
+            <div class="bar"></div>
+        </div>
+        <div class="input-container"><input type="password" id="register_password" required="required" /><label for="register_password">Password</label>
+            <div class="bar"></div>
+        </div>
+        <div class="input-container"><input type="password" id="register_confirm_password" required="required" /><label for="register_confirm_password">Repeat Password</label>
+            <div class="bar"></div>
+        </div>
+        <div class="button-container"><button><span>Next</span></button></div>
+    </form>
+</div>
