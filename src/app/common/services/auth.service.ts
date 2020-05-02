@@ -1,22 +1,24 @@
-/*
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiProxy } from '../../api.proxy';
 import { environment } from '../../../environments/environment';
-import * as jwt_decode from 'jwt-decode';
-import { v4 as uuid } from 'uuid';
+// import * as jwt_decode from 'jwt-decode';
+// import { v4 as uuid } from 'uuid';
 import { AppSettings } from '../../app.settings';
-import { CommonFunctionsHelper } from '../helpers/common-functions.helper';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+// import { CommonFunctionsHelper } from '../helpers/common-functions.helper';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private authUrl: string = AppSettings.microservices.Gateway_MicroService_BaseUrl;
+    private authUrl: string = AppSettings.microservices.gateway_MicroService_BaseUrl;
 
     constructor(private apiProxy: ApiProxy, private http: HttpClient) {
     }
-
+/*
     private generateUUID() {
         let uid = uuid();
         uid = uid.replace(/[^\w\s]/gi, '');
@@ -56,6 +58,23 @@ export class AuthService {
     public logoutUser() {
         CommonFunctionsHelper.clearLocalStorageForAuth();
         window.location.href = environment.oAuthLogoutUrl;
+    } */
+
+    public login(username: string, password: string): Observable<any> {
+        return this.http.post<{token: string}>(this.authUrl + '/user/auth', { username, password})
+            .pipe(
+                map(result => {
+                    localStorage.setItem('access_token', result.token);
+                    return true;
+                })
+            );
+    }
+
+    public logout() {
+        localStorage.removeItem('access_token');
+    }
+
+    public get loggedIn(): boolean {
+        return (localStorage.getItem('access_token') !== null);
     }
 }
- */

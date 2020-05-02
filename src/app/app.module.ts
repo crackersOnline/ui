@@ -8,6 +8,15 @@ import { PagesModule } from './modules/pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './common/services/auth.service';
+import { AdminModule } from './modules/admin/admin.module';
+import { HttpClientModule } from '@angular/common/http';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -21,9 +30,21 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     PagesModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: ['localhost:4000'],
+        blacklistedRoutes: ['localhost:4000/api/user/auth']
+      }
+    }),
+    AdminModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

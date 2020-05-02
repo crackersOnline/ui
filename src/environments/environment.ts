@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   envName: 'local',
-  searchBaseUrl: 'https://pavo-dev.inbcu.com/api/',
-  userMgmtBaseUrl: 'https://pavo-dev.inbcu.com/api/',
+  searchBaseUrl: '', // 'https://pavo-dev.inbcu.com/api/',
+  userMgmtBaseUrl: '', // 'https://pavo-dev.inbcu.com/api/',
+  gatewayBaseUrl: 'http://localhost:4000/api',
   apiBaseUrl: '',
 };
 

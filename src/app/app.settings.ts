@@ -9,7 +9,9 @@ export class AppSettings {
                 environment.envName === 'local' ? environment.userMgmtBaseUrl :
                     environment.apiBaseUrl,
             search_MicroService_BaseUrl:
-                    environment.envName === 'local' ? environment.searchBaseUrl : environment.apiBaseUrl
+                    environment.envName === 'local' ? environment.searchBaseUrl : environment.apiBaseUrl,
+            gateway_MicroService_BaseUrl:
+                    environment.envName === 'local' ? environment.gatewayBaseUrl : environment.apiBaseUrl
         };
         return microservices;
     }
