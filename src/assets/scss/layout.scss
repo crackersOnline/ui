@@ -910,7 +910,7 @@ html {
     position: relative;
     max-width: 460px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 45px;
   }
   .rl_container.active .card:first-child {
     background: #f2f2f2;
@@ -1022,10 +1022,10 @@ html {
     position: relative;
     background: none;
     width: 100%;
-    height: 60px;
+    height: 50px;
     border: 0;
     color: #212121;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
   }
   .card .input-container input:focus ~ label {
@@ -1046,9 +1046,9 @@ html {
     top: 0;
     left: 0;
     color: #757575;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
-    line-height: 60px;
+    line-height: 50px;
     -webkit-transition: 0.2s ease;
     transition: 0.2s ease;
   }
@@ -1086,7 +1086,7 @@ html {
     display: inline-block;
     background: 0;
     width: 240px;
-    border: 2px solid #e3e3e3;
+    border: 2px solid #e3e3e3;;
     padding: 20px 0;
     font-size: 24px;
     font-weight: 600;
@@ -1095,6 +1095,14 @@ html {
     overflow: hidden;
     -webkit-transition: .3s ease;
     transition: .3s ease;
+    cursor: not-allowed;
+    &.active {
+      border-color: #5b3bcc;
+      cursor: pointer;
+      span {
+        color: #5b3bcc;
+      }      
+    }
   }
   .card .button-container button span {
     position: relative;
@@ -1118,24 +1126,24 @@ html {
     -webkit-transition: .3s ease;
     transition: .3s ease;
   }
-  .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
+  .card .button-container button.active:hover, .card .button-container button.active:active, .card .button-container button.active:focus {
     border-color: #5b3bcc;
   }
-  .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
-    color: #5b3bcc;
+  .card .button-container button.active:hover span, .card .button-container button.active:active span, .card .button-container button.active:focus span {
+    color: #FFF;
   }
-  .card .button-container button:active span, .card .button-container button:focus span {
+  .card .button-container button.active:active span, .card .button-container button.active:focus span {
     color: #ffffff;
   }
-  .card .button-container button:active:before, .card .button-container button:focus:before {
+  .card .button-container button.active:active:before, .card .button-container button.active:focus:before, .card .button-container button.active:hover:before {
     opacity: 1;
-    -webkit-transform: scale(10);
-    transform: scale(10);
+    -webkit-transform: scale(13);
+    transform: scale(13);
   }
   .card .footer {
     margin: 55px 0 0;
     color: #d3d3d3;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
     text-align: center;
   }
@@ -1243,18 +1251,16 @@ html {
     background: #757575;
   }
   .card.alt .button-container button {
-    width: 100%;
-    background: #ffffff;
-    border-color: #e3e3e3;
+    width: 100%;    
   }
-  .card.alt .button-container button span {
-    color: #e3e3e3;
+  .card.alt .button-container button.active span {
+    color: #5b3bcc;
   }
-  .card.alt .button-container button:hover {
+  .card.alt .button-container button.active:hover {
     border-color: #5b3bcc;
   }
-  .card.alt .button-container button:hover span, .card.alt .button-container button:active span, .card.alt .button-container button:focus span {
-    color: #5b3bcc;
+  .card.alt .button-container button.active:hover span, .card.alt .button-container button.active:active span, .card.alt .button-container button.active:focus span {
+    color: #FFF;
   }
   .card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
     display: none;
@@ -1273,5 +1279,12 @@ html {
       opacity: 0;
     }
   }
-  
+  /* Error Class */
+  .loginError_alert {
+    position: absolute;
+    left: 0;
+    padding: 5px;
+    background-color: red;
+    color: #FFF;
+}
   

@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { LoginRegisterUserComponent } from './login-register-user/login-register-user.component';
 
 import { PagesRoutingModule } from './pages-routing.module';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PagesComponent } from './pages.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, LoginRegisterUserComponent],
+  declarations: [LoginComponent, RegistrationComponent, LoginRegisterUserComponent, ForgotPasswordComponent, PagesComponent],
   imports: [
     CommonModule,
     FormsModule,

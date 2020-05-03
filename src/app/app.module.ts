@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './common/services/auth.service';
 import { AdminModule } from './modules/admin/admin.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -32,6 +33,7 @@ export function tokenGetter() {
     AppMaterialModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    ReactiveFormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,
