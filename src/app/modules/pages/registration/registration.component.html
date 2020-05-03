@@ -3,16 +3,39 @@
     <h1 class="title">Register
         <div class="close" (click)="disable_register()"></div>
     </h1>
-    <form>
-        <div class="input-container"><input type="text" id="register_username" required="required" /><label for="register_username">Username</label>
+    <form (ngSubmit)="submit()" #registratiomForm="ngForm">
+        <div class="input-container">
+            <input type="text" id="register_username" required="required" name="username" [(ngModel)]="username" #usernameText="ngModel" email/>
+            <label for="register_username">Email</label>
             <div class="bar"></div>
+            <div *ngIf="usernameText.touched && !usernameText.valid" class="loginError_alert">
+                <div *ngIf="usernameText.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="usernameText.errors.email">Email must be a valid email address</div>
+            </div>
         </div>
-        <div class="input-container"><input type="password" id="register_password" required="required" /><label for="register_password">Password</label>
+        <div class="input-container">
+            <input type="password" id="register_password" required="required" name="password" [(ngModel)]="password" #passwordText="ngModel" />
+            <label for="register_password">Password</label>
             <div class="bar"></div>
+            <div *ngIf="passwordText.touched && !passwordText.valid" class="loginError_alert">
+                <div *ngIf="passwordText.errors.required">
+                    Password is required.
+                </div>
+            </div>
         </div>
-        <div class="input-container"><input type="password" id="register_confirm_password" required="required" /><label for="register_confirm_password">Repeat Password</label>
+        <div class="input-container">
+            <input type="password" id="register_confirm_password" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel" validateEqual="password"/>
+            <label for="register_confirm_password">Repeat Password</label>
             <div class="bar"></div>
+            <div *ngIf="confirmPasswordText.touched && !confirmPasswordText.valid" class="loginError_alert">
+                <div *ngIf="confirmPasswordText.errors.required">
+                    Confirm Password is required.
+                </div>
+                <div *ngIf="confirmPasswordText.errors.mustMatch">Passwords must match</div>
+            </div>
         </div>
-        <div class="button-container"><button><span>Next</span></button></div>
+        <div class="button-container"><button [class.active]="registratiomForm.valid"><span>Next</span></button></div>
     </form>
 </div>

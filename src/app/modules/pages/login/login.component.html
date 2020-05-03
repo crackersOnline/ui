@@ -2,16 +2,30 @@
 <div class="card"></div>
 <div class="card">
     <h1 class="title">Login</h1>
-    <form (ngSubmit)="submit()">
-        <div class="input-container form-group"><input type="text" id="login_username" required="required" name="username" class="form-control"  [(ngModel)]="username"/><label
-                for="login_username">Username</label>
+    <form (ngSubmit)="submit()" #loginForm="ngForm">
+        <div class="input-container form-group">
+            <input type="text" id="login_username" required="required" email name="username" class="form-control" [(ngModel)]="username" #usernameText="ngModel" />
+            <label for="login_username">Username</label>
             <div class="bar"></div>
+            <div *ngIf="usernameText.touched && !usernameText.valid" class="loginError_alert">
+                <div *ngIf="usernameText.errors.required">
+                    Username is required.
+                </div>
+                <div *ngIf="usernameText.errors.email">Email must be a valid email address</div>
+            </div>
         </div>
-        <div class="input-container form-group"><input type="password" id="login_password" required="required"  name="password" class="form-control"  [(ngModel)]="password" /><label
+        <div class="input-container form-group"><input type="password" id="login_password" required="required"
+                name="password" class="form-control" [(ngModel)]="password" #passwordText="ngModel" /><label
                 for="login_password">Password</label>
             <div class="bar"></div>
+            <div *ngIf="passwordText.touched && !passwordText.valid" class="loginError_alert">
+                <div *ngIf="passwordText.errors.required">
+                    Password is required.
+                </div>
+            </div>
         </div>
-        <div class="button-container form-group"><button><span>Go</span></button></div>
+        <div class="button-container form-group"><button [class.active]="loginForm.valid"><span>Go</span></button>
+        </div>
         <div class="footer"><a href="#">Forgot your password?</a></div>
     </form>
 </div>

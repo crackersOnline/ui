@@ -15,6 +15,7 @@
                     <div class="col-md-6 col-12 col-xl-6 col-sm-12 col-lg-6">
                         <div class="pen-title">
                             <div class="rl_container" [ngClass]="registerStatus ? 'active' : ''">
+                                <!-- <app-forgot-password></app-forgot-password> -->
                                 <app-login></app-login>
                                 <app-registration (enableregister)="enable_register($event)" (disableregister)="enable_register($event)"></app-registration>
                             </div>
