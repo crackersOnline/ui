@@ -60,8 +60,8 @@ export class AuthService {
         window.location.href = environment.oAuthLogoutUrl;
     } */
 
-    public login(username: string, password: string): Observable<any> {
-        return this.http.post<{token: string}>(this.authUrl + '/user/auth', { username, password})
+    public login(userEmail: string, password: string): Observable<any> {
+        return this.http.post<{token: string}>(this.authUrl + '/user/auth', { userEmail, password})
             .pipe(
                 map(result => {
                     localStorage.setItem('access_token', result.token);

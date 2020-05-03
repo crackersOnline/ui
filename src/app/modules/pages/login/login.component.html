@@ -2,9 +2,9 @@
 <div class="card"></div>
 <div class="card">
     <h1 class="title">Login</h1>
-    <form (ngSubmit)="submit()" #loginForm="ngForm">
+    <form (ngSubmit)="submit()" #userLoginForm="ngForm">
         <div class="input-container form-group">
-            <input type="text" id="login_username" required="required" email name="username" class="form-control" [(ngModel)]="username" #usernameText="ngModel" />
+            <input type="text" id="login_username" required="required" email name="userEmail" class="form-control" [(ngModel)]="userEmail" #usernameText="ngModel" />
             <label for="login_username">Username</label>
             <div class="bar"></div>
             <div *ngIf="usernameText.touched && !usernameText.valid" class="loginError_alert">
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="button-container form-group"><button [class.active]="loginForm.valid"><span>Go</span></button>
+        <div class="button-container form-group"><button [class.active]="userLoginForm.valid" type="submit"><span>Go</span></button>
         </div>
         <div class="footer"><a href="#">Forgot your password?</a></div>
     </form>

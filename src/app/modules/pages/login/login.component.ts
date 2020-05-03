@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   public status: boolean;
-  public username: string;
+  public userEmail: string;
   public password: string;
   public error: string;
 
@@ -23,21 +23,18 @@ export class LoginComponent implements OnInit {
     loginPassword : new FormControl('', [
       Validators.required
     ])
-  })
+  });
   ngOnInit() {
   }
 
   public submit() {
-    if(this.userLoginForm.valid) {
-      console.log('submit', this.username, this.password );
-    this.auth.login(this.username, this.password)
+      console.log('submit', this.userEmail, this.password );
+      this.auth.login(this.userEmail, this.password)
       .subscribe(result => {
          this.router.navigate(['admin']);
       },
         err => this.error = 'Could not authenticate' + err.message
       );
     }
-    
-  }
 
 }
