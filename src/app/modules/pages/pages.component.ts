@@ -1,27 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from 'src/app/common/services/auth.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
+  styles: []
 })
 export class PagesComponent implements OnInit {
-  public registerStatus = false;
+  constructor() { }
 
-  constructor(private auth: AuthService, private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  public logout() {
-    this.auth.logout();
-    this.router.navigate(['login']);
-  }
-
-
-  enable_register(event) {
-    this.registerStatus = event;
-  }
+  ngOnInit() {  }
 }

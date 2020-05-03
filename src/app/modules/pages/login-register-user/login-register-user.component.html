@@ -1,0 +1,26 @@
+<div class="pages-bg"></div>
+<header class="rl_header">
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="container">
+            <div class="rl_wrapper">
+                <div class="row">
+                    <div class="col-md-6 col-12 col-xl-6 col-sm-12 col-lg-6">
+                        <div class="rl_banner">
+                            <img src="../../../assets/images/r_l/banner.jpg"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 col-xl-6 col-sm-12 col-lg-6">
+                        <div class="pen-title">
+                            <div class="rl_container" [ngClass]="registerStatus ? 'active' : ''">
+                                <app-login></app-login>
+                                <app-registration (enableregister)="enable_register($event)" (disableregister)="enable_register($event)"></app-registration>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
