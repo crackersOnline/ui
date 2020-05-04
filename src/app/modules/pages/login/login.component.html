@@ -1,6 +1,8 @@
-<div *ngIf="error">{{error}}</div>
+
 <div class="card"></div>
 <div class="card">
+    <!-- <div class="authError">Username & Password does not match</div> -->
+    <div class="authError" *ngIf="error">{{error}}</div>
     <h1 class="title">Login</h1>
     <form (ngSubmit)="submit()" #userLoginForm="ngForm">
         <div class="input-container form-group">
@@ -24,8 +26,8 @@
                 </div>
             </div>
         </div>
-        <div class="button-container form-group"><button [class.active]="userLoginForm.valid" type="submit"><span>Go</span></button>
+        <div class="button-container form-group"><button [class.active]="userLoginForm.valid" [disabled]="!userLoginForm.valid" type="submit"><span>Go</span></button>
         </div>
-        <div class="footer"><a href="#">Forgot your password?</a></div>
+        <div class="footer"><a [routerLink]="['/forgotpwd']">Forgot your password?</a></div>
     </form>
 </div>

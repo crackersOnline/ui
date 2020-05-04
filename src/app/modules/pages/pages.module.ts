@@ -8,11 +8,12 @@ import { LoginRegisterUserComponent } from './login-register-user/login-register
 import { PagesRoutingModule } from './pages-routing.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PagesComponent } from './pages.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent, LoginRegisterUserComponent, ForgotPasswordComponent, PagesComponent],
+  declarations: [LoginComponent, RegistrationComponent, LoginRegisterUserComponent, ForgotPasswordComponent, PagesComponent, ResetPasswordComponent],
   imports: [
     CommonModule,
     FormsModule,

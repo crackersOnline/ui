@@ -36,6 +36,6 @@
                 <div *ngIf="confirmPasswordText.errors.mustMatch">Passwords must match</div>
             </div>
         </div>
-        <div class="button-container"><button [class.active]="registratiomForm.valid"><span>Next</span></button></div>
+        <div class="button-container"><button [class.active]="registratiomForm.valid" [disabled]="!registratiomForm.valid"><span>Next</span></button></div>
     </form>
 </div>

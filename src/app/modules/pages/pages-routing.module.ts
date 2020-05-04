@@ -1,22 +1,33 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginRegisterUserComponent } from './login-register-user/login-register-user.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { PagesComponent } from './pages.component';
-
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { LoginRegisterUserComponent } from "./login-register-user/login-register-user.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { PagesComponent } from "./pages.component";
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
-  { path: '', component: PagesComponent,
-children: [
- {path: '', component: LoginRegisterUserComponent},
-  {path: 'forgotpwd', component: ForgotPasswordComponent}
-]
-}
-
+  {
+    path: "",
+    component: PagesComponent,
+    children: [
+      {
+        path: "",
+        component: LoginRegisterUserComponent,
+      },
+      {
+        path: "forgotpwd",
+        component: ForgotPasswordComponent,
+      },
+      {
+        path:"resetpwd",
+        component: ResetPasswordComponent,
+      }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

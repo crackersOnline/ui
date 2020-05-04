@@ -33,7 +33,14 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
          this.router.navigate(['admin']);
       },
-        err => this.error = 'Could not authenticate' + err.message
+        err => {
+          if(err.status == 401) {
+            this.error = "This mail id not registered.";
+          }
+          else {
+            this.error = err.error.message
+          }
+        } 
       );
     }
 
