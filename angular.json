@@ -30,7 +30,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/layout.scss",
-              "src/assets/scss/font-awesome/scss/font-awesome.scss"
+              "src/assets/scss/font-awesome/css/all.css"
             ],
             "scripts": []
           },
@@ -97,7 +97,7 @@
             "styles": [              
               "src/styles.scss",
               "src/assets/scss/layout.scss",
-              "src/assets/scss/font-awesome/scss/font-awesome.scss"
+              "src/assets/scss/font-awesome/css/all.css"
             ],
             "scripts": []
           }

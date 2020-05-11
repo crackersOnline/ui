@@ -18,7 +18,7 @@
     line-height: 1.42857143;
     color: #333333;
     background-color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    font-family: $roboto;
     margin: 0;
   }
   article,
@@ -171,4 +171,7 @@
   }
   [role="button"] {
     cursor: pointer;
+  }
+  .body_page_container {
+    padding-top: 65px;
   }

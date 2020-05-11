@@ -1,0 +1,42 @@
+/* Colors */
+$primary-color  :#5a39c8;
+$medium-black   :#6d6e71;
+$black          :#000000;
+$dark-black     :#212121;
+$gray-color     :#757575;
+$red-color      :#ff0000;
+$white-color    :#FFFFFF;
+/* Font family */
+$kanit          : 'Kanit', sans-serif;
+$roboto         : 'Roboto', sans-serif;
+/* Padding top, right, bottom, left - 1 to 50 */
+@for $i from 1 through 50 {
+    .padding-top-#{$i} {
+        padding-top:#{$i}px;
+    }
+    .padding-right-#{$i} {
+        padding-right:#{$i}px;
+    }
+    .padding-bottom-#{$i} {
+        padding-bottom:#{$i}px;
+    }
+    .padding-left-#{$i} {
+        padding-left:#{$i}px;
+    }
+}
+/* Margin top, right, bottom, left - 1 to 50 */
+@for $i from 1 through 50 {
+    .margin-top-#{$i} {
+        margin-top:#{$i}px;
+    }
+    .margin-right-#{$i} {
+        margin-right:#{$i}px;
+    }
+    .margin-bottom-#{$i} {
+        margin-bottom:#{$i}px;
+    }
+    .margin-left-#{$i} {
+        margin-left:#{$i}px;
+    }
+}
+

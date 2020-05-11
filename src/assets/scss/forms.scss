@@ -6,7 +6,7 @@
     z-index: -1;
     top: 0;
     left: 0;
-    background: rgb(90,58,201);
+    background: $primary-color;
     background: linear-gradient(90deg, rgba(90,58,201,1) 50%, rgba(123,94,221,1) 100%);
 }
 /* Header Start */
@@ -15,10 +15,10 @@
 }
 /* Header End*/
 .rl_wrapper {
-    background-color: #FFF;
+    background-color: $white-color;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0px 0px 5px 0px rgba($color: #000000, $alpha: 0.5);
+    box-shadow: 0px 0px 5px 0px rgba($black, $alpha: 0.5);
     @media screen and (max-width:576px) {
         margin-bottom: 20px;
         padding: 10px;
@@ -27,7 +27,7 @@
         border-top-left-radius:5px;
         border-bottom-left-radius: 5px;
         overflow: hidden;
-        background: rgb(90,58,201);
+        background: $primary-color;
         width: 100%;
         height: 100%;
         img {
@@ -111,11 +111,23 @@
     -webkit-transition-delay: .7s;
             transition-delay: .7s;
   }
-  
+  input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {  
+  -webkit-text-fill-color: #212121;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
   /* Card */
   .card {
     position: relative;
-    background: #ffffff;
+    background: $white-color;
     border-radius: 5px;
     padding: 40px 0 40px 0;
     box-sizing: border-box;
@@ -138,17 +150,14 @@
   .card .title {
     position: relative;
     z-index: 1;
-    border-left: 5px solid #5b3bcc;
+    border-left: 5px solid $primary-color;
     margin: 0 0 20px;
     padding: 8px 0 8px 30px;
-    color: #5b3bcc;
+    color: $primary-color;
     font-size: 32px;
     font-weight: 600;
     text-transform: uppercase;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    @include user-select;
   }
   .card .input-container {
     position: relative;
@@ -157,7 +166,7 @@
         margin: 0 25px 50px;
     }
   }
-  .card .input-container input {
+  .card .input-container input, .card .input-container input:-webkit-autofill {
     outline: none;
     z-index: 1;
     position: relative;
@@ -165,11 +174,11 @@
     width: 100%;
     height: 50px;
     border: 0;
-    color: #212121;
+    color: $dark-black;
     font-size: 20px;
     font-weight: 400;
   }
-  .card .input-container input:focus ~ label {
+  .card .input-container input:focus ~ label, .card .input-container input:-webkit-autofill ~ label {
     color: #9d9d9d;
     -webkit-transform: translate(-12%, -50%) scale(0.75);
             transform: translate(-12%, -50%) scale(0.75);
@@ -186,7 +195,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: #757575;
+    color: $gray-color;
     font-size: 20px;
     font-weight: 300;
     line-height: 50px;
@@ -197,14 +206,14 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background: #757575;
+    background: $gray-color;
     width: 100%;
     height: 1px;
   }
   .card .input-container .bar:before, .card .input-container .bar:after {
     content: '';
     position: absolute;
-    background: #5b3bcc;
+    background: $primary-color;
     width: 0;
     height: 2px;
     -webkit-transition: .2s ease;
@@ -248,10 +257,10 @@
       border-color: #e3e3e3;
     }
     &.active {
-      border-color: #5b3bcc;
+      border-color: $primary-color;
       cursor: pointer;
       span {
-        color: #5b3bcc;
+        color: $primary-color;
       }      
     }
   }
@@ -260,11 +269,8 @@
     z-index: 1;
     color: #ddd;
     -webkit-transition: .3s ease;
-    transition: .3s ease;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    transition: .3s ease;    
+    @include user-select;
   }
   .card .button-container button:before {
     content: '';
@@ -272,7 +278,7 @@
     top: 50%;
     left: 50%;
     display: block;
-    background: #5b3bcc;
+    background: $primary-color;
     width: 30px;
     height: 30px;
     border-radius: 100%;
@@ -282,13 +288,13 @@
     transition: .3s ease;
   }
   .card .button-container button.active:hover, .card .button-container button.active:active, .card .button-container button.active:focus {
-    border-color: #5b3bcc;
+    border-color: $primary-color;
   }
   .card .button-container button.active:hover span, .card .button-container button.active:active span, .card .button-container button.active:focus span {
-    color: #FFF;
+    color: $white-color;
   }
   .card .button-container button.active:active span, .card .button-container button.active:focus span {
-    color: #ffffff;
+    color: $white-color;
   }
   .card .button-container button.active:active:before, .card .button-container button.active:focus:before, .card .button-container button.active:hover:before {
     opacity: 1;
@@ -309,7 +315,7 @@
     transition: .3s ease;
   }
   .card .footer a:hover {
-    color: #5b3bcc;
+    color: $primary-color;
   }
   .card.alt {
     position: absolute;
@@ -338,16 +344,16 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);  
   }  
   .rl_container.active .card.alt .toggle {
-    background: #FFF;
+    background: $white-color;
   }
   .card.alt .toggle {
     position: relative;
-    background: #5b3bcc;
+    background: $primary-color;
     width: 120px;
     height: 120px;
     border-radius: 100%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    color: #ffffff;
+    color: $white-color;
     font-size: 58px;
     line-height: 120px;
     text-align: center;
@@ -379,8 +385,8 @@
   }
   .card.alt .title {
     position: relative;
-    border-color: #5b3bcc;
-    color: #5b3bcc;
+    border-color: $primary-color;
+    color: $primary-color;
   }
   .card.alt .title .close {
     cursor: pointer;
@@ -388,7 +394,7 @@
     top: 0;
     right: 30px;
     display: inline;
-    color: #5b3bcc;
+    color: $primary-color;
     font-size: 58px;
     font-weight: 400;
     line-height: 60px;
@@ -397,34 +403,34 @@
     content: '\00d7';
   }
   .card.alt .input-container input {
-    color: #757575;
+    color: $gray-color;
   }
   .card.alt .input-container input:focus ~ label {
-    color: #757575;
+    color: $gray-color;
   }
   .card.alt .input-container input:focus ~ .bar:before, .card.alt .input-container input:focus ~ .bar:after {
-    background: #757575;
+    background: $gray-color;
   }
   .card.alt .input-container input:valid ~ label {
-    color: #757575;
+    color: $gray-color;
   }
   .card.alt .input-container label {
-    color: #757575;
+    color: $gray-color;
   }
   .card.alt .input-container .bar {
-    background: #757575;
+    background: $gray-color;
   }
   .card.alt .button-container button {
     width: 100%;    
   }
   .card.alt .button-container button.active span {
-    color: #5b3bcc;
+    color: $primary-color;
   }
   .card.alt .button-container button.active:hover {
-    border-color: #5b3bcc;
+    border-color: $primary-color;
   }
   .card.alt .button-container button.active:hover span, .card.alt .button-container button.active:active span, .card.alt .button-container button.active:focus span {
-    color: #FFF;
+    color: $white-color;
   }
   .card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
     display: none;
@@ -448,20 +454,17 @@
     position: absolute;
     left: 0;
     padding: 5px;
-    background-color: red;
-    color: #FFF;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    background-color: $red-color;
+    color: $white-color;
+    @include user-select;
 }
 .authError {
   font-size: 12px;
   position: absolute;
   left: 160px;
   top: 57px;
-  color: #FFF;
-  background-color: #F00;
+  color: $white-color;
+  background-color: $red-color;
   padding: 5px;
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -14,7 +14,6 @@ import { AuthService } from './common/services/auth.service';
 import { AdminModule } from './modules/admin/admin.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -22,8 +21,7 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ResetPasswordComponent
+    AppComponent,    
   ],
   imports: [
     BrowserModule,
