@@ -5,8 +5,9 @@
                 <nav class="header-nav">
                     <h1 class="logo">Crackers Online</h1>
                     <ul class="list-right">
-                        <li class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>Mathar Beevi</span></li>
+                        <li class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>{{username}}</span></li>
                         <li class="cart-info"><span class="cart_count">12</span>Cart</li>
+                        <li class="logout" (click)="logout()"><span>Logout</span></li>
                     </ul>
                 </nav>
             </div>

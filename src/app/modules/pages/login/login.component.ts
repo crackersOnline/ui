@@ -31,16 +31,15 @@ export class LoginComponent implements OnInit {
       console.log('submit', this.userEmail, this.password );
       this.auth.login(this.userEmail, this.password)
       .subscribe(result => {
-         this.router.navigate(['admin']);
+         this.router.navigate(['products']);
       },
         err => {
-          if(err.status == 401) {
-            this.error = "This mail id not registered.";
+          if (err.status == 401) {
+            this.error = 'This mail id not registered.';
+          } else {
+            this.error = err.error.message;
           }
-          else {
-            this.error = err.error.message
-          }
-        } 
+        }
       );
     }
 

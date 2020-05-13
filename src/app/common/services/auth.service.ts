@@ -61,10 +61,12 @@ export class AuthService {
     } */
 
     public login(userEmail: string, password: string): Observable<any> {
-        return this.http.post<{token: string}>(this.authUrl + '/user/auth', { userEmail, password})
+        return this.http.post<any>(this.authUrl + '/user/auth', { userEmail, password})
             .pipe(
                 map(result => {
+                    console.log('result', result);
                     localStorage.setItem('access_token', result.token);
+                    localStorage.setItem('userName', result.userName);
                     return true;
                 })
             );
@@ -72,6 +74,7 @@ export class AuthService {
 
     public logout() {
         localStorage.removeItem('access_token');
+        localStorage.removeItem('userName');
     }
 
     public get loggedIn(): boolean {

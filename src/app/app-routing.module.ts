@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { AnonymousGuardGuard } from './anonymous-guard.guard';
 
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: './modules/pages/pages.module#PagesModule'
+    loadChildren: './modules/pages/pages.module#PagesModule',
+    canActivate: [AnonymousGuardGuard]
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/products',
     pathMatch: 'full'
   },
   {

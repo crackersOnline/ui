@@ -12,10 +12,5 @@ export class AppComponent {
   title = 'ui';
 
   constructor(private auth: AuthService, private router: Router) { }
-  
-  public logout() {
-    console.log('logout')
-    this.auth.logout();
-    this.router.navigate(['login']);
-  }
+
 }
