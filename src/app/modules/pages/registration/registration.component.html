@@ -3,7 +3,7 @@
     <h1 class="title">Register
         <div class="close" (click)="disable_register()"></div>
     </h1>
-    <form (ngSubmit)="submit()" #registratiomForm="ngForm">
+    <form (ngSubmit)="registrationSubmit(registratiomForm)" #registratiomForm="ngForm">
         <div class="input-container">
             <input type="text" id="register_username" required="required" name="username" [(ngModel)]="username" #usernameText="ngModel" email/>
             <label for="register_username">Email</label>
@@ -26,16 +26,16 @@
             </div>
         </div>
         <div class="input-container">
-            <input type="password" id="register_confirm_password" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel" validateEqual="password"/>
-            <label for="register_confirm_password">Repeat Password</label>
+            <input type="password" appConfirmEqualValidator="password" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/>
+            <label>Repeat Password</label>
             <div class="bar"></div>
             <div *ngIf="confirmPasswordText.touched && !confirmPasswordText.valid" class="loginError_alert">
                 <div *ngIf="confirmPasswordText.errors.required">
                     Confirm Password is required.
                 </div>
-                <div *ngIf="confirmPasswordText.errors.mustMatch">Passwords must match</div>
+                <div *ngIf="confirmPasswordText.errors?.misMatch">Passwords must match</div>
             </div>
         </div>
-        <div class="button-container"><button [class.active]="registratiomForm.valid" [disabled]="!registratiomForm.valid"><span>Next</span></button></div>
+        <div class="button-container"><button [class.active]="registratiomForm.valid" [disabled]="!registratiomForm.valid" type="submit"><span>Next</span></button></div>
     </form>
 </div>

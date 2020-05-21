@@ -4,7 +4,7 @@
     <!-- <div class="authError">Username & Password does not match</div> -->
     <div class="authError" *ngIf="error">{{error}}</div>
     <h1 class="title">Login</h1>
-    <form (ngSubmit)="submit()" #userLoginForm="ngForm">
+    <form (ngSubmit)="loginSubmit()" #userLoginForm="ngForm">
         <div class="input-container form-group">
             <input type="text" id="login_username" required="required" email name="userEmail" class="form-control" [(ngModel)]="userEmail" #usernameText="ngModel" />
             <label for="login_username">Username</label>

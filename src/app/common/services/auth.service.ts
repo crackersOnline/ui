@@ -61,9 +61,9 @@ export class AuthService {
     } */
 
     public login(userEmail: string, password: string): Observable<any> {
-        return this.http.post<any>(this.authUrl + '/user/auth', { userEmail, password})
+        return this.apiProxy.post(this.authUrl + '/user/auth', { userEmail, password})
             .pipe(
-                map(result => {
+                map((result:any) => {
                     console.log('result', result);
                     localStorage.setItem('access_token', result.token);
                     localStorage.setItem('userName', result.userName);

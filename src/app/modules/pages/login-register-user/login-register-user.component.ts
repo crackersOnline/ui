@@ -13,9 +13,6 @@ export class LoginRegisterUserComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
-
   enable_register(event) {
     this.registerStatus = event;
   }

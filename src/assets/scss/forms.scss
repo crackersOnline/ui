@@ -272,7 +272,7 @@ select:-webkit-autofill:focus {
     transition: .3s ease;    
     @include user-select;
   }
-  .card .button-container button:before {
+  .card .button-container button:before, .card .button-container button.active:before {
     content: '';
     position: absolute;
     top: 50%;
@@ -287,16 +287,13 @@ select:-webkit-autofill:focus {
     -webkit-transition: .3s ease;
     transition: .3s ease;
   }
-  .card .button-container button.active:hover, .card .button-container button.active:active, .card .button-container button.active:focus {
+  .card .button-container button.active:hover, .card .button-container button.active:focus, .card .button-container button.active:active {
     border-color: $primary-color;
   }
-  .card .button-container button.active:hover span, .card .button-container button.active:active span, .card .button-container button.active:focus span {
+  .card .button-container button.active:hover span, .card .button-container button.active:focus span, .card .button-container button.active:active span {
     color: $white-color;
-  }
-  .card .button-container button.active:active span, .card .button-container button.active:focus span {
-    color: $white-color;
-  }
-  .card .button-container button.active:active:before, .card .button-container button.active:focus:before, .card .button-container button.active:hover:before {
+  }  
+  .card .button-container button.active:hover:before, .card .button-container button.active:focus:before, .card .button-container button.active:active:before {
     opacity: 1;
     -webkit-transform: scale(13);
     transform: scale(13);
@@ -366,9 +363,10 @@ select:-webkit-autofill:focus {
     }
   }
   .card.alt .toggle:before {
-    content: '\f040';
+    content: '\f303';
     display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;    
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -429,10 +427,10 @@ select:-webkit-autofill:focus {
   .card.alt .button-container button.active:hover {
     border-color: $primary-color;
   }
-  .card.alt .button-container button.active:hover span, .card.alt .button-container button.active:active span, .card.alt .button-container button.active:focus span {
+  .card.alt .button-container button.active:hover span, .card.alt .button-container button.active:focus span, .card.alt .button-container button.active:active span {
     color: $white-color;
   }
-  .card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
+  .card.alt .button-container button:focus:before, .card.alt .button-container button:active:before {
     display: none;
   }
   
@@ -453,9 +451,8 @@ select:-webkit-autofill:focus {
   .loginError_alert {
     position: absolute;
     left: 0;
-    padding: 5px;
-    background-color: $red-color;
-    color: $white-color;
+    padding: 3px 0px 0px 0px;    
+    color: $red-color;
     @include user-select;
 }
 .authError {

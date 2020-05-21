@@ -6,7 +6,6 @@ import { CommonProjectModule } from './common/common.module';
 import { FragmentsModule } from './fragments/fragments.module';
 import { PagesModule } from './modules/pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './app-material/app-material.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './auth.guard';
@@ -30,8 +29,7 @@ export function tokenGetter() {
     FragmentsModule,
     CommonProjectModule,
     PagesModule,
-    BrowserAnimationsModule,
-    AppMaterialModule,
+    BrowserAnimationsModule,    
     AngularFontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
