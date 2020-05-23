@@ -20,6 +20,7 @@
             font-size: 15px;
             font-weight: 300;
             padding: 5px 0px;
+            color: #333333;
             &:hover {
                 text-decoration: none;
             }
@@ -40,9 +41,12 @@
     }
 }
 .prdt_listing {
-    border-right: 1px solid #e9e9eb;
+    height: calc(100vh - 215px);
+    overflow: scroll;
+    // border-right: 1px solid #e9e9eb;
     .prdt_listing_inner {
         .category_prdt_list {
+            border-bottom: 1px solid #e9e9eb;
             padding:20px 0px;
             .category_title {
                 margin-bottom: 20px;
@@ -114,6 +118,17 @@
                         }
                         .quantity_count {
                             color: $primary-color;
+                            letter-spacing: 2px;
+                            input {
+                                width: 100%;
+                                padding: 0;
+                                border: none;
+                                text-align: center;
+                                outline: none;
+                                @include user-select;
+                                letter-spacing: 2px;
+                                color: $primary-color;
+                            }
                         }
                         .minus_quantity {
                             color: $medium-black;

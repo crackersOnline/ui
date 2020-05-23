@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { PagesComponent } from "./pages.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { FragmentsModule } from "src/app/fragments/fragments.module";
+import { UserVerificationComponent } from './user-verification/user-verification.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FragmentsModule } from "src/app/fragments/fragments.module";
     LoginRegisterUserComponent,
     ForgotPasswordComponent,
     PagesComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UserVerificationComponent
   ],
   imports: [CommonModule, FormsModule, PagesRoutingModule, FragmentsModule],
 })

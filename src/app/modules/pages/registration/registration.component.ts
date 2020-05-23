@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { PagesService } from '../pages.service';
 import { Router } from '@angular/router';
 import {ConfirmEqualValidatorDirective} from '../../../common/directives/confirm-equal-validator.directive'
+import { UserVerificationComponent } from '../user-verification/user-verification.component';
 
 @Component({
   selector: 'app-registration',
@@ -24,12 +25,12 @@ export class RegistrationComponent implements OnInit {
   enable_register() {
     this.status = true;
     this.enableregister.emit(this.status);
-    console.log('Enable Status', this.status = this.status);
+    // console.log('Enable Status', this.status = this.status);
   }
   disable_register() {
     this.status = false;
     this.disableregister.emit(this.status);
-    console.log('Disable Status', this.status = this.status);
+    // console.log('Disable Status', this.status = this.status);
   }
 
   /**
@@ -37,11 +38,17 @@ export class RegistrationComponent implements OnInit {
    */
 
   public registrationSubmit(registratiomForm:NgForm){
-    //console.log(registratiomForm.value);
+    console.log("Reg User Name",registratiomForm.value.username);
+    console.log('user name ',this.username)
     this.pages.registration(registratiomForm.value).subscribe(
-      data => {
-        console.log("Data: ",data);
-        console.log("Registration succeess");
+      (res:any) => {
+        // console.log("Data: ",res);
+        // console.log("Data: ",res.data.userName);
+        // console.log("Registration succeess");
+        // console.log("Reg User Name",registratiomForm.value.username);        
+        this.router.navigateByUrl("userverfiy", { skipLocationChange: true }).then(()=>
+        this.pages.emailemitter.emit(res.data.userName)
+        )
       }
     );
     registratiomForm.resetForm();

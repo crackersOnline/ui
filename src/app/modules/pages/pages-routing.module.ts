@@ -4,6 +4,7 @@ import { LoginRegisterUserComponent } from "./login-register-user/login-register
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { PagesComponent } from "./pages.component";
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UserVerificationComponent } from './user-verification/user-verification.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path:"resetpwd",
         component: ResetPasswordComponent,
+      },
+      {
+        path:"userverfiy",
+        component:UserVerificationComponent
       }
     ],
   },

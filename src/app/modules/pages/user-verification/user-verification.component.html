@@ -1,0 +1,23 @@
+<div class="rl_container">
+    <div class="card"></div>
+    <div class="card">
+        <h1 class="title">Account activation</h1>
+        <p class="fp_title2">A Verification Code has been sent to <b>{{registerEmail}}</b></p>
+        <p class="fp_subtitle">Please enter the verification code below to activate your Account. If you cannot see the
+            email from “Crackers Online” in your inbox, make sure to check your SPAM folder.</p>
+            <p class="fp_subtitle2">Please don't refresh the page</p>
+            <form (ngSubmit)="verificationSubmit(accVerificationForm)" #accVerificationForm="ngForm">
+                <div class="input-container">
+                    <input type="text" id="user_veritcode" required="required" name="verificationcode" minlength="6" [(ngModel)]="verificationcode" #verificationcodeText="ngModel"/>
+                    <label for="user_veritcode">Verification Code</label>
+                    <div class="bar"></div>
+                    <div *ngIf="verificationcodeText.touched && !verificationcodeText.valid" class="loginError_alert">
+                        <div *ngIf="verificationcodeText.errors.required">
+                            Verification Code is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="button-container"><button [class.active]="accVerificationForm.valid" [disabled]="!accVerificationForm.valid" type="submit"><span>Activation</span></button></div>
+            </form>        
+    </div>
+</div>
