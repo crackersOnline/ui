@@ -15,6 +15,7 @@ export class RegistrationComponent implements OnInit {
   public username:string;
   public password:string;
   public confirmpassword:string;  
+  confirmpwdError = false;
 
   @Output () enableregister = new EventEmitter();
   @Output () disableregister = new EventEmitter();
@@ -53,4 +54,13 @@ export class RegistrationComponent implements OnInit {
     );
     registratiomForm.resetForm();
   }
+
+  onEnter(pwd, confirmpwd) {
+ if(pwd !== confirmpwd) {
+  console.log('pwd', pwd, confirmpwd)
+
+   this.confirmpwdError=true;
+   return false;
+ }
+}
 }

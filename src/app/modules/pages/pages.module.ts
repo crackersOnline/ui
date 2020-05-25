@@ -10,6 +10,7 @@ import { PagesComponent } from "./pages.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { FragmentsModule } from "src/app/fragments/fragments.module";
 import { UserVerificationComponent } from './user-verification/user-verification.component';
+import { ConfirmEqualValidatorDirective } from 'src/app/common/directives/confirm-equal-validator.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserVerificationComponent } from './user-verification/user-verification
     ForgotPasswordComponent,
     PagesComponent,
     ResetPasswordComponent,
-    UserVerificationComponent
+    UserVerificationComponent,
+    ConfirmEqualValidatorDirective
   ],
   imports: [CommonModule, FormsModule, PagesRoutingModule, FragmentsModule],
 })
