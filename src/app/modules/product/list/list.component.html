@@ -39,7 +39,7 @@
                                                     <div class="listing_footer">
                                                         <div class="price_block">
                                                             <i class="fas fa-rupee-sign"></i>
-                                                            <span id="prdt_price">{{product.prouductPrice}}</span>
+                                                            <span id="prdt_price">{{product.productPrice}}</span>
                                                         </div>
                                                         <div class="quantity_block product.productID">
                                                             <!-- {{quantityCount}} -->
@@ -65,12 +65,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-xl-3 col-lg-3 col-sm-12 col-12">
-                            <div class="cart-container">
-                                <div class="cart-empty">
-                                    <h2>Cart Empty</h2>
-                                    <img src="../../../../assets/images/cart/cart_empty.png" class="img-responsive" />
-                                </div>
-                            </div>
+                            <app-cart></app-cart>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,16 @@
+<div class="cart-container">
+
+  <div *ngIf="!itemCount>0" class="cart-empty">
+      <h2>Cart Empty</h2>
+      <img src="../../../../assets/images/cart/cart_empty.png" class="img-responsive" />
+  </div>
+  <div *ngIf="itemCount>0" class="cart">
+      <h2>Cart {{itemCount}}</h2>
+      <div *ngFor="let item of cartItem"> 
+          <span>Name: {{item.productName}}</span>
+          <span>Count: {{item.productQuantity}}</span>
+          <span>Price: {{item.productPrice}}</span>
+      </div>
+      Total Price : {{totalValue}}
+  </div>
+</div>

@@ -4,11 +4,12 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { AppMaterialModule } from '../app-material/app-material.module';
 import { ConfirmEqualValidatorDirective } from '../common/directives/confirm-equal-validator.directive';
+import { CartComponent } from './functional/cart/cart.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, CartComponent],
   imports: [
     CommonModule,
     AppMaterialModule
@@ -16,8 +17,8 @@ import { ConfirmEqualValidatorDirective } from '../common/directives/confirm-equ
   exports: [
     HeaderComponent,
     FooterComponent,
-    AppMaterialModule
-    
+    AppMaterialModule,
+    CartComponent
   ]
 })
 export class FragmentsModule { }
