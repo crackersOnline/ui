@@ -11,16 +11,14 @@ import {Validator, NG_VALIDATORS, AbstractControl} from '@angular/forms';
 })
 export class ConfirmEqualValidatorDirective implements Validator {
   @Input() appConfirmEqualValidator:string;
-
+  
   validate(control: AbstractControl): {[key:string]: any} | null {
-    const controlToCompare = control.parent.get(this.appConfirmEqualValidator);
-    console.log("Before If Condition");
-    if(controlToCompare && controlToCompare.value !== control.value) {
-      console.log("If Condo]ition");
+     const controlToCompare = control.parent.get(this.appConfirmEqualValidator);
+    if(controlToCompare && control.value && controlToCompare.value !== control.value) {
       return {'misMatch':true };
+    } else {
+      return null;
     }
-    console.log("Out side  If Condition");
-    return null;
   }
   constructor() { }
 

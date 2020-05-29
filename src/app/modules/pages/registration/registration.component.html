@@ -25,16 +25,21 @@
                 </div>
             </div>
         </div>
+        {{confirmpassword}} -- {{confirmPasswordText.value}}
         <div class="input-container">
-            <input type="password" appConfirmEqualValidator="password" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/>
+            <!-- <input type="password" appConfirmEqualValidator="passwordText" (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/> -->
+            <input type="password" appConfirmEqualValidator="password" (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/>
             <label>Repeat Password</label>
             <div class="bar"></div>
             <div *ngIf="confirmPasswordText.touched && !confirmPasswordText.valid" class="loginError_alert">
                 <div *ngIf="confirmPasswordText.errors.required">
                     Confirm Password is required.
                 </div>
-                <div *ngIf="confirmPasswordText.errors?.misMatch">Passwords must match</div>
             </div>
+            <div *ngIf="confirmPasswordText.errors?.misMatch" class="loginError_alert">Passwords must match</div>
+            <!-- <div *ngIf="(password && confirmpassword && password !== confirmpassword)" class="loginError_alert">Passwords must match 1</div> -->
+            <!-- <div *ngIf="confirmpwdError">Passwords must match 2</div> -->
+            
         </div>
         <div class="button-container"><button [class.active]="registratiomForm.valid" [disabled]="!registratiomForm.valid" type="submit"><span>Next</span></button></div>
     </form>
