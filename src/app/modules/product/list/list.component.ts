@@ -56,6 +56,7 @@ export class ListComponent implements OnInit {
     }
     // this.cartItem.push(data);
     this.singletonService.setCartItems(this.cartItem);
+    this.singletonService.notifyMetaDataChanged(true);
     console.log("Cart Item", this.singletonService.getCartItems());
   }
   minusQuantity(item) {

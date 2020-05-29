@@ -10,13 +10,20 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
 })
 export class HeaderComponent implements OnInit {
   private username = '';
+  private itemCount:[];
   constructor( private authService: AuthService, private router: Router, private singletonService:AppSingletonService) {
     this.username = localStorage.getItem('userName');
    }
 
   ngOnInit() {
-    let itemCount = this.singletonService.getCartItems();
-    console.log("Item Count", itemCount);
+    this.singletonService.metadataChangeObservable.subscribe(
+      (received) => {
+        if(received) {
+          this.itemCount = this.singletonService.getCartItems();
+          console.log("Item Count", this.itemCount);
+        }
+      }
+    );    
   }
 
   public logout() {
