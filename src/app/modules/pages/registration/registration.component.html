@@ -1,7 +1,7 @@
 <div class="card alt">
     <div class="toggle" (click)="enable_register()"></div>
     <h1 class="title">Register
-        <div class="close" (click)="disable_register()"></div>
+        <div class="close" (click)="disable_register(); registratiomForm.reset()"></div>
     </h1>
     <form (ngSubmit)="registrationSubmit(registratiomForm)" #registratiomForm="ngForm">
         <div class="input-container">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="input-container">
-            <input type="password" id="register_password" required="required" name="password" [(ngModel)]="password" #passwordText="ngModel" />
+            <input type="password" id="register_password" required="required" name="password" (input)="confirmPasswordText.control.updateValueAndValidity()" [(ngModel)]="password" #passwordText="ngModel" />
             <label for="register_password">Password</label>
             <div class="bar"></div>
             <div *ngIf="passwordText.touched && !passwordText.valid" class="loginError_alert">
@@ -25,7 +25,6 @@
                 </div>
             </div>
         </div>
-        {{confirmpassword}} -- {{confirmPasswordText.value}}
         <div class="input-container">
             <!-- <input type="password" appConfirmEqualValidator="passwordText" (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/> -->
             <input type="password" appConfirmEqualValidator="password" (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/>
@@ -36,6 +35,7 @@
                     Confirm Password is required.
                 </div>
             </div>
+            
             <div *ngIf="confirmPasswordText.errors?.misMatch" class="loginError_alert">Passwords must match</div>
             <!-- <div *ngIf="(password && confirmpassword && password !== confirmpassword)" class="loginError_alert">Passwords must match 1</div> -->
             <!-- <div *ngIf="confirmpwdError">Passwords must match 2</div> -->

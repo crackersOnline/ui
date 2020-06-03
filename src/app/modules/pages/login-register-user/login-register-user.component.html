@@ -1,4 +1,4 @@
 <div class="rl_container" [ngClass]="registerStatus ? 'active' : ''">
-    <app-login></app-login>
+    <app-login [clear]="registerStatus" ></app-login>
     <app-registration (enableregister)="enable_register($event)" (disableregister)="enable_register($event)"></app-registration>
 </div>

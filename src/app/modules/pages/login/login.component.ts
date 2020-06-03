@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -13,8 +14,9 @@ export class LoginComponent implements OnInit {
   public userEmail: string;
   public password: string;
   public error: string;
+  @Input() clear: any;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private ref: ChangeDetectorRef) { }
   userLoginForm = new FormGroup({
     loginUsername : new FormControl('', [
       Validators.required,
@@ -24,8 +26,8 @@ export class LoginComponent implements OnInit {
       Validators.required
     ])
   });
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
   public loginSubmit() {
       console.log('submit', this.userEmail, this.password );
       this.auth.login(this.userEmail, this.password)
@@ -42,4 +44,9 @@ export class LoginComponent implements OnInit {
       );
     }
 
+/*   clear() {
+    console.log('test');
+    this.userLoginForm.reset();
+  }
+ */
 }

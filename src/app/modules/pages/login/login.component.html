@@ -1,6 +1,7 @@
 
 <div class="card"></div>
 <div class="card">
+    <div *ngIf="clear ? userLoginForm.reset():''"></div>
     <!-- <div class="authError">Username & Password does not match</div> -->
     <div class="authError" *ngIf="error">{{error}}</div>
     <h1 class="title">Login</h1>
