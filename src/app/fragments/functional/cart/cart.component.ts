@@ -9,7 +9,8 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
 export class CartComponent implements OnInit {
   public itemCount;
   public cartItem;
-  public totalValue = 0;
+  public totalProductPrice = 0;
+  public totalProductQuantity = 0;
   constructor( private singletonService: AppSingletonService ) { }
 
   ngOnInit() {
@@ -19,9 +20,10 @@ export class CartComponent implements OnInit {
           this.cartItem = this.singletonService.getCartItems();
           console.log('this.cartitem', this.cartItem);
           this.itemCount = this.cartItem.length;
-          this.totalValue = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
+          this.totalProductQuantity = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) || 0), 0);
+          this.totalProductPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
 
-          console.log('this.totalValue', this.totalValue);
+          console.log('this.totalValue', this.totalProductPrice);
         }
       }
     );
