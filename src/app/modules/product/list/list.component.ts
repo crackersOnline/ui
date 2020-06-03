@@ -38,12 +38,14 @@ export class ListComponent implements OnInit {
       productID: item.productID,
       productName: item.productName,
       productPrice: item.productPrice,
-      productQuantity: item.count
+      productQuantity: item.count,
+      productTtlQtyPrice: item.count * item.productPrice
     };
+    console.log("Product QTY Total Price")
     if (this.cartItem && this.cartItem.length > 0) {
       this.cartItem.filter((res) => {
         if (res.productID === item.productID) {
-          return res.productQuantity = item.count;
+          return res.productQuantity = item.count, res.productTtlQtyPrice = item.count * item.productPrice;
         }
        });
       const isExist = this.cartItem.some(el => el.productID === item.productID);
@@ -67,6 +69,7 @@ minusQuantity(item) {
   if (this.cartItem.length > 0) {
       const productIndex = this.cartItem.findIndex(obj => obj.productID === item.productID);
       this.cartItem[productIndex].productQuantity -= 1;
+      this.cartItem[productIndex].productTtlQtyPrice = this.cartItem[productIndex].productQuantity * this.cartItem[productIndex].productPrice;
       if (this.cartItem[productIndex].productQuantity === 0 ) {
         this.cartItem.splice(productIndex, 1);
       }
