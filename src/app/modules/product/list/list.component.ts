@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AppSingletonService } from 'src/app/app.singleton.service';
+import { CartService } from 'src/app/common/services/cart.service';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +12,11 @@ export class ListComponent implements OnInit {
   public cartItem = [];
   productsList: any;
   categoryList: any;
-  constructor(private productService: ProductService, private myElement: ElementRef, private singletonService: AppSingletonService) { }
+  constructor(
+    private productService: ProductService,
+    private myElement: ElementRef,
+    private singletonService: AppSingletonService,
+    private cartService: CartService) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe(
@@ -37,11 +42,13 @@ export class ListComponent implements OnInit {
     const data = {
       productID: item.productID,
       productName: item.productName,
+      categoryID: item.categoryID,
+      categoryName: item.categoryName,
       productPrice: item.productPrice,
       productQuantity: item.count,
       productTtlQtyPrice: item.count * item.productPrice
     };
-    console.log("Product QTY Total Price")
+    console.log('Product QTY Total Price', data);
     if (this.cartItem && this.cartItem.length > 0) {
       this.cartItem.filter((res) => {
         if (res.productID === item.productID) {
@@ -59,6 +66,7 @@ export class ListComponent implements OnInit {
     }
     // this.cartItem.push(data);
     this.singletonService.setCartItems(this.cartItem);
+    this.cartService.saveCart(this.cartItem);
     this.singletonService.notifyMetaDataChanged(true);
     console.log('Cart Item', this.singletonService.getCartItems());
   }
