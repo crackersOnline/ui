@@ -4,7 +4,11 @@
 .cart-container {
   border-left: 1px solid #e9e9eb;
   padding: 20px;
-  height: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  height: calc(100vh - 215px);
+  top: 215px;
+  z-index: 9;
   .cart-empty {
     h2 {
       margin-top: 0;
@@ -22,6 +26,15 @@
   .cart {
     h2 {
       margin-top: 0;
+      .cartItem_count {
+        display: block;
+        font-size: 13px;
+        font-weight: normal;
+      }
+    }
+    .cartItemListContainer {
+      max-height: calc(100vh - 370px);
+      overflow: auto;
     }
     .cartItemList {
       display: flex;

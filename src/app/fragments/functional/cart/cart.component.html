@@ -1,24 +1,26 @@
 <div class="cart-container">
-
     <div *ngIf="!itemCount>0" class="cart-empty">
         <h2>Cart Empty</h2>
         <img src="../../../../assets/images/cart/cart_empty.png" class="img-responsive" />
         <p>Good food is always cooking! Go ahead, order some yummy items from the menu.</p>
     </div>
     <div *ngIf="itemCount>0" class="cart">
-        <h2>Cart</h2>
-        <div class="cartItemList" *ngFor="let item of cartItem">
-            <div class="cPrdtImage">
-                <img src="assets/images/product/sample.jpg" />                
-            </div>
-            <div class="cPrdtInfo">
-                <h3>{{item.productName}}</h3>
-                <div class="cPrdtQtyAndPrice">
-                    <div class="cPrdtQty">Qty: {{item.productQuantity}}</div>
-                    <div class="cPrdtTtlPrice"><i class="fas fa-rupee-sign"></i> {{item.productTtlQtyPrice}}</div>
+        <h2>Cart <span class="cartItem_count">{{itemCount}} ITEM<span *ngIf="itemCount>1">S</span></span></h2>
+        <div class="cartItemListContainer">
+            <div class="cartItemList" *ngFor="let item of cartItem">
+                <div class="cPrdtImage">
+                    <img src="assets/images/product/sample.jpg" />                
+                </div>
+                <div class="cPrdtInfo">
+                    <h3>{{item.productName}}</h3>
+                    <div class="cPrdtQtyAndPrice">
+                        <div class="cPrdtQty">Qty: {{item.productQuantity}}</div>
+                        <div class="cPrdtTtlPrice"><i class="fas fa-rupee-sign"></i> {{item.productTtlQtyPrice}}</div>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <!-- Total Qunantity : {{totalProductQuantity}} -->
         <div class="cartTotalAmount">
             <span>Payable Amount</span>

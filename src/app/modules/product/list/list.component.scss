@@ -3,14 +3,24 @@
 .body_page_container {
     font-family: $kanit;
 }
+.row_category_container {
+    position: relative;
+}
 .promo-banner {
     background-color: $primary-color;
     height: 150px;
+    position: sticky;
+    top: 65px;
+    z-index: 10;
 }
 .category_container {
     padding-top: 20px;
-    border-right: 1px solid #e9e9eb;
-    height: 100%;
+    border-right: 1px solid #e9e9eb;    
+    position: -webkit-sticky;
+    position: sticky;
+    height: calc(100vh - 215px);
+    top: 215px;
+    z-index: 9;
     .category_inner_container {
         padding-right: 25px;
         position: relative;
@@ -40,9 +50,13 @@
 
     }
 }
+.sticky_category_container {
+    position: sticky;
+    top: 100px;
+}
 .prdt_listing {
-    height: calc(100vh - 215px);
-    overflow: scroll;
+    // height: calc(100vh - 215px);
+    // overflow: scroll;
     // border-right: 1px solid #e9e9eb;
     .prdt_listing_inner {
         .category_prdt_list {
