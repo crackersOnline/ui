@@ -14,16 +14,28 @@
                 <div class="cPrdtInfo">
                     <h3>{{item.productName}}</h3>
                     <div class="cPrdtQtyAndPrice">
-                        <div class="cPrdtQty">Qty: {{item.productQuantity}}</div>
+                        <div class="quantity_block item.productID">
+                            <!-- {{quantityCount}} -->
+                            <!-- initial Quantity Add -->
+                            <span (click)="addQuantity(item)"
+                                class="initial_add" *ngIf="item.productQuantity==0">ADD</span>
+                            <!-- Increase & Discrease Quantity -->
+                                <div *ngIf="item.productQuantity>0" (click)="minusQuantity(item)" class="minus_quantity"><i
+                                        class="fas fa-minus"></i></div>
+                                <div *ngIf="item.productQuantity>0" class="quantity_count">
+                                    <input type="text" readonly [value]="item.productQuantity" name="noOfItem" />                                                                    
+                                </div>
+                                <div *ngIf="item.productQuantity>0" (click)="addQuantity(item)" class="add_quantity"><i
+                                        class="fas fa-plus"></i></div>                                                            
+                        </div>
+                        <!-- <div class="cPrdtQty">Qty: {{item.productQuantity}}</div> -->
                         <div class="cPrdtTtlPrice"><i class="fas fa-rupee-sign"></i> {{item.productTtlQtyPrice}}</div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Total Qunantity : {{totalProductQuantity}} -->
         <div class="cartTotalAmount">
-            <span>Payable Amount</span>
+            <span>Subtotal</span>
             <span><i class="fas fa-rupee-sign"></i> {{totalProductPrice}}</span>
         </div>
         <div class="cart_btn">

@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AppSingletonService } from 'src/app/app.singleton.service';
 import { CartService } from 'src/app/common/services/cart.service';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
   selector: 'app-list',
@@ -16,9 +17,17 @@ export class ListComponent implements OnInit {
     private productService: ProductService,
     private myElement: ElementRef,
     private singletonService: AppSingletonService,
+    private commonService : CommonService,
     private cartService: CartService) { }
 
   ngOnInit() {
+    this.singletonService.metadataChangeObservable.subscribe(
+      (received) => {
+        if (received) {
+          
+        }
+      }
+    );
     this.productService.getProducts().subscribe(
       res => {
         this.productsList = res.data;
@@ -37,34 +46,7 @@ export class ListComponent implements OnInit {
 
 // Increase Count
   addQuantity(item) {
-    item.count += 1;
-    // let isExist = true;
-    const data = {
-      productID: item.productID,
-      productName: item.productName,
-      categoryID: item.categoryID,
-      categoryName: item.categoryName,
-      productPrice: item.productPrice,
-      productQuantity: item.count,
-      productTtlQtyPrice: item.count * item.productPrice
-    };
-    console.log('Product QTY Total Price', data);
-    if (this.cartItem && this.cartItem.length > 0) {
-      this.cartItem.filter((res) => {
-        if (res.productID === item.productID) {
-          return res.productQuantity = item.count, res.productTtlQtyPrice = item.count * item.productPrice;
-        }
-       });
-      const isExist = this.cartItem.some(el => el.productID === item.productID);
-      console.log('isExist: ', isExist);
-      if (isExist === false) {
-        this.cartItem.push(data);
-       }
-    } else {
-      this.cartItem = [];
-      this.cartItem.push(data);
-    }
-    // this.cartItem.push(data);
+    this.cartItem = this.commonService.increaseCount(item);
     this.singletonService.setCartItems(this.cartItem);
     this.cartService.saveCart(this.cartItem);
     this.singletonService.notifyMetaDataChanged(true);
@@ -72,24 +54,16 @@ export class ListComponent implements OnInit {
   }
 
   // Decrease Count
-minusQuantity(item) {
-  item.count -= 1;
-  if (this.cartItem.length > 0) {
-      const productIndex = this.cartItem.findIndex(obj => obj.productID === item.productID);
-      this.cartItem[productIndex].productQuantity -= 1;
-      this.cartItem[productIndex].productTtlQtyPrice = this.cartItem[productIndex].productQuantity * this.cartItem[productIndex].productPrice;
-      if (this.cartItem[productIndex].productQuantity === 0 ) {
-        this.cartItem.splice(productIndex, 1);
-      }
-      console.log('this.cartItem', this.cartItem);
-
+  minusQuantity(item) {    
+    if (this.cartItem.length > 0) {
+      this.cartItem = this.commonService.decreaseCount(item);
       this.singletonService.setCartItems(this.cartItem);
       this.singletonService.notifyMetaDataChanged(true);
     }
   }
 
 // Scroll function
-scroll(el) {
+  scroll(el) {
     const ele = document.getElementById(el);
     ele.scrollIntoView({behavior: 'smooth'});
   }

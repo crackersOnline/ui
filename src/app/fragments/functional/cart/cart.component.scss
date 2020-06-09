@@ -30,6 +30,7 @@
         display: block;
         font-size: 13px;
         font-weight: normal;
+        color: $medium-black;;
       }
     }
     .cartItemListContainer {
@@ -58,7 +59,7 @@
           margin-top: 0;
           margin-bottom: 5px;
           text-transform:capitalize;
-          font-weight: normal;
+          font-weight: 300;
           line-height: 1.3;
         }
         .cPrdtQtyAndPrice {
@@ -66,10 +67,54 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .quantity_block {
+              width: 80px;
+              height: 30px;
+              border: 1px solid #D6D6D6;
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              @include user-select;
+              .initial_add {
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  color: $dark-black;
+                  font-size: 13px;
+                  text-align: center;
+                  line-height: 30px;
+              }
+              .add_quantity {
+                  color: $medium-black;
+                  padding: 0px 8px;
+                  font-size: 11px;
+              }
+              .quantity_count {
+                  color: $primary-color;
+                  letter-spacing: 2px;
+                  input {
+                      width: 100%;
+                      padding: 0;
+                      border: none;
+                      text-align: center;
+                      outline: none;
+                      @include user-select;
+                      letter-spacing: 2px;
+                      color: $primary-color;
+                  }
+              }
+              .minus_quantity {
+                  color: $medium-black;
+                  padding: 0px 8px;
+                  font-size: 11px;
+              }
+          }
         }        
         .cPrdtTtlPrice {
-            color: $primary-color;
-            font-size: 13px;
+            color: $medium-black;;
+            font-size: 14px;
+            font-weight: 300;
             i {
                 font-size: 11px;
             }
@@ -131,4 +176,5 @@
     }  
     
   }
+  
 /* Cart End*/

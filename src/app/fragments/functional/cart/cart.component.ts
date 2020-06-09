@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppSingletonService } from 'src/app/app.singleton.service';
+import { CommonService } from 'src/app/common/services/common.service';
+import { CartService } from 'src/app/common/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +13,7 @@ export class CartComponent implements OnInit {
   public cartItem;
   public totalProductPrice = 0;
   public totalProductQuantity = 0;
-  constructor( private singletonService: AppSingletonService ) { }
+  constructor( private singletonService: AppSingletonService, private commonService:CommonService, private cartService:CartService ) { }
 
   ngOnInit() {
     this.singletonService.metadataChangeObservable.subscribe(
@@ -27,6 +29,23 @@ export class CartComponent implements OnInit {
         }
       }
     );
+  }
+  // Increase Count
+  addQuantity(item) {
+    this.cartItem = this.commonService.increaseCount(item);
+    this.singletonService.setCartItems(this.cartItem);
+    this.cartService.saveCart(this.cartItem);
+    this.singletonService.notifyMetaDataChanged(true);
+    console.log('Cart Item', this.singletonService.getCartItems());
+  }
+
+  // Decrease Count
+  minusQuantity(item) {    
+    if (this.cartItem.length > 0) {
+      this.cartItem = this.commonService.decreaseCount(item);
+      this.singletonService.setCartItems(this.cartItem);
+      this.singletonService.notifyMetaDataChanged(true);
+    }
   }
 
 }
