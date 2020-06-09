@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { AppSettings } from '../../app.settings';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AppSingletonService } from 'src/app/app.singleton.service';
 // import { CommonFunctionsHelper } from '../helpers/common-functions.helper';
 
 @Injectable({
@@ -16,7 +17,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
     private authUrl: string = AppSettings.microservices.gateway_MicroService_BaseUrl;
 
-    constructor(private apiProxy: ApiProxy, private http: HttpClient) {
+    constructor(private apiProxy: ApiProxy, private http: HttpClient, private singletonService: AppSingletonService) {
     }
 /*
     private generateUUID() {
@@ -63,10 +64,11 @@ export class AuthService {
     public login(userEmail: string, password: string): Observable<any> {
         return this.apiProxy.post(this.authUrl + '/user/auth', { userEmail, password})
             .pipe(
-                map((result:any) => {
+                map((result: any) => {
                     console.log('result', result);
                     localStorage.setItem('access_token', result.token);
                     localStorage.setItem('userName', result.userName);
+                    this.singletonService.setUserInfo(result);
                     return true;
                 })
             );
@@ -79,5 +81,18 @@ export class AuthService {
 
     public get loggedIn(): boolean {
         return (localStorage.getItem('access_token') !== null);
+    }
+
+    public verifyToken() {
+        return this.apiProxy.post(this.authUrl + '/user/tokenVerify/', { token: localStorage.getItem('access_token') })
+            .pipe(
+                map((res: any) => {
+                    console.log('result', res);
+                    localStorage.setItem('access_token', res.token);
+                    localStorage.setItem('userName', res.userName);
+                    this.singletonService.setUserInfo(res);
+                    return true;
+                })
+            );
     }
 }

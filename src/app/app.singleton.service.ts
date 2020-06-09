@@ -5,7 +5,8 @@ import { Subject, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AppSingletonService {
-  public cartInfo:any;
+  public cartInfo: any;
+  public userInfo: any;
   private $metadataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public metadataChangeObservable = this.$metadataChange.asObservable();
   constructor() { }
@@ -13,10 +14,17 @@ export class AppSingletonService {
     this.cartInfo = data;
   }
   public getCartItems() {
-    console.log("getCartItems", this.cartInfo);
-    return this.cartInfo;    
+    return this.cartInfo;
   }
   public notifyMetaDataChanged(isReady: boolean) {
    this.$metadataChange.next(isReady);
   }
+
+  public setUserInfo(data) {
+    this.userInfo = data;
+  }
+  public getUserInfo() {
+    return this.userInfo;
+  }
+
 }

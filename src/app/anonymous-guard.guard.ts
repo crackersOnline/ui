@@ -15,8 +15,10 @@ export class AnonymousGuardGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
   console.log('AnonymousGuardGuard', localStorage.getItem('access_token'));
   if (!localStorage.getItem('access_token')) {
-      return true;
+    console.log('test 0');
+    return true;
     } else {
+      console.log('test 1');
       this.router.navigate(['/products']);
       return false;
     }
