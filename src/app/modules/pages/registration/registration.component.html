@@ -5,15 +5,14 @@
     </h1>
     <form (ngSubmit)="registrationSubmit(registratiomForm)" #registratiomForm="ngForm">
         <div class="input-container">
-            <input type="text" id="register_username" required="required" name="username" [(ngModel)]="username" #usernameText="ngModel" email/>
+            <input type="text" id="register_username" required="required" name="userEmail" (blur)="checkEmailExsit($event)" [(ngModel)]="userEmail" #usernameText="ngModel" email/>
             <label for="register_username">Email</label>
             <div class="bar"></div>
             <div *ngIf="usernameText.touched && !usernameText.valid" class="loginError_alert">
-                <div *ngIf="usernameText.errors.required">
-                    Email is required.
-                </div>
+                <div *ngIf="usernameText.errors.required"> Email is required.</div>
                 <div *ngIf="usernameText.errors.email">Email must be a valid email address</div>
             </div>
+            <div class="loginError_alert" *ngIf="invalidResult.duplicateEmailID">Email already exist</div>
         </div>
         <div class="input-container">
             <input type="password" id="register_password" required="required" name="password" (input)="confirmPasswordText.control.updateValueAndValidity()" [(ngModel)]="password" #passwordText="ngModel" />

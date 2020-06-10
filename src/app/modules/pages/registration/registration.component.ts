@@ -12,15 +12,18 @@ import { UserVerificationComponent } from '../user-verification/user-verificatio
 })
 export class RegistrationComponent implements OnInit {
   status = false;
-  public username: string;
+  public userEmail: string;
   public password: string;
   public confirmpassword: string;
   confirmpwdError = false;
   registratiomForm: NgForm;
+  public invalidResult = {
+    duplicateEmailID: false
+  };
 
   @Output () enableregister = new EventEmitter();
   @Output () disableregister = new EventEmitter();
-  constructor(private pages: PagesService, private router: Router) { }
+  constructor(private pageService: PagesService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,16 +43,14 @@ export class RegistrationComponent implements OnInit {
    */
 
   public registrationSubmit(registratiomForm: NgForm) {
-    console.log('Reg User Name', registratiomForm.value.username);
-    console.log('user name ', this.username);
-    this.pages.registration(registratiomForm.value).subscribe(
+    this.pageService.registration(registratiomForm.value).subscribe(
       (res: any) => {
         // console.log("Data: ",res);
         // console.log("Data: ",res.data.userName);
         // console.log("Registration succeess");
         // console.log("Reg User Name",registratiomForm.value.username);
         this.router.navigateByUrl('userverfiy', { skipLocationChange: true }).then(() =>
-        this.pages.emailemitter.emit(res.data.userName)
+        this.pageService.emailemitter.emit(res.data.userEmail)
         );
       }
     );
@@ -63,5 +64,20 @@ export class RegistrationComponent implements OnInit {
   this.confirmpwdError = true;
   return false;
  }
+}
+
+checkEmailExsit(e) {
+  const email = e.target.value;
+  if (email) {
+    this.pageService.checkEmailExist(email).subscribe(
+      (res: any) => {
+        if (res.data.length > 0) {
+          this.invalidResult.duplicateEmailID = true;
+        } else {
+          this.invalidResult.duplicateEmailID = false;
+        }
+      }
+    );
+  }
 }
 }
