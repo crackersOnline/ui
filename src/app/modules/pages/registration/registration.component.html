@@ -40,6 +40,6 @@
             <!-- <div *ngIf="confirmpwdError">Passwords must match 2</div> -->
             
         </div>
-        <div class="button-container"><button [class.active]="registratiomForm.valid" [disabled]="!registratiomForm.valid" type="submit"><span>Next</span></button></div>
+        <div class="button-container"><button [class.active]="registratiomForm.valid && !this.invalidResult.duplicateEmailID" [disabled]="!registratiomForm.valid && this.invalidResult.duplicateEmailID" type="submit"><span>Next</span></button></div>
     </form>
 </div>
