@@ -74,7 +74,8 @@ checkEmailExsit(e) {
   if (email) {
     this.pageService.checkEmailExist(email).subscribe(
       (res: any) => {
-        if (res.data.length > 0) {
+        console.log('res.recCount', res);
+        if (res.recCount > 0) {
           this.invalidResult.duplicateEmailID = true;
         } else {
           this.invalidResult.duplicateEmailID = false;

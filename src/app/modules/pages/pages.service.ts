@@ -22,7 +22,7 @@ export class PagesService {
 
   }
 
-  public checkEmailExist(email) {
-    return this.apiProxy.post(this.baseUrl + '/user/emailExist', {email});
+  public checkEmailExist(userEmail) {
+    return this.apiProxy.post(this.baseUrl + '/user/emailExist', {userEmail});
   }
 }
