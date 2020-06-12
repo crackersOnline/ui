@@ -17,7 +17,8 @@ export class CommonService {
       categoryName: item.categoryName,
       productPrice: item.productPrice,
       productQuantity: item.count,
-      productTtlQtyPrice: item.count * item.productPrice
+      productTtlQtyPrice: item.count * item.productPrice,
+      productMRP:item.productMRP
     };
     console.log('Product QTY Total Price', data);
     if (this.cartItem && this.cartItem.length > 0) {

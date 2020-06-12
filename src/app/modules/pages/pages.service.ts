@@ -21,8 +21,13 @@ export class PagesService {
     .pipe();
 
   }
-
   public checkEmailExist(userEmail) {
     return this.apiProxy.post(this.baseUrl + '/user/emailExist', {userEmail});
+  }
+  public verifyOTP(data) {
+    return this.apiProxy.post(this.baseUrl + '/user/verfiyPIN', data);
+  }
+  public updateNewPassword(data) {
+    return this.apiProxy.put(this.baseUrl + '/user/register', data)
   }
 }

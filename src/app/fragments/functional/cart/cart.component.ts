@@ -13,6 +13,8 @@ export class CartComponent implements OnInit {
   public cartItem;
   public totalProductPrice = 0;
   public totalProductQuantity = 0;
+  public totalMRPPrice = 0;
+  public totalSavingPrice=0;
   constructor( private singletonService: AppSingletonService, private commonService:CommonService, private cartService:CartService ) { }
 
   ngOnInit() {
@@ -24,7 +26,9 @@ export class CartComponent implements OnInit {
           this.itemCount = this.cartItem.length;
           this.totalProductQuantity = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) || 0), 0);
           this.totalProductPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
-
+          this.totalMRPPrice = this.cartItem.reduce((a,b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
+          this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
+          console.log('this.totalMRPPrice', this.totalSavingPrice);
           console.log('this.totalValue', this.totalProductPrice);
         }
       }

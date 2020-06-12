@@ -69,7 +69,7 @@
             align-items: center;
             .quantity_block {
               width: 80px;
-              height: 30px;
+              height: 26px;
               border: 1px solid #D6D6D6;
               position: relative;
               display: flex;
@@ -142,6 +142,28 @@
             }
         }
     }
+    .cartSavingAmount {
+      display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+        span {
+          display: block;
+          color: $gray-color;            
+          &:first-child {
+              font-size: 13px;
+              font-weight: 300;
+          }
+          &:last-child {
+              font-size: 12px;              
+              font-weight: 300;
+              text-align: right;
+              i {
+                  font-size: 10px;
+              }
+          }
+      }
+    }
     .cart_btn {
         margin-top: 10px;
         button {
@@ -154,6 +176,7 @@
             position: relative;
             padding: 10px 10px;
             overflow: hidden;
+            outline: none;
             cursor: pointer;
             i {
                 margin-left: 5px;

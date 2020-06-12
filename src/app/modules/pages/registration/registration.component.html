@@ -5,7 +5,8 @@
     </h1>
     <form (ngSubmit)="registrationSubmit(registratiomForm)" #registratiomForm="ngForm">
         <div class="input-container">
-            <input type="text" id="register_username" required="required" name="userEmail" (blur)="checkEmailExsit($event)" [(ngModel)]="userEmail" #usernameText="ngModel" email/>
+            <input type="text" id="register_username" required="required" name="userEmail"
+                (blur)="checkEmailExsit($event)" [(ngModel)]="userEmail" #usernameText="ngModel" email />
             <label for="register_username">Email</label>
             <div class="bar"></div>
             <div *ngIf="usernameText.touched && !usernameText.valid" class="loginError_alert">
@@ -15,7 +16,9 @@
             <div class="loginError_alert" *ngIf="invalidResult.duplicateEmailID">Email already exist</div>
         </div>
         <div class="input-container">
-            <input type="password" id="register_password" required="required" name="password" (input)="confirmPasswordText.control.updateValueAndValidity()" [(ngModel)]="password" #passwordText="ngModel" />
+            <input type="password" id="register_password" required="required" name="password"
+                (input)="confirmPasswordText.control.updateValueAndValidity()" [(ngModel)]="password"
+                #passwordText="ngModel" />
             <label for="register_password">Password</label>
             <div class="bar"></div>
             <div *ngIf="passwordText.touched && !passwordText.valid" class="loginError_alert">
@@ -26,7 +29,9 @@
         </div>
         <div class="input-container">
             <!-- <input type="password" appConfirmEqualValidator="passwordText" (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/> -->
-            <input type="password" appConfirmEqualValidator="password" (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required" name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel"/>
+            <input type="password" appConfirmEqualValidator="password"
+                (key)="onEnter(passwordText.value, confirmPasswordText.value)" required="required"
+                name="confirmpassword" [(ngModel)]="confirmpassword" #confirmPasswordText="ngModel" />
             <label>Repeat Password</label>
             <div class="bar"></div>
             <div *ngIf="confirmPasswordText.touched && !confirmPasswordText.valid" class="loginError_alert">
@@ -34,12 +39,15 @@
                     Confirm Password is required.
                 </div>
             </div>
-            
+
             <div *ngIf="confirmPasswordText.errors?.misMatch" class="loginError_alert">Passwords must match</div>
             <!-- <div *ngIf="(password && confirmpassword && password !== confirmpassword)" class="loginError_alert">Passwords must match 1</div> -->
             <!-- <div *ngIf="confirmpwdError">Passwords must match 2</div> -->
-            
+
         </div>
-        <div class="button-container"><button [class.active]="registratiomForm.valid && !this.invalidResult.duplicateEmailID" [disabled]="!registratiomForm.valid && this.invalidResult.duplicateEmailID" type="submit"><span>Next</span></button></div>
+        <div class="button-container"><button
+                [class.active]="registratiomForm.valid && !this.invalidResult.duplicateEmailID"
+                [disabled]="!registratiomForm.valid && this.invalidResult.duplicateEmailID"
+                type="submit"><span>Next</span></button></div>
     </form>
 </div>

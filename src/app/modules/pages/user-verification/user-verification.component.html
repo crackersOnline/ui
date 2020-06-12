@@ -7,8 +7,9 @@
             email from “Crackers Online” in your inbox, make sure to check your SPAM folder.</p>
             <p class="fp_subtitle2">Please don't refresh the page</p>
             <form (ngSubmit)="verificationSubmit(accVerificationForm)" #accVerificationForm="ngForm">
+                <input type="hidden" name="userEmail" [(ngModel)]="registerEmail" #userEmailText="ngModel">
                 <div class="input-container">
-                    <input type="text" id="user_veritcode" required="required" name="verificationcode" minlength="6" [(ngModel)]="verificationcode" #verificationcodeText="ngModel"/>
+                    <input type="text" (keypress)="numberOnly($event)" id="user_veritcode" required="required" name="activationPIN" maxlength="4" [(ngModel)]="verificationcode" #verificationcodeText="ngModel"/>
                     <label for="user_veritcode">Verification Code</label>
                     <div class="bar"></div>
                     <div *ngIf="verificationcodeText.touched && !verificationcodeText.valid" class="loginError_alert">
