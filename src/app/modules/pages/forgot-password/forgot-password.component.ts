@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PagesService } from '../pages.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,7 +11,7 @@ export class ForgotPasswordComponent implements OnInit {
   public invalidResult = {
     duplicateEmailID: false,
   };
-  constructor(public pageService:PagesService) { }
+  constructor(public pageService: PagesService) { }
 
   ngOnInit() {
   }
@@ -18,7 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
     const email = e.target.value;
     if (email) {
       this.pageService.checkEmailExist(email).subscribe((res: any) => {
-        console.log("res.recCount", res);
+        console.log('res.recCount', res);
         if (res.recCount > 0) {
           this.invalidResult.duplicateEmailID = false;
         } else {
@@ -26,6 +27,13 @@ export class ForgotPasswordComponent implements OnInit {
         }
       });
     }
+  }
+
+  submit(forgotPasswordForm: NgForm) {
+
+    this.pageService.forgotPassword(forgotPasswordForm.value).subscribe((res: any) => {
+      console.log(res);
+    });
   }
 
 }
