@@ -28,7 +28,7 @@ export class PagesService {
     return this.apiProxy.post(this.baseUrl + '/user/verfiyPIN', data);
   }
   public updateNewPassword(data) {
-    return this.apiProxy.put(this.baseUrl + '/user/register', data);
+    return this.apiProxy.put(this.baseUrl + '/user/resetPwd', data);
   }
 
   public forgotPassword(input) {

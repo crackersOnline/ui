@@ -9,10 +9,10 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  private username = '';
+  private userEmail = '';
   private itemCount:[];
   constructor( private authService: AuthService, private router: Router, private singletonService:AppSingletonService) {
-    this.username = localStorage.getItem('userName');
+    this.userEmail = localStorage.getItem('userEmail');
    }
 
   ngOnInit() {

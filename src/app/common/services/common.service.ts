@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   cartItem: any;
-  
+  private loadingSpinner = new Subject<boolean>();
+  public $loadingSpinnerObservable = this.loadingSpinner.asObservable();
+  sendSpinnerStatus(loadingStatus:boolean) {
+    this.loadingSpinner.next(loadingStatus);    
+  }
   constructor() { }
   // Increase Count
   increaseCount(item) {

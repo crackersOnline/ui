@@ -4,6 +4,7 @@ import { PagesService } from "../pages.service";
 import { Router } from "@angular/router";
 import { ConfirmEqualValidatorDirective } from "../../../common/directives/confirm-equal-validator.directive";
 import { UserVerificationComponent } from "../user-verification/user-verification.component";
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
   selector: "app-registration",
@@ -23,7 +24,7 @@ export class RegistrationComponent implements OnInit {
 
   @Output() enableregister = new EventEmitter();
   @Output() disableregister = new EventEmitter();
-  constructor(private pageService: PagesService, private router: Router) {}
+  constructor(private pageService: PagesService, private router: Router, private commonService:CommonService) {}
 
   ngOnInit() {}
   enable_register() {
@@ -42,14 +43,12 @@ export class RegistrationComponent implements OnInit {
    */
 
   public registrationSubmit(registratiomForm: NgForm) {
+    this.commonService.sendSpinnerStatus(true);
     if (!this.invalidResult.duplicateEmailID) {
       this.pageService
         .registration(registratiomForm.value)
         .subscribe((res: any) => {
-          // console.log("Data: ",res);
-          // console.log("Data: ",res.data.userName);
-          // console.log("Registration succeess");
-          // console.log("Reg User Name",registratiomForm.value.username);
+          this.commonService.sendSpinnerStatus(false);
           this.router
             .navigateByUrl("userverfiy", { skipLocationChange: true })
             .then(() => this.pageService.emailemitter.emit(res.data.userEmail));

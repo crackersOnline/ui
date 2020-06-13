@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PagesService } from '../pages.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common/services/common.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationComponent } from 'src/app/fragments/core/notification/notification.component';
 
 @Component({
   selector: 'app-user-verification',
@@ -9,7 +13,8 @@ import { NgForm } from '@angular/forms';
 })
 export class UserVerificationComponent implements OnInit {
   public registerEmail :string;
-  constructor(private pages:PagesService) {
+  public error: string;
+  constructor(private pages:PagesService, private router: Router, private commonService: CommonService, private _snackBar:MatSnackBar) {
     this.pages.emailemitter.subscribe(data => {
       this.registerEmail=data;
     })
@@ -23,9 +28,27 @@ export class UserVerificationComponent implements OnInit {
   }
   verificationSubmit(accVerificationForm:NgForm) {
     console.log("Form Data", accVerificationForm.value);
+    this.commonService.sendSpinnerStatus(true);
     this.pages.verifyOTP(accVerificationForm.value).subscribe(
       (res :any) => {
-        console.log("Response:", res);
+        this.commonService.sendSpinnerStatus(false);
+        this._snackBar.openFromComponent(NotificationComponent, {
+          duration:5000,
+          data: "Account activated sucessfully. Login & Place your orders",
+          panelClass:"sucesss",
+          verticalPosition:"top"
+        })
+        this.router.navigate(['login']);
+      },
+      err => {
+        this.commonService.sendSpinnerStatus(false);
+        this._snackBar.openFromComponent(NotificationComponent, {
+          duration:5000,
+          data: err.error.message,
+          panelClass:"error",
+          verticalPosition:"top"
+        })
+        //this.error = err.error.message;
       }
     );
   }

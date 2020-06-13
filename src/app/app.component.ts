@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { AuthService } from 'src/app/common/services/auth.service';
 import { Router } from '@angular/router';
+import { CommonService } from './common/services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'ui';
-
-  constructor(private auth: AuthService, private router: Router) { }
+  private loadingSpinner;
+  constructor(private auth: AuthService, private router: Router, private commonService:CommonService) {
+    this.commonService.$loadingSpinnerObservable.subscribe(
+      res => {
+        this.loadingSpinner=res;
+        console.log("Footer Res", res);
+      }
+    );
+   }
 
 }

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PagesService } from '../pages.service';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationComponent } from 'src/app/fragments/core/notification/notification.component';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common/services/common.service';
+
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,10 +13,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
+  public error: string;
   public invalidResult = {
     duplicateEmailID: false,
-  };
-  constructor(public pageService: PagesService) { }
+  };  
+  constructor(public pageService: PagesService, private _snackBar:MatSnackBar, private router:Router, private commonService:CommonService) { }
 
   ngOnInit() {
   }
@@ -28,12 +34,37 @@ export class ForgotPasswordComponent implements OnInit {
       });
     }
   }
-
   submit(forgotPasswordForm: NgForm) {
-
-    this.pageService.forgotPassword(forgotPasswordForm.value).subscribe((res: any) => {
-      console.log(res);
-    });
+    if (!this.invalidResult.duplicateEmailID) {
+      this.commonService.sendSpinnerStatus(true);
+      console.log("Forgot password", forgotPasswordForm.value);
+      this.pageService.forgotPassword(forgotPasswordForm.value).subscribe(
+        (res: any) => {
+          this.commonService.sendSpinnerStatus(false);        
+        console.log(res);
+        //SnackBar start
+        this._snackBar.openFromComponent(NotificationComponent, {
+          duration:5000,
+          data: "Sucess sent verification code to registered mail id",
+          panelClass:"sucesss",
+          verticalPosition:"top"
+        })
+        this.router
+          .navigateByUrl("resetpwd", { skipLocationChange: true })
+          .then(() => this.pageService.emailemitter.emit(res.data.user[0].userEmail));
+        },
+        err => {
+          this.commonService.sendSpinnerStatus(false);
+          this.error = err.error.message;
+          console.log(this.error);
+          this._snackBar.openFromComponent(NotificationComponent, {
+            duration:5000,
+            data:this.error,
+            panelClass:"error",
+            verticalPosition:"top"
+          })
+        }
+      );
+    }    
   }
-
 }

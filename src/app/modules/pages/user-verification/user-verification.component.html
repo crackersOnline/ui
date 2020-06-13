@@ -17,6 +17,7 @@
                             Verification Code is required.
                         </div>
                     </div>
+                    <div class="authError" *ngIf="error">{{error}}</div>
                 </div>
                 <div class="button-container"><button [class.active]="accVerificationForm.valid" [disabled]="!accVerificationForm.valid" type="submit"><span>Activation</span></button></div>
             </form>        

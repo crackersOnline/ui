@@ -67,7 +67,7 @@ export class AuthService {
                 map((result: any) => {
                     console.log('result', result);
                     localStorage.setItem('access_token', result.token);
-                    localStorage.setItem('userName', result.userName);
+                    localStorage.setItem('userEmail', result.userEmail);
                     this.singletonService.setUserInfo(result);
                     return true;
                 })
@@ -89,7 +89,7 @@ export class AuthService {
                 map((res: any) => {
                     console.log('result', res);
                     localStorage.setItem('access_token', res.token);
-                    localStorage.setItem('userName', res.userName);
+                    localStorage.setItem('userEmail', res.userEmail);
                     this.singletonService.setUserInfo(res);
                     return true;
                 })
