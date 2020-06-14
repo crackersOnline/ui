@@ -68,7 +68,7 @@
             justify-content: space-between;
             align-items: center;
             .quantity_block {
-              width: 80px;
+              width: 70px;
               height: 26px;
               border: 1px solid #D6D6D6;
               position: relative;
@@ -87,7 +87,7 @@
               }
               .add_quantity {
                   color: $medium-black;
-                  padding: 0px 8px;
+                  padding: 0px 7px;
                   font-size: 11px;
               }
               .quantity_count {
@@ -106,7 +106,7 @@
               }
               .minus_quantity {
                   color: $medium-black;
-                  padding: 0px 8px;
+                  padding: 0px 7px;
                   font-size: 11px;
               }
           }
