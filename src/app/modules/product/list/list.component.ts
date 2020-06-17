@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AppSingletonService } from 'src/app/app.singleton.service';
-import { CartService } from 'src/app/common/services/cart.service';
 import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
@@ -17,8 +16,7 @@ export class ListComponent implements OnInit {
     private productService: ProductService,
     private myElement: ElementRef,
     private singletonService: AppSingletonService,
-    private commonService: CommonService,
-    private cartService: CartService) { }
+    private commonService: CommonService) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe(
@@ -64,17 +62,20 @@ export class ListComponent implements OnInit {
   addQuantity(item) {
     this.cartItem = this.commonService.increaseCount(item);
     this.singletonService.setCartItems(this.cartItem);
-    this.cartService.saveCart(this.cartItem);
+    this.commonService.saveCart(this.cartItem).subscribe(res => console.log(res));
     this.singletonService.notifyMetaDataChanged(true);
   }
 
   // Decrease Count
   minusQuantity(item) {
+    item.productQuantity -= 1;
     if (this.cartItem.length > 0) {
       this.cartItem = this.commonService.decreaseCount(item);
       this.singletonService.setCartItems(this.cartItem);
+      this.commonService.saveCart(this.cartItem).subscribe(res => console.log(res));
       this.singletonService.notifyMetaDataChanged(true);
     }
+    console.log('minusquant', item, this.cartItem);
   }
 
 // Scroll function
