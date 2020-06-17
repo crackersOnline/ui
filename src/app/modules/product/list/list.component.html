@@ -14,9 +14,9 @@
                     <div class="row">
                         <div class="col-md-2 col-xl-2 col-lg-2 col-sm-12 col-12">
                             <div class="category_container">
-                                <div class="category_inner_container">
+                                <div id="category_inner_container" class="category_inner_container">
                                     <!-- <a class="current-category">Gift Boxes</a> -->
-                                    <a *ngFor="let category of categoryList" (click)="scroll(category.categoryID)">{{category.categoryName}}</a>
+                                    <a *ngFor="let category of categoryList" routerLinkActive="active" (click)="scroll(category.categoryID)">{{category.categoryName}}</a>
                                     <div class="highter-line"></div>
                                 </div>
                             </div>

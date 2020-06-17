@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ProductService } from '../product.service';
 import { AppSingletonService } from 'src/app/app.singleton.service';
 import { CartService } from 'src/app/common/services/cart.service';
@@ -12,7 +12,7 @@ import { CommonService } from 'src/app/common/services/common.service';
 export class ListComponent implements OnInit {
   public cartItem = [];
   productsList: any;
-  categoryList: any;
+  categoryList: any;  
   constructor(
     private productService: ProductService,
     private myElement: ElementRef,
@@ -80,7 +80,19 @@ export class ListComponent implements OnInit {
 // Scroll function
   scroll(el) {
     const ele = document.getElementById(el);
-    ele.scrollIntoView({behavior: 'smooth'});
+    const yourheight = 200;
+    console.log("Ele", ele);
+    ele.scrollIntoView(true);    
+    //ele.scrollIntoView({behavior: 'smooth'});
+    var scrolledY = window.scrollY;
+    if(scrolledY){
+      window.scroll(0, scrolledY - yourheight);
+    }    
+  }
+  // @HostListener('scroll', ['$event']) // for scroll events of the current element
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event) {
+    console.log("Window Page Y off", window.pageYOffset); 
   }
 
 }
