@@ -16,8 +16,8 @@ export class ForgotPasswordComponent implements OnInit {
   public error: string;
   public invalidResult = {
     duplicateEmailID: false,
-  };  
-  constructor(public pageService: PagesService, private _snackBar:MatSnackBar, private router:Router, private commonService:CommonService) { }
+  };
+  constructor(public pageService: PagesService, private _snackBar: MatSnackBar, private router: Router, private commonService: CommonService) { }
 
   ngOnInit() {
   }
@@ -25,7 +25,6 @@ export class ForgotPasswordComponent implements OnInit {
     const email = e.target.value;
     if (email) {
       this.pageService.checkEmailExist(email).subscribe((res: any) => {
-        console.log('res.recCount', res);
         if (res.recCount > 0) {
           this.invalidResult.duplicateEmailID = false;
         } else {
@@ -37,34 +36,31 @@ export class ForgotPasswordComponent implements OnInit {
   submit(forgotPasswordForm: NgForm) {
     if (!this.invalidResult.duplicateEmailID) {
       this.commonService.sendSpinnerStatus(true);
-      console.log("Forgot password", forgotPasswordForm.value);
       this.pageService.forgotPassword(forgotPasswordForm.value).subscribe(
         (res: any) => {
-          this.commonService.sendSpinnerStatus(false);        
-        console.log(res);
-        //SnackBar start
-        this._snackBar.openFromComponent(NotificationComponent, {
-          duration:5000,
-          data: "Sucess sent verification code to registered mail id",
-          panelClass:"sucesss",
-          verticalPosition:"top"
-        })
-        this.router
-          .navigateByUrl("resetpwd", { skipLocationChange: true })
+          this.commonService.sendSpinnerStatus(false);
+        // SnackBar start
+          this._snackBar.openFromComponent(NotificationComponent, {
+          duration: 5000,
+          data: 'Sucess sent verification code to registered mail id',
+          panelClass: 'sucesss',
+          verticalPosition: 'top'
+        });
+          this.router
+          .navigateByUrl('resetpwd', { skipLocationChange: true })
           .then(() => this.pageService.emailemitter.emit(res.data.user[0].userEmail));
         },
         err => {
           this.commonService.sendSpinnerStatus(false);
-          this.error = err.error.message;
-          console.log(this.error);
+          this.error = (err.error.message) ? err.error.message : err.message;
           this._snackBar.openFromComponent(NotificationComponent, {
-            duration:5000,
-            data:this.error,
-            panelClass:"error",
-            verticalPosition:"top"
-          })
+            duration: 5000,
+            data: this.error,
+            panelClass: 'error',
+            verticalPosition: 'top'
+          });
         }
       );
-    }    
+    }
   }
 }

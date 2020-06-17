@@ -16,7 +16,6 @@ export class PagesService {
    * @param password
    */
   public registration(data) {
-    console.log(data);
     return this.apiProxy.post(this.baseUrl + '/user/register', data)
     .pipe();
 

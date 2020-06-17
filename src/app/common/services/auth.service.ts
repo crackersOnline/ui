@@ -65,7 +65,6 @@ export class AuthService {
         return this.apiProxy.post(this.authUrl + '/user/auth', { userEmail, password})
             .pipe(
                 map((result: any) => {
-                    console.log('result', result);
                     localStorage.setItem('access_token', result.token);
                     localStorage.setItem('userEmail', result.userEmail);
                     this.singletonService.setUserInfo(result);
@@ -87,7 +86,6 @@ export class AuthService {
         return this.apiProxy.post(this.authUrl + '/user/tokenVerify/', { token: localStorage.getItem('access_token') })
             .pipe(
                 map((res: any) => {
-                    console.log('result', res);
                     localStorage.setItem('access_token', res.token);
                     localStorage.setItem('userEmail', res.userEmail);
                     this.singletonService.setUserInfo(res);

@@ -10,24 +10,22 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
 })
 export class HeaderComponent implements OnInit {
   private userEmail = '';
-  private itemCount:[];
-  constructor( private authService: AuthService, private router: Router, private singletonService:AppSingletonService) {
+  private itemCount: [];
+  constructor( private authService: AuthService, private router: Router, private singletonService: AppSingletonService) {
     this.userEmail = localStorage.getItem('userEmail');
    }
 
   ngOnInit() {
-    this.singletonService.metadataChangeObservable.subscribe(
+    this.singletonService.$metadataChangeObservable.subscribe(
       (received) => {
-        if(received) {
+        if (received) {
           this.itemCount = this.singletonService.getCartItems();
-          console.log("Item Count", this.itemCount);
         }
       }
-    );    
+    );
   }
 
   public logout() {
-    console.log('logout');
     this.authService.logout();
     this.router.navigate(['login']);
   }

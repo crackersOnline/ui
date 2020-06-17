@@ -7,8 +7,10 @@ import { Subject, BehaviorSubject } from 'rxjs';
 export class AppSingletonService {
   public cartInfo: any;
   public userInfo: any;
-  private $metadataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public metadataChangeObservable = this.$metadataChange.asObservable();
+  private productQuantitySource: BehaviorSubject<any> = new BehaviorSubject({});
+  $productQuantityObservable = this.productQuantitySource.asObservable();
+  private metadataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public $metadataChangeObservable = this.metadataChange.asObservable();
   constructor() { }
   public setCartItems(data) {
     this.cartInfo = data;
@@ -17,7 +19,7 @@ export class AppSingletonService {
     return this.cartInfo;
   }
   public notifyMetaDataChanged(isReady: boolean) {
-   this.$metadataChange.next(isReady);
+   this.metadataChange.next(isReady);
   }
 
   public setUserInfo(data) {
@@ -27,4 +29,8 @@ export class AppSingletonService {
     return this.userInfo;
   }
 
+  public changeProductQuantity(data) {
+    this.productQuantitySource.next(data);
+    console.log('productQuantityObservable', this.$productQuantityObservable);
+  }
 }

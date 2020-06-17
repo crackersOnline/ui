@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
                 router.events.subscribe((event: Event) => {
                   if (event instanceof NavigationEnd ) {
                     this.currentUrl = event.url;
-                    console.log('this.currentUrl', this.currentUrl);
                   }
                 });
               }
@@ -29,14 +28,12 @@ export class AuthGuard implements CanActivate {
 
       const userInfo = this.singletonService.getUserInfo();
       if (localStorage.getItem('access_token') && !userInfo) {
-        console.log('check localstorage', localStorage.getItem('access_token'));
         this.auth.verifyToken().subscribe((res) => {
           if (res) {
             return true;
           }
         },
         (error) => {
-          console.log('error', error);
           localStorage.removeItem('access_token');
           localStorage.removeItem('userName');
           this.router.navigate(['login']);
@@ -46,7 +43,6 @@ export class AuthGuard implements CanActivate {
         // this.router.navigate(['/']);
         return true;
       } else if (localStorage.getItem('access_token') && userInfo) {
-         console.log('test 2');
          return true;
       } else {
         this.router.navigate(['login']);

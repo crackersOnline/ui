@@ -45,14 +45,14 @@
                                                             <!-- {{quantityCount}} -->
                                                             <!-- initial Quantity Add -->
                                                             <span (click)="addQuantity(product)"
-                                                                class="initial_add" *ngIf="product.count==0">ADD</span>
+                                                                class="initial_add" *ngIf="product.productQuantity==0">ADD</span>
                                                             <!-- Increase & Discrease Quantity -->
-                                                                <div *ngIf="product.count>0" (click)="minusQuantity(product)" class="minus_quantity"><i
+                                                                <div *ngIf="product.productQuantity>0" (click)="minusQuantity(product)" class="minus_quantity"><i
                                                                         class="fas fa-minus"></i></div>
-                                                                <div *ngIf="product.count>0" class="quantity_count">
-                                                                    <input type="text" readonly [value]="product.count" name="noOfItem" />                                                                    
+                                                                <div *ngIf="product.productQuantity>0" class="quantity_count">
+                                                                    <input type="text" readonly [value]="product.productQuantity" name="noOfItem" />                                                                    
                                                                 </div>
-                                                                <div *ngIf="product.count>0" (click)="addQuantity(product)" class="add_quantity"><i
+                                                                <div *ngIf="product.productQuantity>0" (click)="addQuantity(product)" class="add_quantity"><i
                                                                         class="fas fa-plus"></i></div>                                                            
                                                         </div>
                                                     </div>

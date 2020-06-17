@@ -17,31 +17,47 @@ export class ListComponent implements OnInit {
     private productService: ProductService,
     private myElement: ElementRef,
     private singletonService: AppSingletonService,
-    private commonService : CommonService,
+    private commonService: CommonService,
     private cartService: CartService) { }
 
   ngOnInit() {
-    this.singletonService.metadataChangeObservable.subscribe(
-      (received) => {
-        if (received) {
-          
-        }
-      }
-    );
     this.productService.getProducts().subscribe(
       res => {
         this.productsList = res.data;
-        console.log('products', res.data);
       }
     );
     this.productService.getCategories().subscribe(
       res => {
         this.categoryList = res.data;
-        console.log('Categories', res.data);
       }
     );
     this.cartItem = this.singletonService.getCartItems();
-    console.log('Onnit', this.cartItem);
+
+    this.singletonService.$productQuantityObservable.subscribe(
+      (received) => {
+        console.log('received list page', received);
+        if (received.productID > 0) {
+          console.log('received list page', this.productsList);
+          for (let products = 0; products < this.productsList.length; products++) {
+            for (let i = 0; i < this.productsList[products].length; i++) {
+             const index =  this.productsList[products][1].findIndex(item => item.productID === received.productID);
+             const array = this.productsList[products][1];
+             console.log('index', index, array);
+             if (index >= 0) {
+              array[index].productQuantity = received.productQuantity;
+             }
+            /* if (projects[i].value == value) {
+               projects[i].desc = desc;
+               break; //Stop this loop, we found it!
+            } */
+          }
+        }
+         /*    const ProductIndex = this.productsList.findIndex(item => item.ProductID === received.productID);
+            this.productsList[ProductIndex].productQuantity = received.productQuantity; */
+          console.log('received list page', this.productsList);
+        }
+
+    });
   }
 
 // Increase Count
@@ -50,11 +66,10 @@ export class ListComponent implements OnInit {
     this.singletonService.setCartItems(this.cartItem);
     this.cartService.saveCart(this.cartItem);
     this.singletonService.notifyMetaDataChanged(true);
-    console.log('Cart Item', this.singletonService.getCartItems());
   }
 
   // Decrease Count
-  minusQuantity(item) {    
+  minusQuantity(item) {
     if (this.cartItem.length > 0) {
       this.cartItem = this.commonService.decreaseCount(item);
       this.singletonService.setCartItems(this.cartItem);
@@ -67,4 +82,5 @@ export class ListComponent implements OnInit {
     const ele = document.getElementById(el);
     ele.scrollIntoView({behavior: 'smooth'});
   }
+
 }

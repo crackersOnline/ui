@@ -12,12 +12,12 @@ import { NotificationComponent } from 'src/app/fragments/core/notification/notif
   styleUrls: ['./user-verification.component.scss']
 })
 export class UserVerificationComponent implements OnInit {
-  public registerEmail :string;
+  public registerEmail: string;
   public error: string;
-  constructor(private pages:PagesService, private router: Router, private commonService: CommonService, private _snackBar:MatSnackBar) {
+  constructor(private pages: PagesService, private router: Router, private commonService: CommonService, private _snackBar: MatSnackBar) {
     this.pages.emailemitter.subscribe(data => {
-      this.registerEmail=data;
-    })
+      this.registerEmail = data;
+    });
    }
    numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -26,29 +26,30 @@ export class UserVerificationComponent implements OnInit {
     }
     return true;
   }
-  verificationSubmit(accVerificationForm:NgForm) {
-    console.log("Form Data", accVerificationForm.value);
+  verificationSubmit(accVerificationForm: NgForm) {
+    // console.log('Form Data', accVerificationForm.value);
     this.commonService.sendSpinnerStatus(true);
     this.pages.verifyOTP(accVerificationForm.value).subscribe(
-      (res :any) => {
+      (res: any) => {
         this.commonService.sendSpinnerStatus(false);
         this._snackBar.openFromComponent(NotificationComponent, {
-          duration:5000,
-          data: "Account activated sucessfully. Login & Place your orders",
-          panelClass:"sucesss",
-          verticalPosition:"top"
-        })
+          duration: 5000,
+          data: 'Account activated sucessfully. Login & Place your orders',
+          panelClass: 'sucesss',
+          verticalPosition: 'top'
+        });
         this.router.navigate(['login']);
       },
       err => {
         this.commonService.sendSpinnerStatus(false);
+        this.error = (err.error.message) ? err.error.message : err.message;
         this._snackBar.openFromComponent(NotificationComponent, {
-          duration:5000,
-          data: err.error.message,
-          panelClass:"error",
-          verticalPosition:"top"
-        })
-        //this.error = err.error.message;
+          duration: 5000,
+          data: this.error,
+          panelClass: 'error',
+          verticalPosition: 'top'
+        });
+        // this.error = err.error.message;
       }
     );
   }

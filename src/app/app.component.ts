@@ -12,11 +12,10 @@ import { CommonService } from './common/services/common.service';
 export class AppComponent {
   title = 'ui';
   private loadingSpinner;
-  constructor(private auth: AuthService, private router: Router, private commonService:CommonService) {
+  constructor(private auth: AuthService, private router: Router, private commonService: CommonService) {
     this.commonService.$loadingSpinnerObservable.subscribe(
       res => {
-        this.loadingSpinner=res;
-        console.log("Footer Res", res);
+        this.loadingSpinner = res;
       }
     );
    }

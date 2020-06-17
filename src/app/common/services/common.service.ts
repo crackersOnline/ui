@@ -7,13 +7,13 @@ export class CommonService {
   cartItem: any;
   private loadingSpinner = new Subject<boolean>();
   public $loadingSpinnerObservable = this.loadingSpinner.asObservable();
-  sendSpinnerStatus(loadingStatus:boolean) {
-    this.loadingSpinner.next(loadingStatus);    
+  sendSpinnerStatus(loadingStatus: boolean) {
+    this.loadingSpinner.next(loadingStatus);
   }
   constructor() { }
   // Increase Count
   increaseCount(item) {
-    item.count += 1;
+    item.productQuantity += 1;
     // let isExist = true;
     const data = {
       productID: item.productID,
@@ -21,19 +21,19 @@ export class CommonService {
       categoryID: item.categoryID,
       categoryName: item.categoryName,
       productPrice: item.productPrice,
-      productQuantity: item.count,
-      productTtlQtyPrice: item.count * item.productPrice,
-      productMRP:item.productMRP
+      productQuantity: item.productQuantity,
+      productTtlQtyPrice: item.productQuantity * item.productPrice,
+      productMRP: item.productMRP
     };
-    console.log('Product QTY Total Price', data);
     if (this.cartItem && this.cartItem.length > 0) {
       this.cartItem.filter((res) => {
         if (res.productID === item.productID) {
-          return res.productQuantity = item.count, res.productTtlQtyPrice = item.count * item.productPrice;
+          res.productQuantity = item.productQuantity;
+          res.productTtlQtyPrice = item.productQuantity * item.productPrice;
+          return res;
         }
        });
       const isExist = this.cartItem.some(el => el.productID === item.productID);
-      console.log('isExist: ', isExist);
       if (isExist === false) {
         this.cartItem.push(data);
        }
@@ -47,10 +47,10 @@ export class CommonService {
 
   // Decrease Count
   decreaseCount(item) {
-    item.count -= 1;
     if (this.cartItem.length > 0) {
       const productIndex = this.cartItem.findIndex(obj => obj.productID === item.productID);
       this.cartItem[productIndex].productQuantity -= 1;
+      // tslint:disable-next-line: max-line-length
       this.cartItem[productIndex].productTtlQtyPrice = this.cartItem[productIndex].productQuantity * this.cartItem[productIndex].productPrice;
       if (this.cartItem[productIndex].productQuantity === 0 ) {
         this.cartItem.splice(productIndex, 1);

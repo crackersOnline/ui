@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private ref: ChangeDetectorRef,
-    private commonService:CommonService,
-    private _snackBar:MatSnackBar
+    private commonService: CommonService,
+    private _snackBar: MatSnackBar
   ) { }
   userLoginForm = new FormGroup({
     loginUsername : new FormControl('', [
@@ -38,38 +38,37 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   public loginSubmit() {
-      console.log('submit', this.userEmail, this.password );
       this.commonService.sendSpinnerStatus(true);
       this.auth.login(this.userEmail, this.password)
       .subscribe(result => {
         this.commonService.sendSpinnerStatus(false);
-         this.router.navigate(['products']);
+        this.router.navigate(['products']);
       },
         err => {
           this.commonService.sendSpinnerStatus(false);
           if (err.status == 401) {
             this.error = 'This mail id not registered.';
             this._snackBar.openFromComponent(NotificationComponent, {
-              duration:5000,
-              data:'This mail id not registered.',
-              panelClass:"error",
-              verticalPosition:"top"
-            })
+              duration: 5000,
+              data: 'This mail id not registered.',
+              panelClass: 'error',
+              verticalPosition: 'top'
+            });
           } else {
+            this.error = (err.error.message) ? err.error.message : err.message;
             this._snackBar.openFromComponent(NotificationComponent, {
-              duration:5000,
-              data:err.error.message,
-              panelClass:"error",
-              verticalPosition:"top"
-            })
-            //this.error = err.error.message;
+              duration: 5000,
+              data: this.error,
+              panelClass: 'error',
+              verticalPosition: 'top'
+            });
+            // this.error = err.error.message;
           }
         }
       );
     }
 
 /*   clear() {
-    console.log('test');
     this.userLoginForm.reset();
   }
  */
