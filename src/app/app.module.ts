@@ -29,7 +29,7 @@ export function tokenGetter() {
     FragmentsModule,
     CommonProjectModule,
     PagesModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,

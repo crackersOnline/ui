@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ApiProxy } from 'src/app/api.proxy';
+import { AppSettings } from 'src/app/app.settings';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,10 +9,13 @@ export class CommonService {
   cartItem: any;
   private loadingSpinner = new Subject<boolean>();
   public $loadingSpinnerObservable = this.loadingSpinner.asObservable();
+
+  private baseUrl: string = AppSettings.microservices.gateway_MicroService_BaseUrl;
+  constructor(private apiProxy: ApiProxy) { }
+
   sendSpinnerStatus(loadingStatus: boolean) {
     this.loadingSpinner.next(loadingStatus);
   }
-  constructor() { }
   // Increase Count
   increaseCount(item) {
     item.productQuantity += 1;
@@ -58,4 +63,9 @@ export class CommonService {
       return this.cartItem;
     }
   }
+
+  public saveCart(inputData) {
+    return this.apiProxy.post(this.baseUrl + '/product/cartsave', inputData).pipe();
+  }
+
 }

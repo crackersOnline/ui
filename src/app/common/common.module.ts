@@ -6,9 +6,10 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  exports:[
-    
-  ]
+  exports: [
+
+  ],
+  providers: []
 
 })
 export class CommonProjectModule { }
