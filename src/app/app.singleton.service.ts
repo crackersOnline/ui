@@ -31,6 +31,6 @@ export class AppSingletonService {
 
   public changeProductQuantity(data) {
     this.productQuantitySource.next(data);
-    console.log('productQuantityObservable', this.$productQuantityObservable);
+    console.log('productQuantityObservable', data);
   }
 }

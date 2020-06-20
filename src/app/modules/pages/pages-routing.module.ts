@@ -1,31 +1,33 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { LoginRegisterUserComponent } from "./login-register-user/login-register-user.component";
-import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
-import { PagesComponent } from "./pages.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginRegisterUserComponent } from './login-register-user/login-register-user.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PagesComponent } from './pages.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserVerificationComponent } from './user-verification/user-verification.component';
+import { AnonymousGuardGuard } from 'src/app/anonymous-guard.guard';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: PagesComponent,
     children: [
       {
-        path: "",
+        path: 'login',
         component: LoginRegisterUserComponent,
+        canActivate: [AnonymousGuardGuard]
       },
       {
-        path: "forgotpwd",
+        path: 'forgotpwd',
         component: ForgotPasswordComponent,
       },
       {
-        path:"resetpwd",
+        path: 'resetpwd',
         component: ResetPasswordComponent,
       },
       {
-        path:"userverfiy",
-        component:UserVerificationComponent
+        path: 'userverfiy',
+        component: UserVerificationComponent
       }
     ],
   },

@@ -10,7 +10,7 @@ import { CommonService } from 'src/app/common/services/common.service';
 })
 export class ListComponent implements OnInit {
   public cartItem = [];
-  productsList: any;
+  productsList: any =  [];
   categoryList: any;
   constructor(
     private productService: ProductService,
@@ -22,6 +22,7 @@ export class ListComponent implements OnInit {
     this.productService.getProducts().subscribe(
       res => {
         this.productsList = res.data;
+        this.productQtyChange();
       }
     );
     this.productService.getCategories().subscribe(
@@ -30,12 +31,25 @@ export class ListComponent implements OnInit {
       }
     );
     this.cartItem = this.singletonService.getCartItems();
+    console.log('this.cartItem', this.cartItem);
+  //  this.productQtyChange();
+  }
 
+  productQtyChange() {
     this.singletonService.$productQuantityObservable.subscribe(
       (received) => {
-        console.log('received list page', received);
-        if (received.productID > 0) {
-          console.log('received list page', this.productsList);
+         console.log('received', received);
+         if (received.productID > 0 && this.productsList.length > 0) {
+          this.productsList.forEach(productArr => {
+            if (productArr[0] === received.categoryName) {
+                const index =  productArr[1].findIndex(item => item.productID === received.productID);
+                if (index >= 0) {
+                  productArr[1][index].productQuantity = parseInt(received.productQuantity);
+                 }
+            }
+           // console.log('received list page', this.productsList);
+          });
+          /*
           for (let products = 0; products < this.productsList.length; products++) {
             for (let i = 0; i < this.productsList[products].length; i++) {
              const index =  this.productsList[products][1].findIndex(item => item.productID === received.productID);
@@ -44,15 +58,11 @@ export class ListComponent implements OnInit {
              if (index >= 0) {
               array[index].productQuantity = received.productQuantity;
              }
-            /* if (projects[i].value == value) {
-               projects[i].desc = desc;
-               break; //Stop this loop, we found it!
-            } */
           }
-        }
+        } */
          /*    const ProductIndex = this.productsList.findIndex(item => item.ProductID === received.productID);
             this.productsList[ProductIndex].productQuantity = received.productQuantity; */
-          console.log('received list page', this.productsList);
+
         }
 
     });
@@ -60,9 +70,9 @@ export class ListComponent implements OnInit {
 
 // Increase Count
   addQuantity(item) {
-    this.cartItem = this.commonService.increaseCount(item);
+    this.cartItem = this.commonService.increaseCount(item, this.cartItem);
     this.singletonService.setCartItems(this.cartItem);
-    this.commonService.saveCart(this.cartItem).subscribe(res => console.log(res));
+    this.commonService.saveCart(item).subscribe(res => console.log(res));
     this.singletonService.notifyMetaDataChanged(true);
   }
 
@@ -70,9 +80,9 @@ export class ListComponent implements OnInit {
   minusQuantity(item) {
     item.productQuantity -= 1;
     if (this.cartItem.length > 0) {
-      this.cartItem = this.commonService.decreaseCount(item);
+      this.cartItem = this.commonService.decreaseCount(item, this.cartItem);
       this.singletonService.setCartItems(this.cartItem);
-      this.commonService.saveCart(this.cartItem).subscribe(res => console.log(res));
+      this.commonService.saveCart(item).subscribe(res => console.log(res));
       this.singletonService.notifyMetaDataChanged(true);
     }
     console.log('minusquant', item, this.cartItem);

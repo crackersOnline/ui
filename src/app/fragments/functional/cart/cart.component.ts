@@ -26,16 +26,17 @@ export class CartComponent implements OnInit {
           this.totalProductPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
           this.totalMRPPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
           this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
+          console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
         }
       }
     );
   }
   // Increase Count
   addQuantity(item) {
-    this.cartItem = this.commonService.increaseCount(item);
+    this.cartItem = this.commonService.increaseCount(item, this.cartItem);
     this.singletonService.setCartItems(this.cartItem);
+    this.commonService.saveCart(item).subscribe(res => console.log(res));
     this.singletonService.changeProductQuantity(item);
-    this.commonService.saveCart(this.cartItem).subscribe(res => console.log(res));
     this.singletonService.notifyMetaDataChanged(true);
   }
 
@@ -43,10 +44,10 @@ export class CartComponent implements OnInit {
   minusQuantity(item) {
     console.log('minusquant', item);
     if (this.cartItem.length > 0) {
-      this.cartItem = this.commonService.decreaseCount(item);
+      this.cartItem = this.commonService.decreaseCount(item, this.cartItem);
       this.singletonService.setCartItems(this.cartItem);
+      this.commonService.saveCart(item).subscribe(res => console.log(res));
       this.singletonService.changeProductQuantity(item);
-      this.commonService.saveCart(this.cartItem).subscribe(res => console.log(res));
       this.singletonService.notifyMetaDataChanged(true);
     }
   }

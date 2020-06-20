@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
   currentUrl = '';
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private auth: AuthService,
+              private authService: AuthService,
               private singletonService: AppSingletonService ) {
                 router.events.subscribe((event: Event) => {
                   if (event instanceof NavigationEnd ) {
@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
 
       const userInfo = this.singletonService.getUserInfo();
       if (localStorage.getItem('access_token') && !userInfo) {
-        this.auth.verifyToken().subscribe((res) => {
+        this.authService.verifyToken().subscribe((res) => {
           if (res) {
             return true;
           }
@@ -43,7 +43,18 @@ export class AuthGuard implements CanActivate {
         // this.router.navigate(['/']);
         return true;
       } else if (localStorage.getItem('access_token') && userInfo) {
-         return true;
+        this.authService.getCartItems().subscribe(cartItem => {
+          if (cartItem.code === 200) {
+            console.log('success login & cart Item', cartItem.data);
+            this.singletonService.setCartItems(cartItem.data);
+            this.singletonService.notifyMetaDataChanged(true);
+            cartItem.data.forEach(element => {
+            // console.log('auth productquantity change', element);
+             this.singletonService.changeProductQuantity(element);
+            });
+          }
+        });
+        return true;
       } else {
         this.router.navigate(['login']);
         return false;

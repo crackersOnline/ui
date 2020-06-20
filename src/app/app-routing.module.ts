@@ -2,33 +2,36 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { AnonymousGuardGuard } from './anonymous-guard.guard';
+import { ProductModule } from './modules/product/product.module';
+import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
-  {
+ /*  {
     path: 'login',
-    loadChildren: './modules/pages/pages.module#PagesModule',
+    loadChildren:  () => import('./modules/pages/pages.module').then(m => m.PagesModule),
     canActivate: [AnonymousGuardGuard]
-  },
+  }, */
   {
     path: '',
     redirectTo: '/products',
     pathMatch: 'full'
   },
   {
-    path: 'products',
-    loadChildren: './modules/product/product.module#ProductModule',
+    path: '',
+    loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'admin',
-    loadChildren: './modules/admin/admin.module#AdminModule',
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivate: [AuthGuard]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

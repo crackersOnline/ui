@@ -93,4 +93,8 @@ export class AuthService {
                 })
             );
     }
+
+    public getCartItems() {
+        return this.apiProxy.get(this.authUrl + '/product/getCartData').pipe();
+    }
 }
