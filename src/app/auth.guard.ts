@@ -43,17 +43,7 @@ export class AuthGuard implements CanActivate {
         // this.router.navigate(['/']);
         return true;
       } else if (localStorage.getItem('access_token') && userInfo) {
-        this.authService.getCartItems().subscribe(cartItem => {
-          if (cartItem.code === 200) {
-            console.log('success login & cart Item', cartItem.data);
-            this.singletonService.setCartItems(cartItem.data);
-            this.singletonService.notifyMetaDataChanged(true);
-            cartItem.data.forEach(element => {
-            // console.log('auth productquantity change', element);
-             this.singletonService.changeProductQuantity(element);
-            });
-          }
-        });
+       
         return true;
       } else {
         this.router.navigate(['login']);

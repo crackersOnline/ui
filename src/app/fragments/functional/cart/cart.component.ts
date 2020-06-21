@@ -21,12 +21,14 @@ export class CartComponent implements OnInit {
       (received) => {
         if (received) {
           this.cartItem = this.singletonService.getCartItems();
-          this.itemCount = this.cartItem.length;
-          this.totalProductQuantity = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) || 0), 0);
-          this.totalProductPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
-          this.totalMRPPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
-          this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
-          console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
+          if (this.cartItem) {
+            this.itemCount = this.cartItem.length;
+            this.totalProductQuantity = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) || 0), 0);
+            this.totalProductPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
+            this.totalMRPPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
+            this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
+            console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
+          }
         }
       }
     );
