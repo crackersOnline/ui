@@ -6,11 +6,12 @@ import { AppMaterialModule } from '../app-material/app-material.module';
 import { ConfirmEqualValidatorDirective } from '../common/directives/confirm-equal-validator.directive';
 import { CartComponent } from './functional/cart/cart.component';
 import { NotificationComponent } from './core/notification/notification.component';
+import { CreateAddressComponent } from './functional/create-address/create-address.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CartComponent, NotificationComponent],
+  declarations: [HeaderComponent, FooterComponent, CartComponent, NotificationComponent, CreateAddressComponent],
   imports: [
     CommonModule,
     AppMaterialModule
@@ -19,7 +20,8 @@ import { NotificationComponent } from './core/notification/notification.componen
     HeaderComponent,
     FooterComponent,
     AppMaterialModule,
-    CartComponent
+    CartComponent,
+    CreateAddressComponent
   ],
   entryComponents:[
     NotificationComponent

@@ -15,6 +15,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatTooltipModule,
     MatListModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
@@ -51,7 +53,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatTooltipModule,
     MatListModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
 })
 export class AppMaterialModule { }
