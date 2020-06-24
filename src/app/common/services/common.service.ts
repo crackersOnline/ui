@@ -67,4 +67,7 @@ export class CommonService {
     return this.apiProxy.post(this.baseUrl + '/product/cartsave', inputData).pipe();
   }
 
+  public saveAddressBookDetail(inputData) {
+    return this.apiProxy.post(this.baseUrl + '/user/addressBook', inputData).pipe();
+  }
 }

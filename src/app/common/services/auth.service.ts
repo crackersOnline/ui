@@ -100,6 +100,6 @@ export class AuthService {
     }
 
     public getAddress() {
-        return this.apiProxy.get(this.authUrl + '/user/getAddress').pipe();
+        return this.apiProxy.get(this.authUrl + '/user/addressBook').pipe();
     }
 }

@@ -9,14 +9,18 @@ import { NotificationComponent } from './core/notification/notification.componen
 import { AddressFormComponent } from './core/address-form/address-form.component';
 import { AddressBookComponent } from './functional/address-book/address-book.component';
 import { PaymentComponent } from './functional/payment/payment.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CartComponent, NotificationComponent, AddressFormComponent, AddressBookComponent, PaymentComponent],
+  declarations: [
+    HeaderComponent, FooterComponent, CartComponent, NotificationComponent, AddressFormComponent,
+    AddressBookComponent, PaymentComponent],
   imports: [
     CommonModule,
-    AppMaterialModule
+    AppMaterialModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,
@@ -27,7 +31,7 @@ import { PaymentComponent } from './functional/payment/payment.component';
     AddressBookComponent,
     PaymentComponent
   ],
-  entryComponents:[
+  entryComponents: [
     NotificationComponent
   ]
 })

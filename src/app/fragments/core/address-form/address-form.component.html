@@ -1,41 +1,47 @@
 <div class="addAddressOverlay" [ngClass]="enableAddressForm ? 'active' : ''"></div>
 <div class="addAddressContainer" [ngClass]="enableAddressForm ? 'active' : ''">
   <h3>Create Your Delivery Address</h3>
-  <div class="addressFormBlock">
-    <form class="addressForm">
+  <div class="addressFormBlock form-group">
+    <form class="addressForm" #addressForm="ngForm" (ngSubmit)="onSubmit()" >
       <mat-form-field class="full-width">
         <mat-label>Address Type</mat-label>
-        <mat-select>
-          <mat-option value="option">Home</mat-option>
-          <mat-option value="option">Office</mat-option>
+        <mat-select name="addressType" [(ngModel)]="addressType">
+          <mat-option value="Home">Home</mat-option>
+          <mat-option value="Office">Office</mat-option>
+          <mat-option value="Others">Others</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Door No / Flat No</mat-label>
-        <input matInput placeholder="Ex. Door No / Flat No">
+        <input matInput placeholder="Ex. Door No / Flat No" name="flatNo" [(ngModel)]="flatNo">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Street Name / Road Name</mat-label>
-        <input matInput placeholder="Ex. Street Name / Road Name">
+        <input matInput placeholder="Ex. Street Name / Road Name" name="address" [(ngModel)]="address">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <mat-label>Area Name</mat-label>
-        <input matInput placeholder="Ex. Area Name">
+        <mat-label>Landmark</mat-label>
+        <input matInput placeholder="Ex. nearby area" name="landmark" [(ngModel)]="landmark">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>City</mat-label>
-        <input matInput placeholder="Ex. City Name">
+        <input matInput placeholder="Ex. City Name" name="city" [(ngModel)]="city">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>State</mat-label>
-        <input matInput placeholder="Ex. State Name">
+        <input matInput placeholder="Ex. State Name" name="state" [(ngModel)]="state">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Postal Code</mat-label>
-        <input matInput #postalCode maxlength="5" placeholder="Ex. 60000">        
+        <input matInput #postalCode maxlength="5" placeholder="Ex. 60000" name="pincode" [(ngModel)]="pincode">        
       </mat-form-field>
-      <button class="btn_create"><span>Create</span></button>
+      <mat-form-field class="full-width">
+        <mat-label>Phone No</mat-label>
+        <input matInput name="mobile" [(ngModel)]="mobile">        
+      </mat-form-field>
+      <button type="submit" class="btn_create" [disabled]="!addressForm.form.valid"><span>Create</span></button>
       <a class="btn_cancel" (click)="closeAddressForm()"><span>Cancel</span></a>
     </form>
   </div>
+  <pre>{{addressForm.value | json}}</pre>
 </div>
