@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
   public totalProductQuantity = 0;
   public totalMRPPrice = 0;
   public totalSavingPrice = 0;
-  constructor( private singletonService: AppSingletonService, private commonService: CommonService, private router: Router ) { }
+  constructor( private singletonService: AppSingletonService, private commonService: CommonService, private router:Router ) { }
 
   ngOnInit() {
     this.singletonService.$metadataChangeObservable.subscribe(
@@ -54,7 +54,8 @@ export class CartComponent implements OnInit {
       this.singletonService.notifyMetaDataChanged(true);
     }
   }
-  onClick(urlpath) {
-    this.router.navigate([urlpath]);
+  checkoutProduct() {
+    this.router.navigate(['checkout']);
   }
+
 }

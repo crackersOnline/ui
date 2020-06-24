@@ -11,23 +11,8 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  createAddressStatus = false;
-  addressList = [];
-  constructor( private singletonService: AppSingletonService) {
-    console.log('Constructor called');
-   }
-   ngOnInit() {
-     this.singletonService.$addressBookObservable.subscribe(
-       (received) => {
-         if (received) {
-          this.addressList = this.singletonService.getAddressBookItems();
-          console.log('Checkout page: addressList', this.addressList);
-         }
-       }
-     );
 
+  constructor( ) {}
+   ngOnInit() {
    }
-  enableCreateAddress() {
-    this.createAddressStatus = true;
-  }
 }

@@ -6,12 +6,14 @@ import { AppMaterialModule } from '../app-material/app-material.module';
 import { ConfirmEqualValidatorDirective } from '../common/directives/confirm-equal-validator.directive';
 import { CartComponent } from './functional/cart/cart.component';
 import { NotificationComponent } from './core/notification/notification.component';
-import { CreateAddressComponent } from './functional/create-address/create-address.component';
+import { AddressFormComponent } from './core/address-form/address-form.component';
+import { AddressBookComponent } from './functional/address-book/address-book.component';
+import { PaymentComponent } from './functional/payment/payment.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CartComponent, NotificationComponent, CreateAddressComponent],
+  declarations: [HeaderComponent, FooterComponent, CartComponent, NotificationComponent, AddressFormComponent, AddressBookComponent, PaymentComponent],
   imports: [
     CommonModule,
     AppMaterialModule
@@ -21,7 +23,9 @@ import { CreateAddressComponent } from './functional/create-address/create-addre
     FooterComponent,
     AppMaterialModule,
     CartComponent,
-    CreateAddressComponent
+    AddressFormComponent,
+    AddressBookComponent,
+    PaymentComponent
   ],
   entryComponents:[
     NotificationComponent
