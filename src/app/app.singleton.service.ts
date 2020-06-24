@@ -9,11 +9,15 @@ export class AppSingletonService implements OnDestroy {
     console.log('constructor data', this.cartInfo);
   }
   public cartInfo: any = [];
+  public addressInfo: any = [];
   public userInfo: any;
   private productQuantitySource: BehaviorSubject<any> = new BehaviorSubject({});
   $productQuantityObservable = this.productQuantitySource.asObservable();
   private metadataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public $metadataChangeObservable = this.metadataChange.asObservable();
+  private addressBookSource: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public $addressBookObservable = this.addressBookSource.asObservable();
+
 
   public setCartItems(data) {
     console.log('setCartItems data', data, this.cartInfo);
@@ -39,8 +43,21 @@ export class AppSingletonService implements OnDestroy {
     console.log('productQuantityObservable', data);
   }
 
+  public changeAddressBook(data) {
+    this.addressBookSource.next(data);
+    console.log('changeAddressBook', data);
+  }
+
   public clearCartItems() {
     return this.cartInfo = null;
+  }
+
+
+  public setAddressBookItems(data) {
+    this.addressInfo = data;
+  }
+  public getAddressBookItems() {
+    return this.addressInfo;
   }
 
   ngOnDestroy() {

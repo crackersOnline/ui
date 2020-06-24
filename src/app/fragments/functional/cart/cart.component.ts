@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppSingletonService } from 'src/app/app.singleton.service';
 import { CommonService } from 'src/app/common/services/common.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,7 @@ export class CartComponent implements OnInit {
   public totalProductQuantity = 0;
   public totalMRPPrice = 0;
   public totalSavingPrice = 0;
-  constructor( private singletonService: AppSingletonService, private commonService: CommonService ) { }
+  constructor( private singletonService: AppSingletonService, private commonService: CommonService, private router: Router ) { }
 
   ngOnInit() {
     this.singletonService.$metadataChangeObservable.subscribe(
@@ -53,5 +54,7 @@ export class CartComponent implements OnInit {
       this.singletonService.notifyMetaDataChanged(true);
     }
   }
-
+  onClick(urlpath) {
+    this.router.navigate([urlpath]);
+  }
 }

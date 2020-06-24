@@ -3,6 +3,7 @@ import { Component, OnInit, DoCheck, AfterContentInit, AfterContentChecked, Afte
   OnDestroy,
   OnChanges
  } from '@angular/core';
+import { AppSingletonService } from 'src/app/app.singleton.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,12 +12,21 @@ import { Component, OnInit, DoCheck, AfterContentInit, AfterContentChecked, Afte
 })
 export class CheckoutComponent implements OnInit {
   createAddressStatus = false;
-  constructor() {
+  addressList = [];
+  constructor( private singletonService: AppSingletonService) {
     console.log('Constructor called');
    }
-   ngOnInit(){
-    console.log("Checkout page: ",this.createAddressStatus);
-   }   
+   ngOnInit() {
+     this.singletonService.$addressBookObservable.subscribe(
+       (received) => {
+         if (received) {
+          this.addressList = this.singletonService.getAddressBookItems();
+          console.log('Checkout page: addressList', this.addressList);
+         }
+       }
+     );
+
+   }
   enableCreateAddress() {
     this.createAddressStatus = true;
   }
