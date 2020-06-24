@@ -10,14 +10,10 @@ import { Component, OnInit, DoCheck, AfterContentInit, AfterContentChecked, Afte
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  createAddressStatus = false;
+  
   constructor() {
     console.log('Constructor called');
    }
-   ngOnInit(){
-    console.log("Checkout page: ",this.createAddressStatus);
-   }   
-  enableCreateAddress() {
-    this.createAddressStatus = true;
-  }
+   ngOnInit(){    
+   }  
 }
