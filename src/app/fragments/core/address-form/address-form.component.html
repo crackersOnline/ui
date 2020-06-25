@@ -2,42 +2,73 @@
 <div class="addAddressContainer" [ngClass]="enableAddressForm ? 'active' : ''">
   <h3>Create Your Delivery Address</h3>
   <div class="addressFormBlock form-group">
-    <form class="addressForm" #addressForm="ngForm" (ngSubmit)="onSubmit()" >
+    <form class="addressForm" #addressForm="ngForm" (ngSubmit)="onSubmit(addressForm)">
+      <input type="hidden" name="type" [(ngModel)]="type"/>
       <mat-form-field class="full-width">
         <mat-label>Address Type</mat-label>
-        <mat-select name="addressType" [(ngModel)]="addressType">
+        <mat-select name="addressType" [(ngModel)]="addressType" #addressTypeText="ngModel">
+          <mat-option>Select Address Type</mat-option>
           <mat-option value="Home">Home</mat-option>
           <mat-option value="Office">Office</mat-option>
           <mat-option value="Others">Others</mat-option>
         </mat-select>
+        <div *ngIf="addressTypeText.touched && !addressTypeText.valid" class="loginError_alert">
+          <div *ngIf="addressTypeText.errors.required"> Door No / Flat No is required.</div>
+        </div>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Door No / Flat No</mat-label>
-        <input matInput placeholder="Ex. Door No / Flat No" name="flatNo" [(ngModel)]="flatNo">
+        <input matInput placeholder="Ex. Door No / Flat No" name="flatNo" [(ngModel)]="flatNo" required="required"
+          #flatNoText="ngModel">
+        <div *ngIf="flatNoText.touched && !flatNoText.valid" class="loginError_alert">
+          <div *ngIf="flatNoText.errors.required"> Door No / Flat No is required.</div>
+        </div>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Street Name / Road Name</mat-label>
-        <input matInput placeholder="Ex. Street Name / Road Name" name="address" [(ngModel)]="address">
+        <input matInput placeholder="Ex. Street Name / Road Name" name="address" [(ngModel)]="address" #streetNameText="ngModel"
+          required="required">
+          <div *ngIf="streetNameText.touched && !streetNameText.valid" class="loginError_alert">
+            <div *ngIf="streetNameText.errors.required"> Street nmae is required.</div>
+          </div>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Landmark</mat-label>
-        <input matInput placeholder="Ex. nearby area" name="landmark" [(ngModel)]="landmark">
+        <input matInput placeholder="Ex. nearby area" name="landmark" [(ngModel)]="landmark" required="required" #landmarkText="ngModel">
+        <div *ngIf="landmarkText.touched && !landmarkText.valid" class="loginError_alert">
+          <div *ngIf="landmarkText.errors.required"> Landmark is required.</div>
+        </div>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>City</mat-label>
-        <input matInput placeholder="Ex. City Name" name="city" [(ngModel)]="city">
+        <input matInput placeholder="Ex. City Name" name="city" [(ngModel)]="city" required="required" #cityNameText="ngModel">
+        <div *ngIf="cityNameText.touched && !cityNameText.valid" class="loginError_alert">
+          <div *ngIf="cityNameText.errors.required"> City name is required.</div>
+        </div>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>State</mat-label>
-        <input matInput placeholder="Ex. State Name" name="state" [(ngModel)]="state">
+        <input matInput placeholder="Ex. State Name" name="state" [(ngModel)]="state" required="required" #stateText="ngModel">
+        <div *ngIf="stateText.touched && !stateText.valid" class="loginError_alert">
+          <div *ngIf="stateText.errors.required"> State name is required.</div>
+        </div>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Postal Code</mat-label>
-        <input matInput #postalCode maxlength="5" placeholder="Ex. 60000" name="pincode" [(ngModel)]="pincode">        
+        <input matInput #postalCode maxlength="6" [pattern]='getPincodeRegex()' (keypress)="numberOnly($event)" placeholder="Ex. 60000" name="pincode" [(ngModel)]="pincode" #pincodeText="ngModel"
+          required="required">
+          <div *ngIf="pincodeText.touched && !pincodeText.valid" class="loginError_alert">
+            <div *ngIf="pincodeText.errors.required"> Pincode is required.</div>
+            <div [hidden]="pincodeText.errors.required" *ngIf="pincodeText.invalid">Pincode is invalid.</div>
+          </div>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <mat-label>Phone No</mat-label>
-        <input matInput name="mobile" [(ngModel)]="mobile">        
+        <mat-label>Mobile No</mat-label>
+        <input matInput name="mobile" maxlength="10" [pattern]='getPhoneRegex()' (keypress)="numberOnly($event)" placeholder="Ex. 9966225522" [(ngModel)]="mobile" required="required" #mobileText="ngModel">
+        <div *ngIf="mobileText.touched && !mobileText.valid" class="loginError_alert">
+          <div *ngIf="mobileText.errors.required"> Mobile is required.</div>
+          <div [hidden]="mobileText.errors.required" *ngIf="mobileText?.invalid">Mobile No is invalid.</div>
+        </div>
       </mat-form-field>
       <button type="submit" class="btn_create" [disabled]="!addressForm.form.valid"><span>Create</span></button>
       <a class="btn_cancel" (click)="closeAddressForm()"><span>Cancel</span></a>

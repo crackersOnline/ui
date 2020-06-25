@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
           if (res) {
             this.authService.getAddress().subscribe(address => {
               console.log('getAddress', address);
-              if (address.recCount > 0) {
+              if(address && (address.recCount > 0) ) {
                 this.singletonService.setAddressBookItems(address.data);
                 this.singletonService.changeAddressBook(true);
               }
@@ -52,7 +52,7 @@ export class AuthGuard implements CanActivate {
       } else if (localStorage.getItem('access_token') && userInfo) {
         this.authService.getAddress().subscribe(address => {
           console.log('getAddress', address);
-          if (address.recCount > 0) {
+          if(address && (address.recCount > 0) ) {
             this.singletonService.setAddressBookItems(address.data);
             this.singletonService.changeAddressBook(true);
           }

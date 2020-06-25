@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppSingletonService } from 'src/app/app.singleton.service';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
   selector: 'app-address-book',
@@ -9,7 +10,7 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
 export class AddressBookComponent implements OnInit {
   createAddressStatus = false;
   addressList = [];
-  constructor(private singletonService: AppSingletonService) { }
+  constructor(private singletonService: AppSingletonService, private commonService: CommonService) { }
 
   ngOnInit() {
     this.singletonService.$addressBookObservable.subscribe(
