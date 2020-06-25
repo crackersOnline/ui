@@ -70,7 +70,4 @@ export class CommonService {
   public saveAddressBookDetail(inputData) {
     return this.apiProxy.post(this.baseUrl + '/user/addressBook', inputData).pipe();
   }
-  public getAddressBook() {
-    return this.apiProxy.get(this.baseUrl + '/user/addressBook').pipe();
-  }
 }
