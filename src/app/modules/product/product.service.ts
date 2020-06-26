@@ -10,10 +10,15 @@ export class ProductService {
   private authUrl: string = AppSettings.microservices.gateway_MicroService_BaseUrl;
   constructor(private apiProxy: ApiProxy, private http: HttpClient) { }
 
-  getProducts(){
+  getProducts() {
     return this.apiProxy.get(this.authUrl + '/product/productlist').pipe();
   }
-  getCategories(){
+  getCategories() {
     return this.apiProxy.get(this.authUrl + '/product/categories').pipe();
   }
+
+  saveOrder(input) {
+    return this.apiProxy.post(this.authUrl + '/product/orderSave', input).pipe();
+  }
+
 }
