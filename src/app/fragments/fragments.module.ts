@@ -10,6 +10,7 @@ import { AddressFormComponent } from './core/address-form/address-form.component
 import { AddressBookComponent } from './functional/address-book/address-book.component';
 import { PaymentComponent } from './functional/payment/payment.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AppMaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,

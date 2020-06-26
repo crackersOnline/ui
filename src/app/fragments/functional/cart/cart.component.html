@@ -34,10 +34,23 @@
                 </div>
             </div>
         </div>
+        <div class="coupon">
+            <div class="applyCoupon">
+                <div>Apply Coupon</div>
+                <div>
+                    <input name="couponCode" [(ngModel)]="couponCode" />
+                    <button (click)="applyCoupon()" >Apply</button>
+                </div>
+            </div>
+
+            <span>Apply Coupon</span>
+            <span><i class="fas fa-rupee-sign"></i> {{couponAppliedAmt}}</span>
+        </div>
         <div class="cartTotalAmount">
             <span>Subtotal</span>
-            <span><i class="fas fa-rupee-sign"></i> {{totalProductPrice}}</span>
+            <span><i class="fas fa-rupee-sign"></i> {{totalProductPriceWithCoupon}}</span>
         </div>
+        
         <div class="cartSavingAmount">
             <span>Your total savings</span>
             <span><i class="fas fa-rupee-sign"></i> {{totalSavingPrice}}</span>

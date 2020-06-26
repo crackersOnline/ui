@@ -15,7 +15,10 @@ export class CartComponent implements OnInit {
   public totalProductQuantity = 0;
   public totalMRPPrice = 0;
   public totalSavingPrice = 0;
-  constructor( private singletonService: AppSingletonService, private commonService: CommonService, private router:Router ) { }
+  public couponCode = '';
+  public totalProductPriceWithCoupon = 0;
+  public couponAppliedAmt = 0;
+  constructor( private singletonService: AppSingletonService, private commonService: CommonService, private router: Router ) { }
 
   ngOnInit() {
     this.singletonService.$metadataChangeObservable.subscribe(
@@ -29,6 +32,7 @@ export class CartComponent implements OnInit {
             this.totalMRPPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
             this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
             console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
+            this.totalProductPriceWithCoupon = this.totalProductPrice;
           }
         }
       }
@@ -56,6 +60,22 @@ export class CartComponent implements OnInit {
   }
   checkoutProduct() {
     this.router.navigate(['checkout']);
+  }
+
+  applyCoupon() {
+    this.totalProductPriceWithCoupon = this.totalProductPrice;
+    if (this.couponCode) {
+      this.commonService.getCoupon({couponCode:  this.couponCode}).subscribe(
+        (res: any) => {
+          console.log('couponCode', this.couponCode);
+          if (res && res.recCount) {
+            this.couponAppliedAmt = res.data[0].couponValue;
+            this.totalProductPriceWithCoupon = this.totalProductPrice - res.data[0].couponValue;
+          }
+        }
+      );
+      this.couponCode = '';
+    }
   }
 
 }

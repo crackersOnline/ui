@@ -3,7 +3,7 @@
         <div class="row">
             <div class="container">
                 <nav class="header-nav">
-                    <h1 class="logo">Crackers Online</h1>
+                    <h1 class="logo" [routerLink]="['products']">Crackers Online</h1>
                     <ul class="list-right">
                         <li class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>{{userEmail}}</span></li>
                         <li class="cart-info"><span class="cart_count">{{ itemCount?.length || '0' }}</span>Cart</li>

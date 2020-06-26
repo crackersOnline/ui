@@ -70,4 +70,8 @@ export class CommonService {
   public saveAddressBookDetail(inputData) {
     return this.apiProxy.post(this.baseUrl + '/user/addressBook', inputData).pipe();
   }
+
+  public getCoupon(inputData) {
+    return this.apiProxy.post(this.baseUrl + '/product/getCoupon', inputData).pipe();
+  }
 }
