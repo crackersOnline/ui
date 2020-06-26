@@ -28,7 +28,7 @@
         .address {
             margin-top: 20px;
             padding: 20px;
-            height: 177px;
+            height: 203px;
             text-align: center;
             display: flex;
             flex-direction: row;
@@ -56,17 +56,21 @@
         .address {
             margin-top: 20px;
             padding: 20px;
-            border: 1px solid #e9e9eb;
-            display: flex;
+            border: 1px solid #e9e9eb;            
         }
-        .icon {
-            width: 20px;
-            margin-right: 10px;
-            img {
-                width: 100%;
-            }
-        }
+        
         .add_info {
+            position: relative;
+            padding-left: 30px;
+            .icon {
+                position: absolute;
+                width: 20px;
+                top: 0;
+                left: 0;
+                img {
+                    width: 100%;
+                }
+            }
             h3 {
                 margin-top: 0;
                 margin-bottom: 5px;

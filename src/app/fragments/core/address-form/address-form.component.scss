@@ -42,6 +42,7 @@
         .full-width {
             display: block;
             font-size: 16px;
+            margin-bottom: 20px;
         }
         .btn_create, .btn_cancel {
             padding: 10px;
@@ -58,15 +59,21 @@
             outline: none;
             display: block;
             cursor: pointer;
-            &:hover {
-                &::before {
-                    opacity: 1;
-                    transform: scale(13);
-                }
-                span {
-                    color: #FFF;
+            &:disabled {
+                cursor: not-allowed;
+            }
+            &:not([disabled]) {
+                &:hover {
+                    &::before {
+                        opacity: 1;
+                        transform: scale(13);
+                    }
+                    span {
+                        color: #FFF;
+                    }
                 }
             }
+            
             span {
                 z-index: 13;
                 position: absolute;
@@ -114,4 +121,8 @@
             }
         }
     }
+}
+.loginError_alert {
+    bottom: -25px;
+    font-size: 13px;
 }

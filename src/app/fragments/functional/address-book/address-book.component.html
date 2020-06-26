@@ -11,32 +11,23 @@
             <a (click)="enableCreateAddress()">Add new</a>
           </div>
         </div>
-        <div class="col-md-6 col-xl-6 col-lg-6 col-sm-12 col-12 existingAddress">
-          <div class="address">
-            <div class="icon">
-              <img src="../../../../assets/images/cart/home.png" />
-            </div>
+
+        <div *ngFor="let addressItem of addressList" class="col-md-6 col-xl-6 col-lg-6 col-sm-12 col-12 existingAddress">
+          <div class="address">            
             <div class="add_info">
-              <h3>Home</h3>
-              <p>No.7261, TNHB, Ayappakam, Chennai, Tamil Nadu 600077</p>
-              <p>9962927452</p>
+              <div class="icon">              
+                <img *ngIf="(addressItem.addressType =='Home')" src="../../../../assets/images/cart/home.png" />
+                <img *ngIf="(addressItem.addressType =='Office')" src="../../../../assets/images/cart/office.png" />
+              </div>
+              <h3>{{addressItem.addressType}}</h3>
+              <p>{{addressItem.flatNo}}, {{addressItem.address}}, {{addressItem.city}}, {{addressItem.state}}. {{addressItem.pincode}}</p>
+              <p>{{addressItem.landmark}}</p>
+              <p>{{addressItem.mobile}}</p>
               <a>Deliver Here</a>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-6 col-lg-6 col-sm-12 col-12 existingAddress">
-          <div class="address">
-            <div class="icon">
-              <img src="../../../../assets/images/cart/office.png" />
-            </div>
-            <div class="add_info">
-              <h3>Office</h3>
-              <p>No.7261, TNHB, Ayappakam, Chennai, Tamil Nadu 600077</p>
-              <p>9962927452</p>
-              <a>Deliver Here</a>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
