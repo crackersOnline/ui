@@ -1,6 +1,6 @@
 <div class="address_container">
     <div class="cp_title">
-      <img src="assets/images/cart/location.png">
+      <img src="assets/images/cart/location.png" alt="location">
       <h2>Choose a delivery address<span>Multiple address in this location</span></h2>
     </div>
     <div class="address_list_container">
@@ -16,19 +16,19 @@
           <div class="address">            
             <div class="add_info">
               <div class="icon">              
-                <img *ngIf="(addressItem.addressType =='Home')" src="../../../../assets/images/cart/home.png" />
-                <img *ngIf="(addressItem.addressType =='Office')" src="../../../../assets/images/cart/office.png" />
+                <img *ngIf="(addressItem.addressType =='Home')" src="assets/images/cart/home.png" alt="Home" />
+                <img *ngIf="(addressItem.addressType =='Office')" src="assets/images/cart/office.png" alt="Office" />
               </div>
               <h3>{{addressItem.addressType}}</h3>
               <p>{{addressItem.flatNo}}, {{addressItem.address}}, {{addressItem.city}}, {{addressItem.state}}. {{addressItem.pincode}}</p>
               <p>{{addressItem.landmark}}</p>
               <p>{{addressItem.mobile}}</p>
-              <a>Deliver Here</a>
-            </div>
+              <a id="addressItem.addressID" (click)="onDeliveryAddress(addressItem.addressID)">Deliver Here</a>
+            </div> 
           </div>
         </div>
         
       </div>
     </div>
   </div>
-  <app-address-form [enableAddressForm]="createAddressStatus" (closeCreateAddress)="createAddressStatus=$event"></app-address-form>
+  <app-address-form [enableAddressForm]="createAddressStatus" (closeCreateAddress)="triggerFormAddressForm($event)"></app-address-form>

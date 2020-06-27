@@ -33,10 +33,8 @@ export class UserVerificationComponent implements OnInit {
       (res: any) => {
         this.commonService.sendSpinnerStatus(false);
         this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 5000,
           data: 'Account activated sucessfully. Login & Place your orders',
-          panelClass: 'sucesss',
-          verticalPosition: 'top'
+          panelClass: 'sucesss'
         });
         this.router.navigate(['login']);
       },
@@ -44,10 +42,8 @@ export class UserVerificationComponent implements OnInit {
         this.commonService.sendSpinnerStatus(false);
         this.error = (err.error.message) ? err.error.message : err.message;
         this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 5000,
           data: this.error,
-          panelClass: 'error',
-          verticalPosition: 'top'
+          panelClass: 'error'
         });
         // this.error = err.error.message;
       }

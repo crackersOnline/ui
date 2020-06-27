@@ -49,18 +49,14 @@ export class LoginComponent implements OnInit {
           if (err.status == 401) {
             this.error = 'This mail id not registered.';
             this._snackBar.openFromComponent(NotificationComponent, {
-              duration: 5000,
               data: 'This mail id not registered.',
-              panelClass: 'error',
-              verticalPosition: 'top'
+              panelClass: 'error'
             });
           } else {
             this.error = (err.error.message) ? err.error.message : err.message;
             this._snackBar.openFromComponent(NotificationComponent, {
-              duration: 5000,
               data: this.error,
-              panelClass: 'error',
-              verticalPosition: 'top'
+              panelClass: 'error'
             });
             // this.error = err.error.message;
           }

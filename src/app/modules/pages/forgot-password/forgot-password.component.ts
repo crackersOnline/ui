@@ -41,10 +41,8 @@ export class ForgotPasswordComponent implements OnInit {
           this.commonService.sendSpinnerStatus(false);
         // SnackBar start
           this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 5000,
           data: 'Sucess sent verification code to registered mail id',
-          panelClass: 'sucesss',
-          verticalPosition: 'top'
+          panelClass: 'sucesss'
         });
           this.router
           .navigateByUrl('resetpwd', { skipLocationChange: true })
@@ -54,10 +52,8 @@ export class ForgotPasswordComponent implements OnInit {
           this.commonService.sendSpinnerStatus(false);
           this.error = (err.error.message) ? err.error.message : err.message;
           this._snackBar.openFromComponent(NotificationComponent, {
-            duration: 5000,
             data: this.error,
-            panelClass: 'error',
-            verticalPosition: 'top'
+            panelClass: 'error'
           });
         }
       );

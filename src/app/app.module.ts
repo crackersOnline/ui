@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AnonymousGuardGuard } from './anonymous-guard.guard';
 import { ProductModule } from './modules/product/product.module';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -48,7 +49,8 @@ export function tokenGetter() {
   providers: [
     AuthService,
     AuthGuard,
-    AnonymousGuardGuard
+    AnonymousGuardGuard,
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,  useValue: { duration: 5000, verticalPosition:  'top'}}
   ],
   bootstrap: [AppComponent]
 })

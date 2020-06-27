@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { CommonService } from "src/app/common/services/common.service";
-import { NotificationComponent } from "../notification/notification.component";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { CommonService } from 'src/app/common/services/common.service';
+import { NotificationComponent } from '../notification/notification.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: "app-address-form",
-  templateUrl: "./address-form.component.html",
-  styleUrls: ["./address-form.component.scss"],
+  selector: 'app-address-form',
+  templateUrl: './address-form.component.html',
+  styleUrls: ['./address-form.component.scss'],
 })
 export class AddressFormComponent implements OnInit {
   @Input() enableAddressForm;
@@ -21,19 +21,19 @@ export class AddressFormComponent implements OnInit {
   // state = "";
   // pincode = "";
   // mobile = "";
-  type = "INSERT";
+  type = 'INSERT';
   public error: string;
   constructor(
     private commonService: CommonService,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit() {
-    console.log("Create Address: ", this.enableAddressForm);
+    console.log('Create Address: ', this.enableAddressForm);
   }
 
-  closeAddressForm() {
+  closeAddressForm(type) {
     this.enableAddressForm = false;
-    this.closeCreateAddress.emit(this.enableAddressForm);
+    this.closeCreateAddress.emit({type, status: this.enableAddressForm});
   }
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;
@@ -51,7 +51,7 @@ export class AddressFormComponent implements OnInit {
   onSubmit(addressForm: NgForm) {
     this.commonService.sendSpinnerStatus(true);
     this.submitted = true;
-    console.log("Address Form: ", addressForm.value);
+    console.log('Address Form: ', addressForm.value);
     // const InputData = {
     //   addressType: this.addressType,
     //   flatNo: this.flatNo,
@@ -67,25 +67,21 @@ export class AddressFormComponent implements OnInit {
       .saveAddressBookDetail(addressForm.value)
       .subscribe((res) => {
         this.commonService.sendSpinnerStatus(false);
-        this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 5000,
-          data: "New delivery address added sucessfully",
-          panelClass: "sucesss",
-          verticalPosition: "top",
+        this.snackBar.openFromComponent(NotificationComponent, {
+          data: 'New delivery address added sucessfully',
+          panelClass: 'sucesss'
         });
-        console.log("result", res);
+        console.log('result', res);
         addressForm.resetForm();
-        this.closeAddressForm();
+        this.closeAddressForm('submit');
       },
       err => {
         this.commonService.sendSpinnerStatus(false);
         this.error = (err.error.message) ? err.error.message : err.message;
         // console.log(this.error);
-        this._snackBar.openFromComponent(NotificationComponent, {
-            duration: 5000,
+        this.snackBar.openFromComponent(NotificationComponent, {
             data: this.error,
-            panelClass:  'error',
-            verticalPosition:  'top'
+            panelClass:  'error'
           });
       }
       );

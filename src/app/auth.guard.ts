@@ -30,13 +30,7 @@ export class AuthGuard implements CanActivate {
       if (localStorage.getItem('access_token') && !userInfo) {
         this.authService.verifyToken().subscribe((res) => {
           if (res) {
-            this.authService.getAddress().subscribe(address => {
-              console.log('getAddress', address);
-              if (address && (address.recCount > 0)) {
-                this.singletonService.setAddressBookItems(address.data);
-                this.singletonService.changeAddressBook(true);
-              }
-            });
+            this.getAddress();
             return true;
           }
         },
@@ -50,19 +44,23 @@ export class AuthGuard implements CanActivate {
         // this.router.navigate(['/']);
         return true;
       } else if (localStorage.getItem('access_token') && userInfo) {
-        this.authService.getAddress().subscribe(address => {
-          console.log('getAddress', address);
-          if (address && (address.recCount > 0)) {
-            this.singletonService.setAddressBookItems(address.data);
-            this.singletonService.changeAddressBook(true);
-          }
-        });
+        this.getAddress();
         return true;
       } else {
         this.router.navigate(['login']);
         return false;
       }
 
+  }
+
+  getAddress() {
+    this.authService.getAddress().subscribe(address => {
+      console.log('getAddress', address);
+      if (address && (address.recCount > 0)) {
+        this.singletonService.setAddressBookItems(address.data);
+        this.singletonService.changeAddressBook(true);
+      }
+    });
   }
 
 }

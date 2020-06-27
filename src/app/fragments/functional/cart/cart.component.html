@@ -34,8 +34,8 @@
                 </div>
             </div>
         </div>
-        <div class="coupon">
-            <div class="applyCoupon">
+        <div class="coupon" *ngIf="this.path === 'checkout'">
+            <div class="applyCoupon" *ngIf="applyCouponDesign">
                 <div>Apply Coupon</div>
                 <div>
                     <input name="couponCode" [(ngModel)]="couponCode" />
@@ -45,17 +45,19 @@
 
             <span>Apply Coupon</span>
             <span><i class="fas fa-rupee-sign"></i> {{couponAppliedAmt}}</span>
+            <span (click)="removeCoupon()" *ngIf="!applyCouponDesign"><i class="fas fa-window-close"></i></span>
         </div>
         <div class="cartTotalAmount">
             <span>Subtotal</span>
-            <span><i class="fas fa-rupee-sign"></i> {{totalProductPriceWithCoupon}}</span>
+            <span  *ngIf="this.path === 'checkout'"><i class="fas fa-rupee-sign"></i> {{totalProductPriceWithCoupon}}</span>
+            <span  *ngIf="this.path !== 'checkout'"><i class="fas fa-rupee-sign"></i> {{totalProductPrice}}</span>
         </div>
         
         <div class="cartSavingAmount">
             <span>Your total savings</span>
             <span><i class="fas fa-rupee-sign"></i> {{totalSavingPrice}}</span>
         </div>
-        <div class="cart_btn">
+        <div class="cart_btn" *ngIf="this.path !== 'checkout'">
             <button (click)="checkoutProduct()">PROCEED TO CHECKOUT <i class="fas fa-angle-double-right"></i></button>
         </div>
     </div>

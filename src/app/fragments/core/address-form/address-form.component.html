@@ -71,7 +71,7 @@
         </div>
       </mat-form-field>
       <button type="submit" class="btn_create" [disabled]="!addressForm.form.valid"><span>Create</span></button>
-      <a class="btn_cancel" (click)="closeAddressForm()"><span>Cancel</span></a>
+      <a class="btn_cancel" (click)="closeAddressForm('cancel')"><span>Cancel</span></a>
     </form>
   </div>
   <pre>{{addressForm.value | json}}</pre>

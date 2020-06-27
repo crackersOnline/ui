@@ -38,10 +38,8 @@ export class ResetPasswordComponent implements OnInit {
         this.commonService.sendSpinnerStatus(false);
         // console.log('Response', res);
         this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 5000,
           data: 'Password Reset sucessfully. Login & Place your orders',
-          panelClass: 'sucesss',
-          verticalPosition:  'top'
+          panelClass: 'sucesss'
         });
         this.router.navigate(['login']);
       },
@@ -50,10 +48,8 @@ export class ResetPasswordComponent implements OnInit {
         this.error = (err.error.message) ? err.error.message : err.message;
         // console.log(this.error);
         this._snackBar.openFromComponent(NotificationComponent, {
-            duration: 5000,
             data: this.error,
-            panelClass:  'error',
-            verticalPosition:  'top'
+            panelClass:  'error'
           });
       }
     );

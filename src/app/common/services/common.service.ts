@@ -74,4 +74,8 @@ export class CommonService {
   public getCoupon(inputData) {
     return this.apiProxy.post(this.baseUrl + '/product/getCoupon', inputData).pipe();
   }
+
+  public removeCart(inputData) {
+    return this.apiProxy.post(this.baseUrl + '/product/removeCart', inputData).pipe();
+  }
 }
