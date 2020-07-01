@@ -95,7 +95,7 @@ export class CartComponent implements OnInit, DoCheck {
 
   // Decrease Count
   minusQuantity(item) {
-    // console.log('minusquant', item, this.cartItem.length);
+    console.log('minusquant', item);
     if (this.cartItem.length > 0) {
       this.cartItem = this.commonService.decreaseCount(item, this.cartItem);
       this.singletonService.setCartItems(this.cartItem);
@@ -139,6 +139,10 @@ export class CartComponent implements OnInit, DoCheck {
     this.couponAppliedAmt = 0;
     this.applyCouponDesign = true;
     this.totalProductPriceWithCoupon = this.totalProductPrice;
+  }
+
+  convertToInt(param) {
+    return parseInt(param);
   }
 
 }

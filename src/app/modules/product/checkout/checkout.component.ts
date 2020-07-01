@@ -38,7 +38,6 @@ export class CheckoutComponent implements OnInit {
     (error) => {
       console.log('get cart item error', error);
     });
-
    }
 
 
@@ -74,12 +73,19 @@ export class CheckoutComponent implements OnInit {
             data: 'Your order successfully placed.',
             panelClass: 'sucesss'
           });
+          localStorage.removeItem('appliedCoupon');
           this.cartItem = [];
           this.singletonService.setCartItems(this.cartItem);
           this.singletonService.notifyMetaDataChanged(true);
           this.router.navigate(['products']);
         }
       },
+      (error) => {
+        this.snackBar.openFromComponent(NotificationComponent, {
+          data: error,
+          panelClass: 'error'
+        });
+      }
       );
     }
 

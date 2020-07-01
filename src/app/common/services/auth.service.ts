@@ -74,8 +74,7 @@ export class AuthService {
     }
 
     public logout() {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('userName');
+        localStorage.clear();
         this.singletonService.clearCartItems();
     }
 

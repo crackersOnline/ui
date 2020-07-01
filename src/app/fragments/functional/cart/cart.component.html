@@ -55,7 +55,7 @@
         
         <div class="cartSavingAmount">
             <span>Your total savings</span>
-            <span><i class="fas fa-rupee-sign"></i> {{totalSavingPrice}}</span>
+            <span><i class="fas fa-rupee-sign"></i> {{convertToInt(totalSavingPrice) + convertToInt(couponAppliedAmt)}}</span>
         </div>
         <div class="cart_btn" *ngIf="this.path !== 'checkout'">
             <button (click)="checkoutProduct()">PROCEED TO CHECKOUT <i class="fas fa-angle-double-right"></i></button>
