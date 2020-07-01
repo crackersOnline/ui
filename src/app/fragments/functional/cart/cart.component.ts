@@ -95,7 +95,7 @@ export class CartComponent implements OnInit, DoCheck {
 
   // Decrease Count
   minusQuantity(item) {
-    console.log('minusquant', item);
+    // console.log('minusquant', item, this.cartItem.length);
     if (this.cartItem.length > 0) {
       this.cartItem = this.commonService.decreaseCount(item, this.cartItem);
       this.singletonService.setCartItems(this.cartItem);

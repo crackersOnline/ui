@@ -74,13 +74,13 @@ export class CheckoutComponent implements OnInit {
             data: 'Your order successfully placed.',
             panelClass: 'sucesss'
           });
-          this.commonService.removeCart(this.cartItem);
           this.cartItem = [];
+          this.singletonService.setCartItems(this.cartItem);
+          this.singletonService.notifyMetaDataChanged(true);
           this.router.navigate(['products']);
-        //  this.singletonService.setCartItems(this.cartItem);
-        //  this.singletonService.notifyMetaDataChanged(true);
         }
-      });
+      },
+      );
     }
 
    }
