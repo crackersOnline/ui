@@ -12,8 +12,8 @@ export class PagesService {
 
   /**
    * This function for User Registration
-   * @param username
-   * @param password
+   * @param data contains registration input values
+   * @description is used to insert user
    */
   public registration(data) {
     return this.apiProxy.post(this.baseUrl + '/user/register', data)

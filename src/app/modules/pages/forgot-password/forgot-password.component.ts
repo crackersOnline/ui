@@ -17,7 +17,10 @@ export class ForgotPasswordComponent implements OnInit {
   public invalidResult = {
     duplicateEmailID: false,
   };
-  constructor(public pageService: PagesService, private _snackBar: MatSnackBar, private router: Router, private commonService: CommonService) { }
+  constructor(public pageService: PagesService,
+              private snackBar: MatSnackBar,
+              private router: Router,
+              private commonService: CommonService) { }
 
   ngOnInit() {
   }
@@ -40,7 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
         (res: any) => {
           this.commonService.sendSpinnerStatus(false);
         // SnackBar start
-          this._snackBar.openFromComponent(NotificationComponent, {
+          this.snackBar.openFromComponent(NotificationComponent, {
           data: 'Sucess sent verification code to registered mail id',
           panelClass: 'sucesss'
         });
@@ -51,7 +54,7 @@ export class ForgotPasswordComponent implements OnInit {
         err => {
           this.commonService.sendSpinnerStatus(false);
           this.error = (err.error.message) ? err.error.message : err.message;
-          this._snackBar.openFromComponent(NotificationComponent, {
+          this.snackBar.openFromComponent(NotificationComponent, {
             data: this.error,
             panelClass: 'error'
           });

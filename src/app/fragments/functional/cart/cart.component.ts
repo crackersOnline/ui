@@ -67,7 +67,7 @@ export class CartComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    if (this.couponCode != this.OldCouponCode) {
+    if (this.couponCode !== this.OldCouponCode) {
     console.log('ngDoCheck');
     this.cartDetailEmit.emit({
               cartItem: this.cartItem,
@@ -142,7 +142,7 @@ export class CartComponent implements OnInit, DoCheck {
   }
 
   convertToInt(param) {
-    return parseInt(param);
+    return parseInt(param, 10);
   }
 
 }

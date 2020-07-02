@@ -17,7 +17,9 @@ export class ResetPasswordComponent implements OnInit {
   public registerEmail: string;
   public error: string;
   resetPasswordForm: NgForm;
-  constructor(public pagesService: PagesService, public _snackBar: MatSnackBar, public router: Router, public commonService: CommonService) {
+  constructor(public pagesService: PagesService,
+              public snackBar: MatSnackBar,
+              public router: Router, public commonService: CommonService) {
     this.pagesService.emailemitter.subscribe(data => {
       this.registerEmail = data;
     });
@@ -37,7 +39,7 @@ export class ResetPasswordComponent implements OnInit {
       (res: any) => {
         this.commonService.sendSpinnerStatus(false);
         // console.log('Response', res);
-        this._snackBar.openFromComponent(NotificationComponent, {
+        this.snackBar.openFromComponent(NotificationComponent, {
           data: 'Password Reset sucessfully. Login & Place your orders',
           panelClass: 'sucesss'
         });
@@ -47,7 +49,7 @@ export class ResetPasswordComponent implements OnInit {
         this.commonService.sendSpinnerStatus(false);
         this.error = (err.error.message) ? err.error.message : err.message;
         // console.log(this.error);
-        this._snackBar.openFromComponent(NotificationComponent, {
+        this.snackBar.openFromComponent(NotificationComponent, {
             data: this.error,
             panelClass:  'error'
           });

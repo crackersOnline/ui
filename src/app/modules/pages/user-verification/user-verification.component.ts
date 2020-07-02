@@ -14,7 +14,8 @@ import { NotificationComponent } from 'src/app/fragments/core/notification/notif
 export class UserVerificationComponent implements OnInit {
   public registerEmail: string;
   public error: string;
-  constructor(private pages: PagesService, private router: Router, private commonService: CommonService, private _snackBar: MatSnackBar) {
+  constructor(private pages: PagesService, private router: Router, private commonService: CommonService,
+              private snackBar: MatSnackBar) {
     this.pages.emailemitter.subscribe(data => {
       this.registerEmail = data;
     });
@@ -32,7 +33,7 @@ export class UserVerificationComponent implements OnInit {
     this.pages.verifyOTP(accVerificationForm.value).subscribe(
       (res: any) => {
         this.commonService.sendSpinnerStatus(false);
-        this._snackBar.openFromComponent(NotificationComponent, {
+        this.snackBar.openFromComponent(NotificationComponent, {
           data: 'Account activated sucessfully. Login & Place your orders',
           panelClass: 'sucesss'
         });
@@ -41,7 +42,7 @@ export class UserVerificationComponent implements OnInit {
       err => {
         this.commonService.sendSpinnerStatus(false);
         this.error = (err.error.message) ? err.error.message : err.message;
-        this._snackBar.openFromComponent(NotificationComponent, {
+        this.snackBar.openFromComponent(NotificationComponent, {
           data: this.error,
           panelClass: 'error'
         });

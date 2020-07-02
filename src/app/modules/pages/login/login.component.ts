@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private ref: ChangeDetectorRef,
     private commonService: CommonService,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) { }
   userLoginForm = new FormGroup({
     loginUsername : new FormControl('', [
@@ -46,15 +46,15 @@ export class LoginComponent implements OnInit {
       },
         err => {
           this.commonService.sendSpinnerStatus(false);
-          if (err.status == 401) {
+          if (err.status === 401) {
             this.error = 'This mail id not registered.';
-            this._snackBar.openFromComponent(NotificationComponent, {
+            this.snackBar.openFromComponent(NotificationComponent, {
               data: 'This mail id not registered.',
               panelClass: 'error'
             });
           } else {
             this.error = (err.error.message) ? err.error.message : err.message;
-            this._snackBar.openFromComponent(NotificationComponent, {
+            this.snackBar.openFromComponent(NotificationComponent, {
               data: this.error,
               panelClass: 'error'
             });

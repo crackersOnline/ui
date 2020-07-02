@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,13 +6,8 @@ import { CommonService } from 'src/app/common/services/common.service';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  
-  constructor(public commonService:CommonService) {
-    
-   }
+  constructor() {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
 }
