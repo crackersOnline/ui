@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/common/services/auth.service';
 export class AddressBookComponent implements OnInit {
   createAddressStatus = false;
   addressList = [];
+  deliveryAddress = [];
+  ifDeliveryAddressSelected = false;
   @Output() deliveryAddressEmit = new EventEmitter();
   constructor(private singletonService: AppSingletonService, private authService: AuthService) { }
 
@@ -40,9 +42,10 @@ export class AddressBookComponent implements OnInit {
       });
     }
   }
-
   onDeliveryAddress(event) {
     console.log('onDeliveryAddress', event);
     this.deliveryAddressEmit.emit(event);
+    this.deliveryAddress = this.addressList.find(x => x.addressID === event);
+    this.ifDeliveryAddressSelected = true;
   }
 }

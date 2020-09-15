@@ -1,4 +1,5 @@
 <div class="address_container">
+  <div *ngIf="!ifDeliveryAddressSelected">
     <div class="cp_title">
       <img src="assets/images/cart/location.png" alt="location">
       <h2>Choose a delivery address<span>Multiple address in this location</span></h2>
@@ -10,25 +11,43 @@
             <h3>Create your delivery address</h3>
             <a (click)="enableCreateAddress()">Add new</a>
           </div>
-        </div>
-
+        </div>  
         <div *ngFor="let addressItem of addressList" class="col-md-6 col-xl-6 col-lg-6 col-sm-12 col-12 existingAddress">
-          <div class="address">            
+          <div class="address">
             <div class="add_info">
-              <div class="icon">              
+              <div class="icon">
                 <img *ngIf="(addressItem.addressType =='Home')" src="assets/images/cart/home.png" alt="Home" />
                 <img *ngIf="(addressItem.addressType =='Office')" src="assets/images/cart/office.png" alt="Office" />
               </div>
               <h3>{{addressItem.addressType}}</h3>
-              <p>{{addressItem.flatNo}}, {{addressItem.address}}, {{addressItem.city}}, {{addressItem.state}}. {{addressItem.pincode}}</p>
+              <p>{{addressItem.flatNo}}, {{addressItem.address}}, {{addressItem.city}}, {{addressItem.state}}.
+                {{addressItem.pincode}}</p>
               <p>{{addressItem.landmark}}</p>
               <p>{{addressItem.mobile}}</p>
               <a id="addressItem.addressID" (click)="onDeliveryAddress(addressItem.addressID)">Deliver Here</a>
-            </div> 
+            </div>
           </div>
-        </div>
-        
+        </div>  
       </div>
     </div>
   </div>
-  <app-address-form [enableAddressForm]="createAddressStatus" (closeCreateAddress)="triggerFormAddressForm($event)"></app-address-form>
+  <div *ngIf="ifDeliveryAddressSelected">
+    <div class="cp_title_2">
+      <div>
+        <img src="assets/images/cart/location_green.png" class="location_green" alt="location">
+      <h2>Delivery Address</h2>
+      </div>
+      
+      <a>Change</a>
+    </div>
+    <div class="delivered_address">
+      <h4>{{deliveryAddress.addressType}}</h4>
+      <p>{{deliveryAddress.flatNo}}, {{deliveryAddress.address}}, {{deliveryAddress.city}}, {{deliveryAddress.state}}. {{deliveryAddress.pincode}}</p>
+      <p>{{deliveryAddress.landmark}}</p>
+      <p>{{deliveryAddress.mobile}}</p>
+    </div>
+  </div>
+  
+</div>
+<app-address-form [enableAddressForm]="createAddressStatus" (closeCreateAddress)="triggerFormAddressForm($event)">
+</app-address-form>

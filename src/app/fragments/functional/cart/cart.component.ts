@@ -22,6 +22,8 @@ export class CartComponent implements OnInit, DoCheck {
   public OldCouponCode = '';
   public path: any;
   public applyCouponDesign = true;
+  public couponCodeError;
+  public couponName;
   constructor( private singletonService: AppSingletonService, private commonService: CommonService, private router: Router,
                private activatedRoute: ActivatedRoute  ) { }
 
@@ -68,7 +70,7 @@ export class CartComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     if (this.couponCode !== this.OldCouponCode) {
-    console.log('ngDoCheck');
+    //console.log('ngDoCheck');
     this.cartDetailEmit.emit({
               cartItem: this.cartItem,
               itemCount: this.itemCount,
@@ -121,19 +123,35 @@ export class CartComponent implements OnInit, DoCheck {
               this.couponAppliedAmt = res.data[0].couponValue;
               this.totalProductPriceWithCoupon = this.totalProductPrice - res.data[0].couponValue;
               this.applyCouponDesign = false;
+              this.couponName = coupon;
             } else {
               console.log('202');
               localStorage.removeItem('appliedCoupon');
               this.couponAppliedAmt = 0;
               this.applyCouponDesign = true;
             }
-          }
+          }          
           this.couponCode = '';
+        },
+        err => {
+          console.log("Error:",err);
         }
       );
     }
+    else {
+      this.couponCodeError = "couponCodeError_alert";
+    }
   }
-
+  couponValidation() {
+    console.log("blur start");
+    if(this.couponCode){
+      console.log("if blur start");
+      this.couponCodeError = "";
+    } else {
+      console.log("else blur start");
+      this.couponCodeError = "couponCodeError_alert";
+    }    
+  }
   removeCoupon() {
     localStorage.removeItem('appliedCoupon');
     this.couponAppliedAmt = 0;

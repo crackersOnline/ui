@@ -9,7 +9,7 @@
         <div class="cartItemListContainer">
             <div class="cartItemList" *ngFor="let item of cartItem">
                 <div class="cPrdtImage">
-                    <img src="assets/images/product/sample.jpg" />                
+                    <img src="assets/images/product/sample.jpg" />
                 </div>
                 <div class="cPrdtInfo">
                     <h3>{{item.productName}}</h3>
@@ -17,45 +17,60 @@
                         <div class="quantity_block item.productID">
                             <!-- {{quantityCount}} -->
                             <!-- initial Quantity Add -->
-                            <span (click)="addQuantity(item)"
-                                class="initial_add" *ngIf="item.productQuantity==0">ADD</span>
+                            <span (click)="addQuantity(item)" class="initial_add"
+                                *ngIf="item.productQuantity==0">ADD</span>
                             <!-- Increase & Discrease Quantity -->
-                                <div *ngIf="item.productQuantity>0" (click)="minusQuantity(item)" class="minus_quantity"><i
-                                        class="fas fa-minus"></i></div>
-                                <div *ngIf="item.productQuantity>0" class="quantity_count">
-                                    <input type="text" readonly [value]="item.productQuantity" name="noOfItem" />                                                                    
-                                </div>
-                                <div *ngIf="item.productQuantity>0" (click)="addQuantity(item)" class="add_quantity"><i
-                                        class="fas fa-plus"></i></div>                                                            
+                            <div *ngIf="item.productQuantity>0" (click)="minusQuantity(item)" class="minus_quantity"><i
+                                    class="fas fa-minus"></i></div>
+                            <div *ngIf="item.productQuantity>0" class="quantity_count">
+                                <input type="text" readonly [value]="item.productQuantity" name="noOfItem" />
+                            </div>
+                            <div *ngIf="item.productQuantity>0" (click)="addQuantity(item)" class="add_quantity"><i
+                                    class="fas fa-plus"></i></div>
                         </div>
                         <!-- <div class="cPrdtQty">Qty: {{item.productQuantity}}</div> -->
-                        <div class="cPrdtTtlPrice"><i class="fas fa-rupee-sign"></i> {{item.productTtlQtyPrice}}</div>
+                        <div class="cPrdtTtlPrice">&#8377; {{item.productTtlQtyPrice}}</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="coupon" *ngIf="this.path === 'checkout'">
             <div class="applyCoupon" *ngIf="applyCouponDesign">
-                <div>Apply Coupon</div>
-                <div>
-                    <input name="couponCode" [(ngModel)]="couponCode" />
-                    <button (click)="applyCoupon()" >Apply</button>
-                </div>
+                <!-- <div>Apply Coupon</div> -->
+                <input name="couponCode" (blur)="couponValidation()" required placeholder="Enter Coupon Code" [(ngModel)]="couponCode" />
+                <button (click)="applyCoupon()">Apply</button>
             </div>
-
-            <span>Apply Coupon</span>
-            <span><i class="fas fa-rupee-sign"></i> {{couponAppliedAmt}}</span>
-            <span (click)="removeCoupon()" *ngIf="!applyCouponDesign"><i class="fas fa-window-close"></i></span>
+            <div *ngIf="couponCodeError" ngClass="couponCodeError">Enter coupon code</div>
+            <div class="couponCodeInfo" *ngIf="!applyCouponDesign">
+                <p>{{couponName}}<span>coupon code appiled sucessfully.</span></p>
+                <span (click)="removeCoupon()"><i class="fas fa-times-circle"></i></span>
+                <!-- <span>Apply Coupon</span>
+                <span>&#8377; {{couponAppliedAmt}} <span (click)="removeCoupon()" *ngIf="!applyCouponDesign"><i class="fas fa-window-close"></i></span></span> -->
+            </div>
         </div>
         <div class="cartTotalAmount">
-            <span>Subtotal</span>
-            <span  *ngIf="this.path === 'checkout'"><i class="fas fa-rupee-sign"></i> {{totalProductPriceWithCoupon}}</span>
-            <span  *ngIf="this.path !== 'checkout'"><i class="fas fa-rupee-sign"></i> {{totalProductPrice}}</span>
+            <span>Sub Total</span>            
+            <span>&#8377; {{totalProductPrice}}</span>
         </div>
-        
+        <div class="cartTotalAmount">
+            <span>Delivery fee</span>            
+            <span>&#8377; 0</span>
+        </div>
+        <div class="cartTotalAmount" *ngIf="!applyCouponDesign">
+            <span>Discount (-)</span>            
+            <span>&#8377; {{couponAppliedAmt}}</span>
+        </div>
+        <div class="cartGrandTotalAmount">
+            <span>To Pay</span>
+            <span *ngIf="this.path === 'checkout'">&#8377;
+                {{totalProductPriceWithCoupon}}</span>
+            <span *ngIf="this.path !== 'checkout'">&#8377; {{totalProductPrice}}</span>
+        </div>
+
         <div class="cartSavingAmount">
             <span>Your total savings</span>
-            <span><i class="fas fa-rupee-sign"></i> {{convertToInt(totalSavingPrice) + convertToInt(couponAppliedAmt)}}</span>
+            <span>&#8377;
+                {{convertToInt(totalSavingPrice) + convertToInt(couponAppliedAmt)}}</span>
         </div>
         <div class="cart_btn" *ngIf="this.path !== 'checkout'">
             <button (click)="checkoutProduct()">PROCEED TO CHECKOUT <i class="fas fa-angle-double-right"></i></button>

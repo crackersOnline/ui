@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit {
 
    getCartDetails(event) {
     this.cartDetails = event;
-    console.log('getCartDetails', this.cartDetails);
+    //console.log('getCartDetails', this.cartDetails);
    }
    oderSave() {
     console.log('oderSave', this.cartDetails);

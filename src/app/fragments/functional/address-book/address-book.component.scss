@@ -8,6 +8,9 @@
         display: flex;
         img {
             height: 52px;
+            &.location_green {
+                height: 36px;
+            }
         }
         h2 {
             font-size:28px;
@@ -17,6 +20,35 @@
             display: block;
             font-size:13px;
             font-weight: normal;
+        }
+    }
+    .cp_title_2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        div {
+            display: flex;
+        }
+        img {
+            height: 52px;
+            &.location_green {
+                height: 36px;
+            }
+        }
+        h2 {
+            font-size:28px;
+            margin: 0px 0px 0px 20px;
+        }
+        span {
+            display: block;
+            font-size:13px;
+            font-weight: normal;
+        }
+        a {
+            font-weight: 600;
+            color: $primary-color;
+            cursor: pointer;
+            text-decoration: none;
         }
     }
     .address_list_container {
@@ -56,7 +88,11 @@
         .address {
             margin-top: 20px;
             padding: 20px;
-            border: 1px solid #e9e9eb;            
+            border: 1px solid #e9e9eb;
+            &:hover {
+                box-shadow: 0 2px 8px #d4d5d9;
+                cursor: pointer;
+            }
         }
         
         .add_info {
@@ -92,6 +128,19 @@
                 @include user-select;
                 text-transform: uppercase;
             }
+        }
+    }
+}
+.delivered_address {
+    h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    p {
+        font-size: 15px;
+        margin: 5px 0px;
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }
