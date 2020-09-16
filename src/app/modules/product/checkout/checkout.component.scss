@@ -5,6 +5,26 @@
         
     }
 }
+.promo-banner {
+    background-color: $primary-color;
+    height: 150px;
+    position: sticky;
+    top: 65px;
+    z-index: 10;
+}
 .cart-container {
     top: 95px;
+}
+.backToShop {
+    line-height: 150px;
+    color: #FFF;
+    a {
+        text-decoration: none;
+        color: $white-color;
+        font-size: 24px;
+        cursor: pointer;
+        i {
+            margin-right: 5px;
+        }
+    }
 }

@@ -40,7 +40,9 @@ export class CheckoutComponent implements OnInit {
     });
    }
 
-
+   backToShop() {
+    this.router.navigate(['products']);
+   }
    getCartDetails(event) {
     this.cartDetails = event;
     //console.log('getCartDetails', this.cartDetails);
@@ -48,6 +50,7 @@ export class CheckoutComponent implements OnInit {
    oderSave() {
     console.log('oderSave', this.cartDetails);
     if (!this.deliveryAddressID) {
+      console.log(this.deliveryAddressID);
       this.snackBar.openFromComponent(NotificationComponent, {
         data: 'Kindly select any one of the Delivery Address',
         panelClass:  'error'
@@ -88,8 +91,5 @@ export class CheckoutComponent implements OnInit {
       }
       );
     }
-
    }
-
-
 }

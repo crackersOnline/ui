@@ -11,6 +11,7 @@ export class AppSingletonService implements OnDestroy {
   public cartInfo: any = [];
   public addressInfo: any = [];
   public userInfo: any;
+  deliveryAddStatus = new Subject();
   private productQuantitySource: BehaviorSubject<any> = new BehaviorSubject({});
   $productQuantityObservable = this.productQuantitySource.asObservable();
   private metadataChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -65,4 +66,8 @@ export class AppSingletonService implements OnDestroy {
     this.cartInfo = null;
     this.userInfo = null;
   }
+  deliveryAddressStatus(status:boolean) {
+    this.deliveryAddStatus.next(status);
+    console.log("Delivery status from Service page: ",status);
+  } 
 }

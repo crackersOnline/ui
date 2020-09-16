@@ -1,4 +1,17 @@
 <section class="body_page_container">
+  <div class="promo-banner">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="backToShop"><a (click)="backToShop()"><i class="far fa-arrow-alt-circle-left"></i> Continue Shopping</a></div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
   <div class="checkout_container">
     <div class="container-fluid">
       <div class="row">
@@ -13,7 +26,7 @@
             <div class="col-md-4 col-xl-4 col-lg-4 col-sm-12 col-12">
               <app-cart (cartDetailEmit)="getCartDetails($event)"></app-cart>
             </div>
-            <button  (click)="oderSave()" >Save</button>
+            <button (click)="oderSave()" >Save</button>
           </div>
         </div>
       </div>

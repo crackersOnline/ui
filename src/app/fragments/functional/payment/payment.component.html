@@ -1,15 +1,28 @@
 <div class="payment_container">
     <div class="cp_title">
-      <img src="assets/images/cart/pay.png">
-      <h2>Payment<span>Choose your payment method</span></h2>
+        <img src="assets/images/cart/pay.png" *ngIf="ifDeliveryAddressSelected">
+        <img src="assets/images/cart/pay_green.png" *ngIf="!ifDeliveryAddressSelected">
+        <h2>Payment<span *ngIf="ifDeliveryAddressSelected">Choose your payment method</span></h2>
     </div>
-   <div class="payment_option_container">
-       <div class="payment_option_tab">
-           <div class="payment_left">
-               <ol>
-                   <li>Credit & Debit </li>
-               </ol>
-           </div>
-       </div>
-   </div>
-  </div>
+    <div class="payment_option_container" *ngIf="ifDeliveryAddressSelected">
+        <div class="payment_option_tab">
+            <div class="payment_left">
+                <div class="cod">
+                    <p>Pay using Cash On Delivery</p>
+                    <div class="cod_field">
+                        <div class="capcha">
+                            <img src="assets/images/cart/capche.png" />
+                        </div>
+                        <div class="capchaTextBox">
+                            <input type="text" placeholder="Enter Capcha" />
+                        </div>
+                        <div class="placeOrder">
+                            <button>Confirm Order</button>
+                        </div>
+                    </div>
+                    <div class="cod_footer"><span>Before confirm the order Once review your cart items.</span><i class="fas fa-long-arrow-alt-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

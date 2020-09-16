@@ -47,5 +47,11 @@ export class AddressBookComponent implements OnInit {
     this.deliveryAddressEmit.emit(event);
     this.deliveryAddress = this.addressList.find(x => x.addressID === event);
     this.ifDeliveryAddressSelected = true;
+    this.singletonService.deliveryAddressStatus(this.ifDeliveryAddressSelected);
+  }
+  changeDeliveryAddress() {
+    this.ifDeliveryAddressSelected = false;
+    this.singletonService.deliveryAddressStatus(this.ifDeliveryAddressSelected);
+    this.deliveryAddressEmit.emit();
   }
 }

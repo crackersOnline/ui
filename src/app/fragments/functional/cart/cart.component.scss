@@ -126,6 +126,29 @@
         }
       }
     }
+    .cartDiscountAmount {
+      padding: 2px 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: green;
+      span {
+        display: block;
+        &:first-child {
+          font-size: 15px;
+          // font-weight: 600;
+        }
+        &:last-child {
+          font-size: 15px;
+          // color: $primary-color;
+          // font-weight: 600;
+          text-align: right;
+          i {
+            font-size: 11px;
+          }
+        }
+      }
+    }
     .cartTotalAmount {
       padding: 2px 0px;
       display: flex;
@@ -160,6 +183,7 @@
         &:first-child {
           font-size: 18px;
           font-weight: 600;
+          color: $primary-color;
         }
         &:last-child {
           font-size: 18px;
