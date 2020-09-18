@@ -256,10 +256,6 @@
         cursor: pointer;
         i {
           margin-left: 5px;
-          animation: shake 2s infinite;
-          transform: translate3d(0, 0, 0);
-          backface-visibility: hidden;
-          perspective: 1000px;
         }
       }
     }

@@ -97,12 +97,12 @@
       transform: translateX(0);
     }
     40% {
-      -ms-transform: translateX(60px);
-      transform: translateX(60px);
-    }
-    60% {
       -ms-transform: translateX(30px);
       transform: translateX(30px);
+    }
+    60% {
+      -ms-transform: translateX(0px);
+      transform: translateX(0px);
     }
   }
   @-moz-keyframes shake {
