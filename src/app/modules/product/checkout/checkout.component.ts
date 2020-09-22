@@ -80,7 +80,7 @@ export class CheckoutComponent implements OnInit {
           this.cartItem = [];
           this.singletonService.setCartItems(this.cartItem);
           this.singletonService.notifyMetaDataChanged(true);
-          this.router.navigate(['products']);
+          this.router.navigate(['sucess']);
         }
       },
       (error) => {

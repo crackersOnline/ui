@@ -11,13 +11,14 @@ import { AddressBookComponent } from './functional/address-book/address-book.com
 import { PaymentComponent } from './functional/payment/payment.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ThankYouComponent } from './functional/thank-you/thank-you.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent, FooterComponent, CartComponent, NotificationComponent, AddressFormComponent,
-    AddressBookComponent, PaymentComponent],
+    AddressBookComponent, PaymentComponent, ThankYouComponent],
   imports: [
     CommonModule,
     AppMaterialModule,
@@ -31,7 +32,8 @@ import { RouterModule } from '@angular/router';
     CartComponent,
     AddressFormComponent,
     AddressBookComponent,
-    PaymentComponent
+    PaymentComponent,
+    ThankYouComponent
   ],
   entryComponents: [
     NotificationComponent
