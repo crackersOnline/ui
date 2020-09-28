@@ -4,12 +4,18 @@
   margin-top: 30px;
   padding: 30px;
   border: 1px solid #e9e9eb;
+  @media only screen and (max-width: 480px) {
+    padding: 20px;
+  }
   .cp_title {
     display: flex;
 
     align-items: center;
     img {
       height: 52px;
+      @media only screen and (max-width: 480px) {
+        height: 36px;
+      }
     }
     h2 {
       font-size: 28px;

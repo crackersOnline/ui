@@ -43,3 +43,9 @@
     -ms-user-select: none;
     user-select: none;
 }
+@mixin transition-05 {
+	-webkit-transition: all 0.5s ease; /* Safari 3.2+, Chrome */
+    -moz-transition: all 0.5s ease; /* Firefox 4-15 */
+    -o-transition: all 0.5s ease; /* Opera 10.5-12.00 */
+    transition: all 0.5s ease; /* Firefox 16+, Opera 12.50+ */
+}

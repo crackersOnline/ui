@@ -4,6 +4,7 @@
             <div class="container">
                 <nav class="header-nav">
                     <h1 class="logo" [routerLink]="['products']">Crackers Online</h1>
+                    <button class="m-menu" (click)="drawer='active'"><i class="fas fa-bars"></i></button>
                     <ul class="list-right">
                         <li class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>{{userEmail}}</span></li>
                         <li class="cart-info"><span class="cart_count">{{ itemCount?.length || '0' }}</span>Cart</li>
@@ -14,3 +15,24 @@
         </div>
     </div>
 </header>
+
+<div class="custom-drawer-container" [ngClass]="drawer">
+    <div class="c-d-backdrop" (click)="drawer=''"></div>
+    <div class="c-d-content"  [ngClass]="drawer">
+        <div class="c-d-header">
+            <span><img src="assets/images/header/user.png" width="20"/></span>
+            <span>{{userEmail}}</span>
+        </div>
+        <ul class="useful_links">
+            <li>
+                <a><i class="fas fa-user-nurse"></i> My Account</a>
+            </li>
+            <li>
+                <a><i class="fas fa-shopping-bag"></i> My Order</a>
+            </li>
+            <li>
+                <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>

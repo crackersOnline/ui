@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2 col-xl-2 col-lg-2 col-sm-12 col-12">
+                        <div class="col-md-2 col-xl-2 col-lg-2 col-sm-12 col-12 m-display-none">
                             <div class="category_container">
                                 <div id="category_inner_container" class="category_inner_container">
                                     <!-- <a class="current-category">Gift Boxes</a> -->
@@ -30,7 +30,7 @@
                                             <p><span class="prdt_count">{{item[1].length}}</span>ITEM<span *ngIf="item[1].length>1">S</span></p>
                                         </div>
                                         <div class="row">
-                                            <div *ngFor="let product of item[1]" class="col-md-4 col-xl-4 col-lg-4 col-sm-12 col-12">
+                                            <div *ngFor="let product of item[1]" class="col-md-4 col-xl-4 col-lg-4 col-sm-6 col-6">
                                                 <div class="listing_item">
                                                     <div class="list_image">
                                                         <img src="assets/images/product/sample.jpg" />                                                        
@@ -38,7 +38,7 @@
                                                     <h2 class="prdt_name">{{product.productName}}</h2>
                                                     <div class="listing_footer">
                                                         <div class="price_block">
-                                                            <i class="fas fa-rupee-sign"></i>
+                                                            &#8377;
                                                             <span id="prdt_price">{{product.productPrice}}</span>
                                                         </div>
                                                         <div class="quantity_block product.productID">

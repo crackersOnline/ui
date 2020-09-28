@@ -17,7 +17,7 @@ import { AnonymousGuardGuard } from './anonymous-guard.guard';
 import { ProductModule } from './modules/product/product.module';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { ThankYouComponent } from './app/fragments/functional/thank-you/thank-you.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -27,7 +27,6 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    ThankYouComponent,
   ],
   imports: [
     BrowserModule,

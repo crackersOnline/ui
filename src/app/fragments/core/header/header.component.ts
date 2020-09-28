@@ -11,6 +11,7 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
 export class HeaderComponent implements OnInit {
   private userEmail = '';
   private itemCount: [];
+  public drawer;
   constructor( private authService: AuthService, private router: Router, private singletonService: AppSingletonService) {
     this.userEmail = localStorage.getItem('userEmail');
    }
@@ -23,8 +24,7 @@ export class HeaderComponent implements OnInit {
         }
       }
     );
-  }
-
+  }  
   public logout() {
     this.authService.logout();
     this.router.navigate(['login']);

@@ -29,7 +29,9 @@
     box-shadow: 5px 0px 10px 0px rgba($color: #000000, $alpha: 0.1);
     z-index: 11;
     transition:all 0.3s ease;
-
+    @media only screen and (max-width: 375px) {
+        width: 300px;
+    }
     &.active {
         left: 0px;
     }
@@ -61,6 +63,7 @@
             cursor: pointer;
             &:disabled {
                 cursor: not-allowed;
+                opacity: 0.5;
             }
             &:not([disabled]) {
                 &:hover {

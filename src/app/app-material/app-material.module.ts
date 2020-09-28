@@ -17,6 +17,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
@@ -57,7 +60,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSidenavModule
   ],
 })
 export class AppMaterialModule { }
