@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7 col-xl-7 col-lg-7 col-sm-12 col-12">
+                        <div class="col-md-6 col-xl-7 col-lg-7 col-sm-12 col-12">
                             <div class="prdt_listing">
                                 <div class="prdt_listing_inner">
                                     <div id="{{item[1][0].categoryID}}" class="category_prdt_list" *ngFor="let item of productsList">
@@ -30,16 +30,17 @@
                                             <p><span class="prdt_count">{{item[1].length}}</span>ITEM<span *ngIf="item[1].length>1">S</span></p>
                                         </div>
                                         <div class="row">
-                                            <div *ngFor="let product of item[1]" class="col-md-4 col-xl-4 col-lg-4 col-sm-6 col-6">
+                                            <div *ngFor="let product of item[1]" class="col-md-6 col-xl-4 col-lg-4 col-sm-12 col-12">
                                                 <div class="listing_item">
                                                     <div class="list_image">
+                                                        <span class="offer_perct">50%</span>
                                                         <img src="assets/images/product/sample.jpg" />                                                        
                                                     </div>
-                                                    <h2 class="prdt_name">{{product.productName}}</h2>
+                                                    <h2 class="prdt_name">{{product.productName}} <i class="fas fa-info-circle"></i></h2>
                                                     <div class="listing_footer">
                                                         <div class="price_block">
-                                                            &#8377;
-                                                            <span id="prdt_price">{{product.productPrice}}</span>
+                                                            <span id="prdt_price">&#8377; {{product.productPrice}}</span>
+                                                            <span id="prdt_mrpprice">&#8377; {{product.productMRP}}</span>
                                                         </div>
                                                         <div class="quantity_block product.productID">
                                                             <!-- {{quantityCount}} -->
@@ -63,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-xl-3 col-lg-3 col-sm-12 col-12">
+                        <div class="col-md-4 col-xl-3 col-lg-3 col-sm-12 col-12 product_cart">
                             <app-cart></app-cart>
                         </div>
                     </div>

@@ -37,7 +37,7 @@ export class ListComponent implements OnInit, OnDestroy {
     () => {
        this.productService.getProducts().subscribe(
         res => {
-         // console.log('this.productsList', res.data);
+         console.log('this.productsList', res.data);
           this.productsList = (this.cartItem.length > 0) ? this.cartItemChange(res.data) : res.data;
         }
       );

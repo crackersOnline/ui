@@ -94,7 +94,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [              
+            "styles": [
               "src/styles.scss",
               "src/assets/scss/layout.scss",
               "src/assets/scss/font-awesome/css/all.css"
@@ -128,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ui"
+    }
+  },
+  "defaultProject": "ui",
+  "cli": {
+    "analytics": "332adc38-6ddb-467d-b141-120ad92faf58"
+  }
 }

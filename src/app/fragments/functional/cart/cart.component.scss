@@ -9,6 +9,17 @@
   height: calc(100vh - 215px);
   top: 215px;
   z-index: 9;
+  &.products {
+    @media only screen and (max-width: 480px) {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    height: auto;
+    position: static;
+    padding: 10px;
+    border: none;
+  }
   .cart-empty {
     h2 {
       margin-top: 0;
@@ -314,7 +325,7 @@
     transform: translate3d(2px, 0, 0);
   }
 }
-.couponCodeError_alert {
+.couponCodeError_alert, .couponCodeError {
   color: red;
   padding: 5px 0px;
 }
@@ -334,6 +345,9 @@
   align-items: center;
   justify-content: space-between;
   display: none;
+  &.checkout {
+    display: none;
+  }
   @media only screen and (max-width: 480px) {
       display: flex;
   }

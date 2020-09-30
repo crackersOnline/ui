@@ -2,7 +2,7 @@
 @import "../../../../assets/scss/mixins.scss";
 header {
   background-color: #fff;
-  @include box-shadow(0px, 0px, 15px, 14px, rgba(0, 0, 0, 0.2));
+  @include box-shadow(0px, 0px, 8px, 6px, rgba(0, 0, 0, 0.2));
   font-family: $kanit;
   width: 100%;
   position: fixed;
@@ -114,7 +114,7 @@ header {
         padding:15px 10px;
         line-height: normal;
         span {
-            font-size: 20px;
+            font-size: 18px;
             display: inline-block;
             &:first-child {
                 width: 50px;
@@ -126,6 +126,12 @@ header {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+            &:last-child {
+              width: calc(100% - 70px);
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
             }
         }        
     }

@@ -10,16 +10,17 @@
                 <div class="cod">
                     <p>Pay using Cash On Delivery</p>
                     <div class="cod_field">
-                        <div class="capcha">
-                            <img src="assets/images/cart/capche.png" />
+                      <!--   <div class="svg" [innerHTML]="captcha">{{captcha}}</div> -->
+                        <div #dataContainer class="capchaImage">
                         </div>
                         <div class="capchaTextBox">
-                            <input type="text" placeholder="Enter Capcha" />
+                            <input type="text" placeholder="Enter Capcha" [(ngModel)]="confirmCaptcha" (input)="errorCaptcha=''" />
                         </div>
                         <div class="placeOrder">
-                            <button>Confirm Order</button>
+                            <button (click)="confirmOrder()">Confirm Order</button>
                         </div>
                     </div>
+                    <div class="static_error_text">{{errorCaptcha}}</div>
                     <div class="cod_footer"><span>Before confirm the order Once review your cart items.</span><i class="fas fa-long-arrow-alt-right"></i></div>
                 </div>
             </div>

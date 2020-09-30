@@ -47,7 +47,8 @@ export class CheckoutComponent implements OnInit {
     this.cartDetails = event;
     //console.log('getCartDetails', this.cartDetails);
    }
-   oderSave() {
+   oderSave(valueEmitted) {
+     if(valueEmitted) {
     console.log('oderSave', this.cartDetails);
     if (!this.deliveryAddressID) {
       console.log(this.deliveryAddressID);
@@ -92,4 +93,5 @@ export class CheckoutComponent implements OnInit {
       );
     }
    }
+  }
 }

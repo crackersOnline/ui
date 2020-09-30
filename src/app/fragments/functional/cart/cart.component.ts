@@ -121,32 +121,42 @@ export class CartComponent implements OnInit, DoCheck {
           console.log('couponCode', coupon, res);
           if (res) {
             if (res.recCount > 0) {
-              if(this.totalProductPrice >= 1000) {
-                localStorage.setItem('appliedCoupon', coupon);
-                this.couponAppliedAmt = res.data[0].couponValue;
-                this.totalProductPriceWithCoupon = this.totalProductPrice - res.data[0].couponValue;
-                this.applyCouponDesign = false;
-                this.couponName = coupon;
+              const currDateTime:any=new Date(),
+                    vaildOn:any = new Date(res.data[0].validOn),
+                    expired = (vaildOn.getTime() - currDateTime.getTime()) / 1000;
+              if(expired <=0) {
                 this.snackBar.openFromComponent(NotificationComponent, {
-                  data: "'"+coupon+"' applied. " +"Rs."+res.data[0].couponValue +" savings with this coupon",
-                  panelClass: 'sucesss'
-                });
-              } else {
-                localStorage.removeItem('appliedCoupon');
-                this.couponAppliedAmt = 0;
-                this.applyCouponDesign = true;
-                console.log("Coupon code applicable for cart value Rs.1000 or above");
-                this.snackBar.openFromComponent(NotificationComponent, {
-                  data: "Coupon code applicable for cart value Rs.1000 or above",
+                  data: "Coupon is expired. Try valid coupon",
                   panelClass: 'error'
                 });
-              }
-              
+              } else {
+                if(this.totalProductPrice >= 1000) {
+                  localStorage.setItem('appliedCoupon', coupon);
+                  this.couponAppliedAmt = res.data[0].couponValue;
+                  this.totalProductPriceWithCoupon = this.totalProductPrice - res.data[0].couponValue;
+                  this.applyCouponDesign = false;
+                  this.couponName = coupon;
+                  this.snackBar.openFromComponent(NotificationComponent, {
+                    data: "'"+coupon+"' applied. " +"Rs."+res.data[0].couponValue +" savings with this coupon",
+                    panelClass: 'sucesss'
+                  });
+                } else {
+                  localStorage.removeItem('appliedCoupon');
+                  this.couponAppliedAmt = 0;
+                  this.applyCouponDesign = true;
+                  console.log("Coupon code applicable for cart value Rs.1000 or above");
+                  this.snackBar.openFromComponent(NotificationComponent, {
+                    data: "Coupon code applicable for cart value Rs.1000 or above",
+                    panelClass: 'error'
+                  });
+                }
+              }              
             } else {
               console.log('202');
               localStorage.removeItem('appliedCoupon');
               this.couponAppliedAmt = 0;
               this.applyCouponDesign = true;
+              this.couponCodeError = "couponCodeError_alert";
             }
           }          
           this.couponCode = '';

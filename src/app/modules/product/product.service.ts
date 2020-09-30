@@ -21,4 +21,8 @@ export class ProductService {
     return this.apiProxy.post(this.authUrl + '/product/orderSave', input).pipe();
   }
 
+  generateCaptcha() {
+    return this.apiProxy.get(this.authUrl + '/product/captcha').pipe();
+  }
+
 }

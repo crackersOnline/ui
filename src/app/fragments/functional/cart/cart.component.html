@@ -1,4 +1,4 @@
-<div class="cart-container">
+<div class="cart-container" [ngClass]="path">
     <div *ngIf="!itemCount>0" class="cart-empty">
         <h2>Cart Empty</h2>
         <img src="../../../../assets/images/cart/cart_empty.png" class="img-responsive" />
@@ -37,10 +37,10 @@
         <div class="coupon" *ngIf="this.path === 'checkout'">
             <div class="applyCoupon" *ngIf="applyCouponDesign">
                 <!-- <div>Apply Coupon</div> -->
-                <input name="couponCode" (blur)="couponValidation()" required placeholder="Enter Coupon Code" [(ngModel)]="couponCode" />
+                <input name="couponCode" (input)="couponCodeError=''" required placeholder="Enter Coupon Code" [(ngModel)]="couponCode" />
                 <button (click)="applyCoupon()">Apply</button>
             </div>
-            <div *ngIf="couponCodeError" ngClass="couponCodeError">Enter coupon code</div>
+            <div *ngIf="couponCodeError" ngClass="couponCodeError">Enter valid coupon code</div>
             <div class="couponCodeInfo" *ngIf="!applyCouponDesign">
                 <p>{{couponName}}<span>coupon code appiled sucessfully.</span></p>
                 <span (click)="removeCoupon()"><i class="fas fa-times-circle"></i></span>
@@ -77,12 +77,12 @@
         </div>
     </div>
 </div>
-<div class="cart-sticky" *ngIf="itemCount>0">
+<div class="cart-sticky" *ngIf="itemCount>0" [ngClass]="path">
     <div class="m-cart-info">
         <span class="m-cartinfo-span">{{itemCount}} Item<span *ngIf="itemCount>1">s</span></span>
         <span class="m-cartinfo-span">&#8377; {{totalProductPrice}}</span>
     </div>
     <div class="m-go-cart">
-        <img src="../../../../assets/images/cart/viewcart.png" width="16"/><a (click)="checkoutProduct()">VIEW CART</a>
+        <img src="../../../../assets/images/cart/viewcart.png" width="16"/><a (click)="checkoutProduct()">CHECKOUT</a>
     </div>
 </div>

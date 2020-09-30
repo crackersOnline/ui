@@ -68,6 +68,9 @@
             padding:20px 0px;
             .category_title {
                 margin-bottom: 20px;
+                @media only screen and (max-width: 480px) {
+                    padding-left: 5px;
+                }
                 h2 {
                     font-size: 30px;
                     color: $dark-black;
@@ -88,9 +91,26 @@
                 }
             }
             .listing_item {
+                @media only screen and (max-width: 480px) {
+                    padding: 5px;
+                }
                 margin-bottom: 30px;
                 .list_image {
                     margin-bottom: 10px;
+                    position: relative;
+                    .offer_perct {
+                        position: absolute;
+                        top: 20px;
+                        right: 0;
+                        background-color: $primary-color;
+                        color: $white-color;
+                        font-size: 13px;
+                        width: 40px;
+                        height: 20px;
+                        line-height: 20px;
+                        text-align: center;
+                        border-radius: 10px 0px 0px 10px;
+                    }
                     img {
                         width: 100%;
                         max-width: 100%;
@@ -103,6 +123,11 @@
                     font-weight: 300;
                     line-height: 1.3;
                     text-transform:capitalize;
+                    i {
+                        float: right;
+                        font-size: 15px;
+                        color: $primary-color;
+                    }
                     @media only screen and (max-width: 480px) {
                         font-size: 15px;
                         overflow: hidden;
@@ -120,7 +145,13 @@
                         color: $primary-color;
                         i {
                             font-size: 13px;
-                            padding-right: 5px;
+                            padding-right: 3px;
+                        }
+                        #prdt_mrpprice {
+                            margin-left: 10px;
+                            font-size: 14px;
+                            color: gray;
+                            text-decoration: line-through;
                         }
                     }
                     .quantity_block {
@@ -169,6 +200,13 @@
                 }
                 
             }
+        }
+    }
+}
+.product_cart {
+    .cart-container {
+        @media only screen and (max-width: 480px) {
+            display: none;
         }
     }
 }
