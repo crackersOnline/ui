@@ -16,7 +16,8 @@
                             <div class="category_container">
                                 <div id="category_inner_container" class="category_inner_container">
                                     <!-- <a class="current-category">Gift Boxes</a> -->
-                                    <a *ngFor="let category of categoryList" routerLinkActive="active" (click)="scroll(category.categoryID)">{{category.categoryName}}</a>
+                                    <a *ngFor="let category of categoryList" routerLinkActive="active"
+                                        (click)="scroll(category.categoryID)">{{category.categoryName}}</a>
                                     <div class="highter-line"></div>
                                 </div>
                             </div>
@@ -24,37 +25,47 @@
                         <div class="col-md-6 col-xl-7 col-lg-7 col-sm-12 col-12">
                             <div class="prdt_listing">
                                 <div class="prdt_listing_inner">
-                                    <div id="{{item[1][0].categoryID}}" class="category_prdt_list" *ngFor="let item of productsList">
+                                    <div id="{{item[1][0].categoryID}}" class="category_prdt_list"
+                                        *ngFor="let item of productsList">
                                         <div class="category_title">
                                             <h2>{{item[0]}}</h2>
-                                            <p><span class="prdt_count">{{item[1].length}}</span>ITEM<span *ngIf="item[1].length>1">S</span></p>
+                                            <p><span class="prdt_count">{{item[1].length}}</span>ITEM<span
+                                                    *ngIf="item[1].length>1">S</span></p>
                                         </div>
                                         <div class="row">
-                                            <div *ngFor="let product of item[1]" class="col-md-6 col-xl-4 col-lg-4 col-sm-12 col-12">
+                                            <div *ngFor="let product of item[1]"
+                                                class="col-md-6 col-xl-4 col-lg-4 col-sm-12 col-12">
                                                 <div class="listing_item">
                                                     <div class="list_image">
                                                         <span class="offer_perct">50%</span>
-                                                        <img src="assets/images/product/sample.jpg" />                                                        
+                                                        <img src="assets/images/product/sample.jpg" />
                                                     </div>
-                                                    <h2 class="prdt_name">{{product.productName}} <i class="fas fa-info-circle"></i></h2>
+                                                    <h2 class="prdt_name">{{product.productName}} <i
+                                                            class="fas fa-info-circle" (click)="openDialog(product)"></i></h2>
                                                     <div class="listing_footer">
                                                         <div class="price_block">
-                                                            <span id="prdt_price">&#8377; {{product.productPrice}}</span>
-                                                            <span id="prdt_mrpprice">&#8377; {{product.productMRP}}</span>
+                                                            <span id="prdt_mrpprice">&#8377;
+                                                                {{product.productMRP}}</span>
+                                                            <span id="prdt_price">&#8377;
+                                                                {{product.productPrice}}</span>
                                                         </div>
                                                         <div class="quantity_block product.productID">
                                                             <!-- {{quantityCount}} -->
                                                             <!-- initial Quantity Add -->
-                                                            <span (click)="addQuantity(product)"
-                                                                class="initial_add" *ngIf="product.productQuantity==0">ADD</span>
+                                                            <span (click)="addQuantity(product)" class="initial_add"
+                                                                *ngIf="product.productQuantity==0">ADD</span>
                                                             <!-- Increase & Discrease Quantity -->
-                                                                <div *ngIf="product.productQuantity>0" (click)="minusQuantity(product)" class="minus_quantity"><i
-                                                                        class="fas fa-minus"></i></div>
-                                                                <div *ngIf="product.productQuantity>0" class="quantity_count">
-                                                                    <input type="text" readonly [value]="product.productQuantity" name="noOfItem" />                                                                    
-                                                                </div>
-                                                                <div *ngIf="product.productQuantity>0" (click)="addQuantity(product)" class="add_quantity"><i
-                                                                        class="fas fa-plus"></i></div>                                                            
+                                                            <div *ngIf="product.productQuantity>0"
+                                                                (click)="minusQuantity(product)" class="minus_quantity">
+                                                                <i class="fas fa-minus"></i></div>
+                                                            <div *ngIf="product.productQuantity>0"
+                                                                class="quantity_count">
+                                                                <input type="text" readonly
+                                                                    [value]="product.productQuantity" name="noOfItem" />
+                                                            </div>
+                                                            <div *ngIf="product.productQuantity>0"
+                                                                (click)="addQuantity(product)" class="add_quantity"><i
+                                                                    class="fas fa-plus"></i></div>
                                                         </div>
                                                     </div>
                                                 </div>

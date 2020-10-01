@@ -12,13 +12,14 @@ import { PaymentComponent } from './functional/payment/payment.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ThankYouComponent } from './functional/thank-you/thank-you.component';
+import { DialogBoxComponent } from './core/dialog-box/dialog-box.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent, FooterComponent, CartComponent, NotificationComponent, AddressFormComponent,
-    AddressBookComponent, PaymentComponent, ThankYouComponent],
+    AddressBookComponent, PaymentComponent, ThankYouComponent, DialogBoxComponent],
   imports: [
     CommonModule,
     AppMaterialModule,
@@ -33,10 +34,11 @@ import { ThankYouComponent } from './functional/thank-you/thank-you.component';
     AddressFormComponent,
     AddressBookComponent,
     PaymentComponent,
-    ThankYouComponent
+    ThankYouComponent    
   ],
   entryComponents: [
-    NotificationComponent
+    NotificationComponent,
+    DialogBoxComponent
   ]
 })
 export class FragmentsModule { }

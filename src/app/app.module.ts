@@ -17,6 +17,8 @@ import { AnonymousGuardGuard } from './anonymous-guard.guard';
 import { ProductModule } from './modules/product/product.module';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MyAccountModule } from './modules/my-account/my-account.module';
+
 
 
 export function tokenGetter() {
@@ -26,7 +28,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent,    
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,8 @@ export function tokenGetter() {
     AngularFontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
+    // MyAccountModule,
+    // ProductModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,

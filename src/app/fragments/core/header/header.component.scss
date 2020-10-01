@@ -41,6 +41,7 @@ header {
           margin-left: 0px;
         }
         &.user-profile {
+          cursor: pointer;
           img {
             margin-right: 10px;
             float: left;
@@ -167,4 +168,42 @@ header {
       @include transition-05;
     }
   }
+}
+.mat-menu-content {
+  background-color: 'red' !important;
+}
+.mat-menu-panel {
+  background-color: transparent;
+}
+.d_useful_links {
+  width: 200px;
+  list-style: none;
+        margin: 0;
+        padding:0;
+        li {
+            border-bottom:0px solid #d6d6d6;
+            &:last-child {
+              border-bottom: none;              
+            }
+            a {
+                display: block;
+                padding:10px;
+                font-size: 14px;
+                text-decoration: none;
+                color: #6d6e71;
+                cursor: pointer;
+                &:hover {
+                  background-color: gray;
+                  color: #FFF;
+                  i {
+                    color: #FFF;
+                  }
+                }
+                i {
+                    color: $primary-color;
+                    padding-right: 10px;
+                    font-size: 16px;
+                }
+            }
+        }
 }

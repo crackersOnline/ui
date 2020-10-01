@@ -29,6 +29,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'myaccount',
+    loadChildren: () => import('./modules/my-account/my-account.module').then(m => m.MyAccountModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'sucess',
     component:ThankYouComponent
   }

@@ -1,0 +1,25 @@
+@import '../../../../assets/scss/variables.scss';
+@import '../../../../assets/scss/mixins.scss';
+.promo-banner {
+    background-color: $primary-color;
+    height: 100px;
+    position: sticky;
+    top: 65px;
+    z-index: 10;
+    @media only screen and (max-width: 480px) {
+        top: 57px;
+        height: 100px;
+    }
+    h3 {
+        font-size: 20px;
+        color: #FFF;
+        line-height: 100px;
+        margin: 0px;
+    }
+}
+.myProfileContainer {
+    margin: 100px 0px;
+    .profileInput {
+        width: 100%;
+    }
+}

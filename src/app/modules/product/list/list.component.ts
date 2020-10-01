@@ -4,6 +4,8 @@ import { AppSingletonService } from 'src/app/app.singleton.service';
 import { CommonService } from 'src/app/common/services/common.service';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { Subscription } from 'rxjs';
+import { DialogBoxComponent } from 'src/app/fragments/core/dialog-box/dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list',
@@ -19,7 +21,8 @@ export class ListComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private singletonService: AppSingletonService,
     private commonService: CommonService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private dialog:MatDialog) { }
 
   ngOnInit() {
     this.authService.getCartItems().subscribe((cartItem) => {
@@ -109,7 +112,14 @@ export class ListComponent implements OnInit, OnDestroy {
     }
     console.log('minusquant', item, this.cartItem);
   }
-
+  // Dialog box
+  openDialog(productItem) {
+    this.dialog.open(DialogBoxComponent, {
+      data:productItem,
+      width: '300px',        
+      panelClass: 'custom-modalbox'
+    });
+  }
 // Scroll function
   scroll(el) {
     const ele = document.getElementById(el);
@@ -127,8 +137,6 @@ export class ListComponent implements OnInit, OnDestroy {
   onScroll(event) {
     // console.log('Window Page Y off', window.pageYOffset);
   }
-
-
   ngOnDestroy() {
     console.log('ngOnDestroy1', this.productQtySubscription);
     if (this.productQtySubscription) {

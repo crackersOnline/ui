@@ -6,16 +6,28 @@
                     <h1 class="logo" [routerLink]="['products']">Crackers Online</h1>
                     <button class="m-menu" (click)="drawer='active'"><i class="fas fa-bars"></i></button>
                     <ul class="list-right">
-                        <li class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>{{userEmail}}</span></li>
+                        <li [matMenuTriggerFor]="menu" class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>{{userEmail}}</span></li>
                         <li class="cart-info"><span class="cart_count">{{ itemCount?.length || '0' }}</span>Cart</li>
-                        <li class="logout" (click)="logout()"><span>Logout</span></li>
+                        <!-- <li class="logout" (click)="logout()"><span>Logout</span></li> -->
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
 </header>
-
+<mat-menu #menu="matMenu">
+    <ul class="d_useful_links">
+        <li>
+            <a href="myaccount/profile"><i class="fas fa-user-nurse"></i> My Profile</a>
+        </li>
+        <li>
+            <a href="myaccount/order"><i class="fas fa-shopping-bag"></i> My Order</a>
+        </li>
+        <li>
+            <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li>
+    </ul>
+  </mat-menu>
 <div class="custom-drawer-container" [ngClass]="drawer">
     <div class="c-d-backdrop" (click)="drawer=''"></div>
     <div class="c-d-content"  [ngClass]="drawer">
