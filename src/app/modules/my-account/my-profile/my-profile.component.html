@@ -15,8 +15,9 @@
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-4 col-xl-4 col-sm-12">
                             <div class="myProfileContainer">
-                                <form class="myProfileform">
-                                    <mat-form-field class="profileInput">
+                                
+                                <form class="myProfileform">                                     
+                                    <mat-form-field class="profileInput" >
                                         <mat-label>First Name</mat-label>
                                         <input matInput placeholder="First Name">
                                     </mat-form-field>
@@ -26,7 +27,7 @@
                                     </mat-form-field>
                                     <mat-form-field class="profileInput">
                                         <mat-label>Email Address</mat-label>
-                                        <input matInput placeholder="Email Address">
+                                        <input value="{{userInfo.userEmail}}" matInput placeholder="Email Address">
                                     </mat-form-field>                                    
                                 </form>
                             </div>

@@ -7,7 +7,7 @@
     <h1 class="title">Login</h1>
     <form (ngSubmit)="loginSubmit()" #userLoginForm="ngForm">
         <div class="input-container form-group">
-            <input type="text" id="login_username" required="required" email name="userEmail" class="form-control" [(ngModel)]="userEmail" #usernameText="ngModel" />
+            <input type="text" autofocus id="login_username" required="required" email name="userEmail" class="form-control" [(ngModel)]="userEmail" #usernameText="ngModel" />
             <label for="login_username">Username</label>
             <div class="bar"></div>
             <div *ngIf="usernameText.touched && !usernameText.valid" class="loginError_alert">
