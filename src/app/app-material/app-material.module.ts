@@ -18,6 +18,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 
@@ -41,7 +43,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -61,7 +64,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
 })
 export class AppMaterialModule { }
