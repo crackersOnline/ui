@@ -40,7 +40,6 @@ export class ListComponent implements OnInit, OnDestroy {
     () => {
        this.productService.getProducts().subscribe(
         res => {
-         console.log('this.productsList', res.data);
           this.productsList = (this.cartItem.length > 0) ? this.cartItemChange(res.data) : res.data;
         }
       );
@@ -110,7 +109,6 @@ export class ListComponent implements OnInit, OnDestroy {
       this.commonService.saveCart(item).subscribe(res => console.log(res));
       this.singletonService.notifyMetaDataChanged(true);
     }
-    console.log('minusquant', item, this.cartItem);
   }
   // Dialog box
   openDialog(productItem) {
@@ -138,7 +136,6 @@ export class ListComponent implements OnInit, OnDestroy {
     // console.log('Window Page Y off', window.pageYOffset);
   }
   ngOnDestroy() {
-    console.log('ngOnDestroy1', this.productQtySubscription);
     if (this.productQtySubscription) {
       this.productQtySubscription.unsubscribe();
     }

@@ -37,6 +37,7 @@
   .cart {
     h2 {
       margin-top: 0;
+      margin-bottom: 5px;
       .cartItem_count {
         display: block;
         font-size: 13px;
@@ -45,12 +46,14 @@
       }
     }
     .cartItemListContainer {
-      max-height: calc(100vh - 370px);
+      max-height: calc(100vh - 500px);
       overflow: auto;
+      margin-bottom: 10px;
     }
     .cartItemList {
       display: flex;
       padding-bottom: 5px;
+      padding-right: 20px;
       // border-bottom: 1px solid #e9e9eb;
       margin: 5px 0px;
       .cPrdtImage {

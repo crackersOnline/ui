@@ -18,5 +18,9 @@ export class MyAccountService {
   getMyOrders() {
     return this.apiproxy.get(this.authUrl + '/myaccount/fetchMyOrders').pipe();
   }
+
+  getDeliveryAddress(input) {
+    return this.apiproxy.post(this.authUrl + '/myaccount/fetchDeliveryAddress', input);
+  }
   
 }

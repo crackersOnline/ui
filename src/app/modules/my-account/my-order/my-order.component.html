@@ -20,120 +20,102 @@
                                     <button mat-button (click)="accordion.closeAll()">Collapse All</button>
                                   </div> -->
                                 <mat-accordion multi>
-                                    <mat-expansion-panel class="myOrderItem" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-                                        <mat-expansion-panel-header class="myOrderItem_header">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
-                                                    <p class="mOIH_left">
-                                                        <span><b>Order ID:</b> 5874523</span> <span><b>Order Date:</b>
-                                                            02.10.2020</span>
-                                                    </p>
-                                                </div>
-                                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
-                                                    <p class="mOIH_right">
-                                                        Total Payable: 1800/-
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </mat-expansion-panel-header>
-                                        <div class="myOrderItem_body">                                            
-                                            <div class="row">
-                                                <div class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12 order-md-1 order-1 order-sm-1 order-lg-2 order-xl-2">
-                                                    <h4 class="sub_title">Delivery Address</h4>
-                                                    <div class="delivery_info">
-                                                        <div class="add_info">
-                                                            <div class="icon">
-                                                                <img src="assets/images/cart/home.png" alt="Home" />
-                                                            </div>
-                                                            <h3>Home</h3>
-                                                            <p>7290, TNHB, Ayappakkam, Chennai, Tamilnadu. 600077</p>
-                                                            <p>Near Park</p>
-                                                            <p>9962927452</p>
-                                                        </div>
+                                    <ng-container *ngFor="let order of myOrderList; let i = index ">
+                                        <mat-expansion-panel class="myOrderItem" [expanded]="step==i" (opened)="setStep(i)"  hideToggle>
+                                            <mat-expansion-panel-header class="myOrderItem_header">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                                                        <p class="mOIH_left">
+                                                            <span><b>Order ID:</b>{{order.orderRefID}}</span> <span><b>Order Date:</b>
+                                                                {{order.orderDate | date : 'dd-MM-yyyy'}}</span> 
+                                                        </p>
                                                     </div>
-                                                    <h4 class="sub_title">Order Status</h4>
-                                                    <div class="order_status">
-                                                        <div class="os_block">
-                                                            <div class="os_item os_ordered">
-                                                                Ordered
-                                                            </div>
-                                                            <div class="os_item">
-                                                                Packed
-                                                            </div>
-                                                            <div class="os_item">
-                                                                Shipped
-                                                            </div>
-                                                            <div class="os_item">
-                                                                Delivered
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-sm-12">
+                                                        <p class="mOIH_right">
+                                                            Total Payable: {{order.orderAmount}}/-
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-8 col-lg-8 col-xl-8 col-sm-12 order-md-2 order-2 order-sm-2 order-lg-1 order-xl-1">
-                                                    <h4 class="sub_title">Product Details</h4>
-                                                    <table class="order_details">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Product</th>
-                                                                <th>Qty.</th>
-                                                                <th>Price</th>
-                                                                <th>Total</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-
-                                                                <td>Silver Gift Box</td>
-                                                                <td>1</td>
-                                                                <td>₹ 450</td>
-                                                                <td>₹ 450</td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td>Rap (Silver & Red Fountain)</td>
-                                                                <td>2</td>
-                                                                <td>₹ 50</td>
-                                                                <td>₹ 100</td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td>7 Cm Electric Sparklers</td>
-                                                                <td>4</td>
-                                                                <td>₹ 44</td>
-                                                                <td>₹ 176</td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <td>10 Cm. Color Sparklers</td>
-                                                                <td>1</td>
-                                                                <td>₹ 23</td>
-                                                                <td>₹ 23</td>
-                                                            </tr>
-                                                        </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <td colspan="3">Sub Total</td>
-                                                                <td>₹ 1800</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="3">Delivery fee</td>
-                                                                <td>₹ 0</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="3">Discount (-)</td>
-                                                                <td>₹ 100</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="3">To Pay</td>
-                                                                <td>₹ 1700</td>
-                                                            </tr>
-                                                        </tfoot>
-                                                    </table>
+                                            </mat-expansion-panel-header>
+                                            <div class="myOrderItem_body">                                            
+                                                <div class="row">
+                                                    <div class="col-12 col-md-4 col-lg-4 col-xl-4 col-sm-12 order-md-1 order-1 order-sm-1 order-lg-2 order-xl-2" >
+                                                        <h4 class="sub_title">Delivery Address</h4>
+                                                        <div class="delivery_info" >
+                                                            <div class="add_info">
+                                                                <div class="icon">
+                                                                    <img src="assets/images/cart/home.png" alt="Home" />
+                                                                </div>
+                                                                <h3>{{order.addressType}}</h3>
+                                                                <p>{{order.flatNo}}, {{order.address}}, {{order.city}}, {{order.state}}. {{order.pincode}}</p>
+                                                                <p>{{order.landmark}}</p>
+                                                                <p>{{order.mobile}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <h4 class="sub_title">Order Status</h4>
+                                                        <div class="order_status">
+                                                            <div class="os_block">
+                                                                <div class="os_item os_ordered">
+                                                                    Ordered
+                                                                </div>
+                                                                <div class="os_item" [class.os_packed]="!(order.orderStatus==='Active')">
+                                                                    Packed
+                                                                </div>
+                                                                <div class="os_item" [class.os_shipped]="!(order.orderStatus==='Active')">
+                                                                    Shipped
+                                                                </div>
+                                                                <div class="os_item" [class.os_delivered]="!(order.orderStatus==='Active')">
+                                                                    Delivered
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-8 col-lg-8 col-xl-8 col-sm-12 order-md-2 order-2 order-sm-2 order-lg-1 order-xl-1">
+                                                        <h4 class="sub_title">Product Details</h4>
+                                                        <table class="order_details">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Product</th>
+                                                                    <th>Qty.</th>
+                                                                    <th>Price</th>
+                                                                    <th>Total</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let product of getCopy(order.orderProducts)">
+    
+                                                                    <td>{{product.productName}}</td>
+                                                                    <td>{{product.productQuantity}}</td>
+                                                                    <td>₹ {{product.productPrice}}</td>
+                                                                    <td>₹ {{product.productTtlQtyPrice}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td colspan="3">Sub Total</td>
+                                                                    <td>₹ {{order.cartAmount}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="3">Delivery fee</td>
+                                                                    <td>₹ 0</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="3">Discount (-)</td>
+                                                                    <td>₹ {{order.orderDiscount}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="3">To Pay</td>
+                                                                    <td>₹ {{order.orderAmount}}</td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    
                                                 </div>
-                                                
                                             </div>
-                                        </div>
-                                    </mat-expansion-panel>
+                                        </mat-expansion-panel>
+                                    </ng-container>
+                                   
                                 </mat-accordion>
                             </div>
                         </div>

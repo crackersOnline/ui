@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/modules/product/product.service';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit, AfterViewInit {
+export class PaymentComponent implements OnInit {
 
   public ifDeliveryAddressSelected = false;
   public captcha: any;
@@ -46,12 +46,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     });
    
     
-  }
-  ngAfterViewInit() {
-    
-  
-     }
-  
+  }  
   confirmOrder() {
     if(this.confirmCaptcha) {
     this.errorCaptcha = '';
@@ -65,5 +60,16 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       this.errorCaptcha = 'Please enter the captcha code';
     }
   }
+  refreshCaptchaImage() {
+    this.productService.generateCaptcha().subscribe((res) => {
+    this.captcha = res;
+    this.commonService.sendSpinnerStatus(true);
+        setTimeout(()=>{
+              this.commonService.sendSpinnerStatus(false);
+              this.dataContainer.nativeElement.innerHTML = this.captcha.data ;
+          },3000);
+    });
+  }
+
 
 }

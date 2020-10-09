@@ -9,17 +9,24 @@ import { MyOrderComponent } from './my-order/my-order.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/myaccount/profile',
-    pathMatch: 'full'
+    component: MyAccountComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/myaccount/profile',
+        pathMatch: 'full'
+      },
+      {
+        path: 'profile',
+        component: MyProfileComponent,
+      },
+      {
+        path: 'order',
+        component: MyOrderComponent,
+      }
+    ],
   },
-  {
-    path: 'profile',
-    component: MyProfileComponent,
-  },
-  {
-    path: 'order',
-    component: MyOrderComponent,
-  }
+  
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

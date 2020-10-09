@@ -6,6 +6,7 @@
     </div>
     <div *ngIf="itemCount>0" class="cart">
         <h2>Cart <span class="cartItem_count">{{itemCount}} ITEM<span *ngIf="itemCount>1">S</span></span></h2>
+        
         <div class="cartItemListContainer">
             <div class="cartItemList" *ngFor="let item of cartItem">
                 <div class="cPrdtImage">

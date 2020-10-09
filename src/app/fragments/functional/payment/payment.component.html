@@ -2,13 +2,17 @@
     <div class="cp_title">
         <img src="assets/images/cart/pay.png" *ngIf="ifDeliveryAddressSelected">
         <img src="assets/images/cart/pay_green.png" *ngIf="!ifDeliveryAddressSelected">
-        <h2>Payment<span *ngIf="ifDeliveryAddressSelected">Choose your payment method</span></h2>
+        <h2>Payment<span *ngIf="ifDeliveryAddressSelected">Choose your payment method</span><span style="color: red;" *ngIf="!ifDeliveryAddressSelected">First Select Your Delivery Address</span></h2>
     </div>
     <div class="payment_option_container" *ngIf="ifDeliveryAddressSelected">
         <div class="payment_option_tab">
             <div class="payment_left">
                 <div class="cod">
-                    <p>Pay using Cash On Delivery</p>
+                    <div class="paymentMethod_option">
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button name="paymentMethod" value="1">Google Pay / UPI / Net banking</mat-radio-button>
+                          </mat-radio-group>
+                    </div>                    
                     <div class="cod_field">
                       <!--   <div class="svg" [innerHTML]="captcha">{{captcha}}</div> -->
                         <div #dataContainer class="capchaImage">
@@ -16,6 +20,7 @@
                         <div class="capchaTextBox">
                             <input type="text" placeholder="Enter Capcha" [(ngModel)]="confirmCaptcha" (input)="errorCaptcha=''" />
                         </div>
+                        <div class="refresh" (click)="refreshCaptchaImage()"><img width="30" src="assets/images/refresh.png"/></div>
                         <div class="placeOrder">
                             <button (click)="confirmOrder()">Confirm Order</button>
                         </div>

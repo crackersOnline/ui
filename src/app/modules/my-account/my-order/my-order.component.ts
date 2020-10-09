@@ -11,6 +11,7 @@ export class MyOrderComponent implements OnInit {
   myOrderList:any;
   myProductList=[];
   panelOpenState = true;
+  address:any;
   constructor(private myaccoutService:MyAccountService) { }
   step = 0;
 
@@ -20,11 +21,16 @@ export class MyOrderComponent implements OnInit {
   ngOnInit() {
     this.myaccoutService.getMyOrders().subscribe(data => {
       this.myOrderList = data.data;
-      this.myProductList = data.data.orderProducts;
+    //  this.myProductList = data.data.orderProducts;
 
       console.log("My Order:", this.myOrderList);
       console.log("My ProductList:", this.myProductList)
     });
+  }
+
+
+  getCopy(product) {
+    return JSON.parse(product);
   }
 
 }

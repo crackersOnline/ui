@@ -18,9 +18,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import {MatExpansionModule } from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio'
 
 
 @NgModule({
@@ -44,7 +43,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSelectModule,
     MatTabsModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule    
   ],
   exports: [
     MatButtonModule,
@@ -65,7 +65,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSelectModule,
     MatTabsModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule
   ],
 })
 export class AppMaterialModule { }

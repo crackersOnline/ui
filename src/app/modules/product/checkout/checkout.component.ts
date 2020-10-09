@@ -20,6 +20,8 @@ export class CheckoutComponent implements OnInit {
   cartItem = [];
   deliveryAddressID;
   cartDetails;
+  public success = false;
+  public orderThankYouParam: any;
   constructor(
     private productService: ProductService,
     private router: Router,
@@ -33,6 +35,10 @@ export class CheckoutComponent implements OnInit {
         this.singletonService.notifyMetaDataChanged(true);
         this.cartItem = cartItem.data;
         // console.log('success login & cart Item', this.cartItem);
+      } else {
+        if(!this.success && this.cartItem.length===0) {
+          this.router.navigate(['products']);
+        }
       }
     },
     (error) => {
@@ -49,15 +55,14 @@ export class CheckoutComponent implements OnInit {
    }
    oderSave(valueEmitted) {
      if(valueEmitted) {
-    console.log('oderSave', this.cartDetails);
     if (!this.deliveryAddressID) {
-      console.log(this.deliveryAddressID);
       this.snackBar.openFromComponent(NotificationComponent, {
         data: 'Kindly select any one of the Delivery Address',
         panelClass:  'error'
       });
       return false;
     } else {
+      this.commonService.sendSpinnerStatus(true);
       const inputData = {
         orderProducts: this.cartItem,
         orderStatus: 'Active',
@@ -69,9 +74,9 @@ export class CheckoutComponent implements OnInit {
         orderDiscount: this.cartDetails.couponAppliedAmt,
         orderAmount: this.cartDetails.totalProductPriceWithCoupon
       };
-      console.log('oderSave', inputData);
+     
       this.productService.saveOrder(inputData).subscribe(
-        res => { console.log('res', res);
+        (res:any) => { console.log('res', res);
                  if (res) {
           this.snackBar.openFromComponent(NotificationComponent, {
             data: 'Your order successfully placed.',
@@ -81,10 +86,14 @@ export class CheckoutComponent implements OnInit {
           this.cartItem = [];
           this.singletonService.setCartItems(this.cartItem);
           this.singletonService.notifyMetaDataChanged(true);
-          this.router.navigate(['sucess']);
+          this.success = true;
+          this.orderThankYouParam = res.data;
+          //this.router.navigate(['sucess']);
+          this.commonService.sendSpinnerStatus(false);
         }
       },
       (error) => {
+        this.commonService.sendSpinnerStatus(false);
         this.snackBar.openFromComponent(NotificationComponent, {
           data: error,
           panelClass: 'error'

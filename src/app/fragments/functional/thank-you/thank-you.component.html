@@ -10,7 +10,7 @@
                                     <img src="assets/images/order_successfuly_placed.png" width="200"/>
                                     <p>We've received your order</p>
                                 </div>
-                                <h3>Order ID: </h3>
+                                <h3>Order ID: {{order.orderRefID}}</h3>
                                 <table class="order_info">
                                     <tr>
                                         <td>Payment Status</td>
@@ -20,7 +20,7 @@
                                     <tr>
                                         <td>Total Payable</td>
                                         <td>:</td>
-                                        <td>&#8377; 1890/-</td>
+                                        <td>&#8377; {{order.orderAmount}}/-</td>
                                     </tr>
                                     <tr>
                                         <td>Order Status</td>

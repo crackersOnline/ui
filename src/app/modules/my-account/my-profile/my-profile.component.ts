@@ -7,7 +7,7 @@ import { MyAccountService } from '../my-account.service';
   styleUrls: ['./my-profile.component.scss']
 })
 export class MyProfileComponent implements OnInit {
-  userInfo:any;
+  public userInfo:any;
 
   constructor( private myaccountService: MyAccountService ) { }
 

@@ -1,214 +1,221 @@
-@import '../../../../assets/scss/variables.scss';
-@import '../../../../assets/scss/mixins.scss';
+@import "../../../../assets/scss/variables.scss";
+@import "../../../../assets/scss/mixins.scss";
 .body_page_container {
-    font-family: $kanit;
+  font-family: $kanit;
 }
 .row_category_container {
-    position: relative;
+  position: relative;
 }
 .promo-banner {
-    background-color: $primary-color;
-    height: 150px;
-    position: sticky;
-    top: 65px;
-    z-index: 10;
-    @media only screen and (max-width: 480px) {
-        top: 57px;
-        height: 100px;
-    }
+  background-color: $primary-color;
+  height: 150px;
+  position: sticky;
+  top: 65px;
+  z-index: 10;
+  @media only screen and (max-width: 480px) {
+    top: 57px;
+    height: 100px;
+  }
 }
 .category_container {
-    padding-top: 20px;
-    border-right: 1px solid #e9e9eb;    
-    position: -webkit-sticky;
-    position: sticky;
-    height: calc(100vh - 215px);
-    top: 215px;
-    z-index: 9;
-    .category_inner_container {
-        padding-right: 25px;
-        position: relative;
-        a {
-            display: block;
-            text-align: right;
-            font-size: 15px;
-            font-weight: 300;
-            padding: 5px 0px;
-            color: #333333;
-            &:hover {
-                text-decoration: none;
-            }
-            &.current-category {
-                font-weight: 600;
-                color: $primary-color;
-            }
+  padding-top: 20px;
+  border-right: 1px solid #e9e9eb;
+  position: -webkit-sticky;
+  position: sticky;
+  height: calc(100vh - 215px);
+  top: 215px;
+  z-index: 9;
+  .category_inner_container {
+    padding-right: 25px;
+    position: relative;
+    a {
+      display: block;
+      text-align: right;
+      font-size: 15px;
+      font-weight: 300;
+      padding: 5px 0px;
+      color: #333333;
+      &:hover {
+        text-decoration: none;
+      }
+      &.current-category {
+        font-weight: 600;
+        color: $primary-color;
+      }
+    }
+    .highter-line {
+      height: 31px;
+      width: 5px;
+      background-color: $primary-color;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+.sticky_category_container {
+  position: sticky;
+  top: 100px;
+}
+.prdt_listing {
+  // height: calc(100vh - 215px);
+  // overflow: scroll;
+  // border-right: 1px solid #e9e9eb;
+  .prdt_listing_inner {
+    .category_prdt_list {
+      border-bottom: 1px solid #e9e9eb;
+      /*padding: 20px 0px;*/
+      position: relative;
+      .category_title {
+        position: sticky;
+        top: 215px;
+        z-index: 9;
+        padding: 10px 0px 20px 0px;
+        background-color: #FFF;
+        @media only screen and (max-width: 480px) {
+          padding-left: 5px;
+          top: 156px;
         }
-        .highter-line {
-            height: 31px;
-            width: 5px;
-            background-color: $primary-color;
+        h2 {
+          font-size: 30px;
+          color: $dark-black;
+          font-weight: 400;
+          margin: 0px 0px 0px 0px;
+          @media only screen and (max-width: 480px) {
+            font-size: 24px;
+          }
+        }
+        p {
+          color: $primary-color;
+          font-size: 14px;
+          text-transform: uppercase;
+          margin: 0;
+          span {
+            padding-right: 5px;
+          }
+        }
+      }
+      .listing_item {
+        @media only screen and (max-width: 480px) {
+          padding: 5px;
+          margin-bottom: 15px;
+        }
+        margin-bottom: 30px;
+        .list_image {
+          margin-bottom: 10px;
+          position: relative;
+          .offer_perct {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            background-color: red;
+            color: $white-color;
+            font-size: 12px;
+            width: 35px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 10px 0px 0px 10px;
+          }
+          img {
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+        .prdt_name {
+          font-size: 16px;
+          color: $dark-black;
+          margin: 0px 0px 10px 0px;
+          font-weight: 300;
+          line-height: 1.3;
+          text-transform: capitalize;
+          padding-right: 20px;
+          position: relative;
+          i {
             position: absolute;
             right: 0;
             top: 0;
+            font-size: 15px;
+            color: $primary-color;
+          }
+          @media only screen and (max-width: 480px) {
+            font-size: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
         }
-
-    }
-}
-.sticky_category_container {
-    position: sticky;
-    top: 100px;
-}
-.prdt_listing {
-    // height: calc(100vh - 215px);
-    // overflow: scroll;
-    // border-right: 1px solid #e9e9eb;
-    .prdt_listing_inner {
-        .category_prdt_list {
-            border-bottom: 1px solid #e9e9eb;
-            padding:20px 0px;
-            .category_title {
-                margin-bottom: 20px;
-                @media only screen and (max-width: 480px) {
-                    padding-left: 5px;
-                }
-                h2 {
-                    font-size: 30px;
-                    color: $dark-black;
-                    font-weight: 400;
-                    margin: 0px 0px 0px 0px;
-                    @media only screen and (max-width: 480px) {
-                        font-size: 24px;
-                    }
-                }
-                p {
-                    color: $primary-color;
-                    font-size: 14px;
-                    text-transform: uppercase;
-                    margin: 0;
-                    span {
-                        padding-right: 5px;
-                    }
-                }
+        .listing_footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .price_block {
+            font-size: 16px;
+            color: $primary-color;
+            font-weight: bold;
+            @media only screen and (max-width: 480px) {
+                font-size: 20px;
             }
-            .listing_item {
-                @media only screen and (max-width: 480px) {
-                    padding: 5px;
-                }
-                margin-bottom: 30px;
-                .list_image {
-                    margin-bottom: 10px;
-                    position: relative;
-                    .offer_perct {
-                        position: absolute;
-                        top: 20px;
-                        right: 0;
-                        background-color: red;
-                        color: $white-color;
-                        font-size: 12px;
-                        width: 35px;
-                        height: 20px;
-                        line-height: 20px;
-                        text-align: center;
-                        border-radius: 10px 0px 0px 10px;
-                    }
-                    img {
-                        width: 100%;
-                        max-width: 100%;
-                    }
-                }
-                .prdt_name {
-                    font-size: 16px;
-                    color: $dark-black;
-                    margin: 0px 0px 10px 0px;
-                    font-weight: 300;
-                    line-height: 1.3;
-                    text-transform:capitalize;
-                    padding-right: 20px;
-                    position: relative;
-                    i {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
-                        font-size: 15px;
-                        color: $primary-color;
-                    }
-                    @media only screen and (max-width: 480px) {
-                        font-size: 15px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        
-                    }
-                }
-                .listing_footer {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    .price_block {
-                        font-size: 16px;
-                        color: $primary-color;
-                        font-weight: bold;
-                        #prdt_mrpprice {
-                            margin-right: 10px;
-                            font-size: 14px;
-                            color: gray;
-                            font-weight: normal;
-                            text-decoration: line-through;
-                        }
-                    }
-                    .quantity_block {
-                        width: 70px;
-                        height: 26px;
-                        border: 1px solid #D6D6D6;
-                        position: relative;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        @include user-select;
-                        .initial_add {
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            color: $dark-black;
-                            font-size: 13px;
-                            text-align: center;
-                            line-height: 26px;
-                        }
-                        .add_quantity {
-                            color: $medium-black;
-                            padding: 0px 7px;
-                            font-size: 11px;
-                        }
-                        .quantity_count {
-                            color: $primary-color;
-                            letter-spacing: 2px;
-                            input {
-                                width: 100%;
-                                padding: 0;
-                                border: none;
-                                text-align: center;
-                                outline: none;
-                                @include user-select;
-                                letter-spacing: 2px;
-                                color: $primary-color;
-                            }
-                        }
-                        .minus_quantity {
-                            color: $medium-black;
-                            padding: 0px 7px;
-                            font-size: 11px;
-                        }
-                    }
-                }
-                
+            #prdt_mrpprice {
+              margin-right: 10px;
+              font-size: 14px;
+              color: gray;
+              font-weight: normal;
+              text-decoration: line-through;
             }
+          }
+          .quantity_block {
+            width: 70px;
+            height: 26px;
+            border: 1px solid #d6d6d6;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include user-select;
+            .initial_add {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              color: $dark-black;
+              font-size: 13px;
+              text-align: center;
+              line-height: 26px;
+            }
+            .add_quantity {
+              color: $medium-black;
+              padding: 0px 7px;
+              font-size: 11px;
+            }
+            .quantity_count {
+              color: $primary-color;
+              letter-spacing: 2px;
+              input {
+                width: 100%;
+                padding: 0;
+                border: none;
+                text-align: center;
+                outline: none;
+                @include user-select;
+                letter-spacing: 2px;
+                color: $primary-color;
+              }
+            }
+            .minus_quantity {
+              color: $medium-black;
+              padding: 0px 7px;
+              font-size: 11px;
+            }
+          }
         }
+      }
     }
+  }
 }
 .product_cart {
-    .cart-container {
-        @media only screen and (max-width: 480px) {
-            display: none;
-        }
+  .cart-container {
+    @media only screen and (max-width: 480px) {
+      display: none;
     }
+  }
 }
