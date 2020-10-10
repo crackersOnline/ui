@@ -10,8 +10,9 @@
                 <div class="cod">
                     <div class="paymentMethod_option">
                         <mat-radio-group aria-label="Select an option">
-                            <mat-radio-button name="paymentMethod" value="1">Google Pay / UPI / Net banking</mat-radio-button>
+                            <mat-radio-button name="upiPayment" [(ngModel)]="paymentMethod" value="1">Google Pay / UPI / Net banking</mat-radio-button>
                           </mat-radio-group>
+                          <div *ngIf="errorPayment" class="paymentMethod_error_text"></div>
                     </div>                    
                     <div class="cod_field">
                       <!--   <div class="svg" [innerHTML]="captcha">{{captcha}}</div> -->

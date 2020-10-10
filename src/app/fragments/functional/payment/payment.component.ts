@@ -11,11 +11,12 @@ import { ProductService } from 'src/app/modules/product/product.service';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-
+  public paymentMethod=0;
   public ifDeliveryAddressSelected = false;
   public captcha: any;
   public confirmCaptcha: any;
   public errorCaptcha: string;
+  public errorPayment: string;
   @Output() buttonClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('dataContainer',{static:false}) dataContainer: ElementRef;
   constructor(private singletonService: AppSingletonService, 
@@ -48,6 +49,9 @@ export class PaymentComponent implements OnInit {
     
   }  
   confirmOrder() {
+    if(!this.paymentMethod) {
+      this.errorPayment="Select Payment"
+    } else
     if(this.confirmCaptcha) {
     this.errorCaptcha = '';
     console.log('this.captcha.text', this.captcha.text, 'this.confirmCaptcha', this.confirmCaptcha);
