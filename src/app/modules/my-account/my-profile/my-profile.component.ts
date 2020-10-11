@@ -13,11 +13,11 @@ export class MyProfileComponent implements OnInit {
 
   ngOnInit() {
     this.myaccountService.getMyProfile().subscribe(res => {
-      console.log('myprofile', res.data[0]);
+      // console.log('myprofile', res.data[0]);
       this.userInfo = res.data[0];
     })
     this.myaccountService.getMyOrders().subscribe(res => {
-      console.log('myorder', res);
+      // console.log('myorder', res);
     })
   }
 

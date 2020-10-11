@@ -55,7 +55,7 @@ export class AuthGuard implements CanActivate {
 
   getAddress() {
     this.authService.getAddress().subscribe(address => {
-      console.log('getAddress', address);
+      // console.log('getAddress', address);
       if (address && (address.recCount > 0)) {
         this.singletonService.setAddressBookItems(address.data);
         this.singletonService.changeAddressBook(true);

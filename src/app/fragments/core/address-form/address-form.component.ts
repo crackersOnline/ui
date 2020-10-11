@@ -28,7 +28,7 @@ export class AddressFormComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
   ngOnInit() {
-    console.log('Create Address: ', this.enableAddressForm);
+    // console.log('Create Address: ', this.enableAddressForm);
   }
 
   closeAddressForm(type) {
@@ -51,7 +51,7 @@ export class AddressFormComponent implements OnInit {
   onSubmit(addressForm: NgForm) {
     this.commonService.sendSpinnerStatus(true);
     this.submitted = true;
-    console.log('Address Form: ', addressForm.value);
+    // console.log('Address Form: ', addressForm.value);
     // const InputData = {
     //   addressType: this.addressType,
     //   flatNo: this.flatNo,
@@ -71,7 +71,7 @@ export class AddressFormComponent implements OnInit {
           data: 'New delivery address added sucessfully',
           panelClass: 'sucesss'
         });
-        console.log('result', res);
+        // console.log('result', res);
         addressForm.resetForm();
         this.closeAddressForm('submit');
       },

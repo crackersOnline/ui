@@ -23,8 +23,8 @@ export class MyOrderComponent implements OnInit {
       this.myOrderList = data.data;
     //  this.myProductList = data.data.orderProducts;
 
-      console.log("My Order:", this.myOrderList);
-      console.log("My ProductList:", this.myProductList)
+      // console.log("My Order:", this.myOrderList);
+      // console.log("My ProductList:", this.myProductList)
     });
   }
 

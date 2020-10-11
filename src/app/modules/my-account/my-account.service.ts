@@ -11,7 +11,7 @@ export class MyAccountService {
   constructor(private apiproxy:ApiProxy, private http:HttpClient) { }
 
   getMyProfile() {
-    console.log('this.getMyProfile');
+    // console.log('this.getMyProfile');
     return this.apiproxy.get(this.authUrl + '/myaccount/fetchMyprofile').pipe();
   }
 

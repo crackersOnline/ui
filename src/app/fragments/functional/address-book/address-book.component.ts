@@ -20,7 +20,7 @@ export class AddressBookComponent implements OnInit {
       (received) => {
         if (received) {
          this.addressList = this.singletonService.getAddressBookItems();
-         console.log('Address page: addressList', this.addressList);
+        //  console.log('Address page: addressList', this.addressList);
         }
       }
     );
@@ -34,7 +34,7 @@ export class AddressBookComponent implements OnInit {
     this.createAddressStatus = data.status;
     if (data.type === 'submit') {
       this.authService.getAddress().subscribe(address => {
-        console.log('getAddress', address);
+        // console.log('getAddress', address);
         if (address && (address.recCount > 0)) {
           this.singletonService.setAddressBookItems(address.data);
           this.singletonService.changeAddressBook(true);
@@ -43,7 +43,7 @@ export class AddressBookComponent implements OnInit {
     }
   }
   onDeliveryAddress(event) {
-    console.log('onDeliveryAddress', event);
+    // console.log('onDeliveryAddress', event);
     this.deliveryAddressEmit.emit(event);
     this.deliveryAddress = this.addressList.find(x => x.addressID === event);
     this.ifDeliveryAddressSelected = true;

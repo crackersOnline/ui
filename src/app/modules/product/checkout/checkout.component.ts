@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
    ngOnInit() {
     this.authService.getCartItems().subscribe((cartItem) => {
       this.cartItem = [];
-      console.log("success", !this.success, this.cartItem.length===0);
+      // console.log("success", !this.success, this.cartItem.length===0);
       if (cartItem && cartItem.code === 200) {
         this.singletonService.setCartItems(cartItem.data);
         this.singletonService.notifyMetaDataChanged(true);
@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit {
       }
     },
     (error) => {
-      console.log('get cart item error', error);
+      // console.log('get cart item error', error);
     });
    }
 

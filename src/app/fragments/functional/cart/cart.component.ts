@@ -31,7 +31,7 @@ export class CartComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.path = this.activatedRoute.snapshot.url[0].path;
-    console.log('this.path', this.path);
+    // console.log('this.path', this.path);
     this.singletonService.$metadataChangeObservable.subscribe(
       (received) => {
         if (received) {
@@ -43,15 +43,15 @@ export class CartComponent implements OnInit, DoCheck {
             this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productPrice) || 0), 0);
             this.totalMRPPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
             this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
-            console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
-            console.log('localStorage.getItem', localStorage.getItem('appliedCoupon'));
+            // console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
+            // console.log('localStorage.getItem', localStorage.getItem('appliedCoupon'));
             if (localStorage.getItem('appliedCoupon')) {
               this.couponCode = localStorage.getItem('appliedCoupon');
               this.applyCoupon();
             } else {
               this.totalProductPriceWithCoupon = this.totalProductPrice;
             }
-            console.log('after this.couponCode', localStorage.getItem('appliedCoupon'));
+            // console.log('after this.couponCode', localStorage.getItem('appliedCoupon'));
             this.cartDetailEmit.emit({
               cartItem: this.cartItem,
               itemCount: this.itemCount,
@@ -98,7 +98,7 @@ export class CartComponent implements OnInit, DoCheck {
 
   // Decrease Count
   minusQuantity(item) {
-    console.log('minusquant', item);
+    // console.log('minusquant', item);
     if (this.cartItem.length > 0) {
       this.cartItem = this.commonService.decreaseCount(item, this.cartItem);
       this.singletonService.setCartItems(this.cartItem);
@@ -106,7 +106,7 @@ export class CartComponent implements OnInit, DoCheck {
       this.singletonService.changeProductQuantity(item);
       this.singletonService.notifyMetaDataChanged(true);
     } else {
-      console.log("Go to Product");
+      // console.log("Go to Product");
       this.router.navigate(['products']);
     }
   }
@@ -120,7 +120,7 @@ export class CartComponent implements OnInit, DoCheck {
       const coupon = this.couponCode;
       this.commonService.getCoupon({couponCode:  this.couponCode}).subscribe(
         (res: any) => {
-          console.log('couponCode', coupon, res);
+          // console.log('couponCode', coupon, res);
           if (res) {
             if (res.recCount > 0) {
               const currDateTime:any=new Date(),
@@ -146,7 +146,7 @@ export class CartComponent implements OnInit, DoCheck {
                   localStorage.removeItem('appliedCoupon');
                   this.couponAppliedAmt = 0;
                   this.applyCouponDesign = true;
-                  console.log("Coupon code applicable for cart value Rs.1000 or above");
+                  // console.log("Coupon code applicable for cart value Rs.1000 or above");
                   this.snackBar.openFromComponent(NotificationComponent, {
                     data: "Coupon code applicable for cart value Rs.1000 or above",
                     panelClass: 'error'
@@ -154,7 +154,7 @@ export class CartComponent implements OnInit, DoCheck {
                 }
               }              
             } else {
-              console.log('202');
+              // console.log('202');
               localStorage.removeItem('appliedCoupon');
               this.couponAppliedAmt = 0;
               this.applyCouponDesign = true;
@@ -164,7 +164,7 @@ export class CartComponent implements OnInit, DoCheck {
           this.couponCode = '';
         },
         err => {
-          console.log("Error:",err);
+          // console.log("Error:",err);
         }
       );
     }
@@ -173,12 +173,12 @@ export class CartComponent implements OnInit, DoCheck {
     }
   }
   couponValidation() {
-    console.log("blur start");
+    // console.log("blur start");
     if(this.couponCode){
-      console.log("if blur start");
+      // console.log("if blur start");
       this.couponCodeError = "";
     } else {
-      console.log("else blur start");
+      // console.log("else blur start");
       this.couponCodeError = "couponCodeError_alert";
     }    
   }

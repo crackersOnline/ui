@@ -35,7 +35,7 @@ export class ListComponent implements OnInit, OnDestroy {
       }
     },
     (error) => {
-      console.log('get cart item error', error);
+      // console.log('get cart item error', error);
     },
     () => {
        this.productService.getProducts().subscribe(
@@ -96,9 +96,9 @@ export class ListComponent implements OnInit, OnDestroy {
   addQuantity(item) {
     this.cartItem = this.commonService.increaseCount(item, this.cartItem);
     this.singletonService.setCartItems(this.cartItem);
-    this.commonService.saveCart(item).subscribe(res => console.log(res));
+    this.commonService.saveCart(item).subscribe();
     this.singletonService.notifyMetaDataChanged(true);
-    console.log("Cart Item vaules: ", this.commonService);
+    // console.log("Cart Item vaules: ", this.commonService);
   }
 
   // Decrease Count
@@ -107,7 +107,7 @@ export class ListComponent implements OnInit, OnDestroy {
     if (this.cartItem.length > 0) {
       this.cartItem = this.commonService.decreaseCount(item, this.cartItem);
       this.singletonService.setCartItems(this.cartItem);
-      this.commonService.saveCart(item).subscribe(res => console.log(res));
+      this.commonService.saveCart(item).subscribe();
       this.singletonService.notifyMetaDataChanged(true);
     }
   }

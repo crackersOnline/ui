@@ -6,7 +6,7 @@ import { Subject, BehaviorSubject } from 'rxjs';
 })
 export class AppSingletonService implements OnDestroy {
   constructor() {
-    console.log('constructor data', this.cartInfo);
+    // console.log('constructor data', this.cartInfo);
   }
   public cartInfo: any = [];
   public addressInfo: any = [];
@@ -21,11 +21,11 @@ export class AppSingletonService implements OnDestroy {
 
 
   public setCartItems(data) {
-    console.log('setCartItems data', data, this.cartInfo);
+    // console.log('setCartItems data', data, this.cartInfo);
     this.cartInfo = data;
   }
   public getCartItems() {
-    console.log('getCart data', this.cartInfo);
+    // console.log('getCart data', this.cartInfo);
     return this.cartInfo;
   }
   public notifyMetaDataChanged(isReady: boolean) {
@@ -41,12 +41,12 @@ export class AppSingletonService implements OnDestroy {
 
   public changeProductQuantity(data) {
     this.productQuantitySource.next(data);
-    console.log('productQuantityObservable', data);
+    // console.log('productQuantityObservable', data);
   }
 
   public changeAddressBook(data) {
     this.addressBookSource.next(data);
-    console.log('changeAddressBook', data);
+    // console.log('changeAddressBook', data);
   }
 
   public clearCartItems() {
@@ -62,12 +62,12 @@ export class AppSingletonService implements OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('ng ondestroy');
+    // console.log('ng ondestroy');
     this.cartInfo = null;
     this.userInfo = null;
   }
   deliveryAddressStatus(status:boolean) {
     this.deliveryAddStatus.next(status);
-    console.log("Delivery status from Service page: ",status);
+    // console.log("Delivery status from Service page: ",status);
   } 
 }
