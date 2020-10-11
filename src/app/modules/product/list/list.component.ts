@@ -98,6 +98,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.singletonService.setCartItems(this.cartItem);
     this.commonService.saveCart(item).subscribe(res => console.log(res));
     this.singletonService.notifyMetaDataChanged(true);
+    console.log("Cart Item vaules: ", this.commonService);
   }
 
   // Decrease Count

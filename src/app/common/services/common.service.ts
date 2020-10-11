@@ -27,7 +27,8 @@ export class CommonService {
       productPrice: item.productPrice,
       productQuantity: item.productQuantity,
       productTtlQtyPrice: item.productQuantity * item.productPrice,
-      productMRP: item.productMRP
+      productMRP: item.productMRP,
+      productImage:item.productImage
     };
     if (cartItem && cartItem.length > 0) {
       cartItem.filter((res) => {

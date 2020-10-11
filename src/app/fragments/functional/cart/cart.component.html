@@ -2,7 +2,7 @@
     <div *ngIf="!itemCount>0" class="cart-empty">
         <h2>Cart Empty</h2>
         <img src="../../../../assets/images/cart/cart_empty.png" class="img-responsive" />
-        <p>Good food is always cooking! Go ahead, order some yummy items from the menu.</p>
+        <p>Stop seeing empty cart ...<br>Switch on your festival mood !!!</p>
     </div>
     <div *ngIf="itemCount>0" class="cart">
         <h2>Cart <span class="cartItem_count">{{itemCount}} ITEM<span *ngIf="itemCount>1">S</span></span></h2>
@@ -10,7 +10,7 @@
         <div class="cartItemListContainer">
             <div class="cartItemList" *ngFor="let item of cartItem">
                 <div class="cPrdtImage">
-                    <img src="assets/images/product/sample.jpg" />
+                    <img src="assets/images/product/{{item.productImage}}.jpg" />
                 </div>
                 <div class="cPrdtInfo">
                     <h3>{{item.productName}}</h3>
@@ -67,7 +67,6 @@
                 {{totalProductPriceWithCoupon}}</span>
             <span *ngIf="this.path !== 'checkout'">&#8377; {{totalProductPrice}}</span>
         </div>
-
         <div class="cartSavingAmount">
             <span>Your total savings</span>
             <span>&#8377;

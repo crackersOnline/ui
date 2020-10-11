@@ -4,7 +4,8 @@
             <div class="row">
                 <div class="container">
                     <div class="promo-image">
-                        <img src="assets/images/banner.png" width="100%">
+                        <img src="assets/images/banner.png" class="desktop" width="100%">
+                        <img src="assets/images/banner_m.jpg" class="mobile" width="100%">
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                                                 <div class="listing_item">
                                                     <div class="list_image">
                                                         <span class="offer_perct">{{product.customerPercentage}}</span>
-                                                        <img src="assets/images/product/sample.jpg" />
+                                                        <img src="assets/images/product/{{product.productImage}}.jpg" />
                                                     </div>
                                                     <h2 class="prdt_name">{{product.productName}} <i
                                                             class="fas fa-info-circle" (click)="openDialog(product)"></i></h2>

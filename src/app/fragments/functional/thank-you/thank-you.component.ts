@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./thank-you.component.scss']
 })
 export class ThankYouComponent implements OnInit {
-  private order:any;
+  public order:any;
   @Input() set data(value: any ) {
     this.order = value;
   }

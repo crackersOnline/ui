@@ -1,9 +1,14 @@
 @import "../../../../assets/scss/variables.scss";
 @import "../../../../assets/scss/mixins.scss";
+.body_page_container {
+  @media only screen and (max-width: 480px) {
+    padding-top: 30px;       
+}
+}
 .thankyou_page_container {
     margin-top: 60px;
     @media only screen and (max-width: 480px) {
-        margin-top: 25px;        
+        margin-top: 0px;        
     }
   .thankyou_content_container {
       padding: 20px;
@@ -58,6 +63,9 @@
 }
 .payment_info_container {
   .upi_block, .acc_info {
+    @media only screen and (max-width: 480px) {
+      text-align: center;
+    }
     img {
       margin-bottom: 10px;
     }

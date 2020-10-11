@@ -31,7 +31,8 @@
     }
     p {
       color: #919396;
-      font-size: 13px;
+      font-size: 15px;
+      text-align: left;
     }
   }
   .cart {
@@ -49,6 +50,9 @@
       max-height: calc(100vh - 500px);
       overflow: auto;
       margin-bottom: 10px;
+      @media only screen and (max-width: 480px) {
+        max-height: calc(100vh - 300px);
+      }
     }
     .cartItemList {
       display: flex;

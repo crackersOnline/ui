@@ -17,6 +17,9 @@
     }
     .promo-image {
         height:99%;
+        @media only screen and (max-width: 480px) {
+            display: none;
+        }
         img {
             width: 100%;
             height: 100%;

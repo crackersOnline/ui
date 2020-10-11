@@ -16,6 +16,23 @@
     top: 57px;
     height: 100px;
   }
+  .promo-image {
+    height: 100%;
+    img {
+      object-fit: cover;
+      &.desktop {
+        @media only screen and (max-width: 480px) {
+          display: none;
+        }
+      }
+      &.mobile {
+        display: none;
+        @media only screen and (max-width: 480px) {
+          display: block;
+        }        
+      }
+    }
+  }
 }
 .category_container {
   padding-top: 20px;
@@ -74,7 +91,7 @@
         background-color: #FFF;
         @media only screen and (max-width: 480px) {
           padding-left: 5px;
-          top: 156px;
+          top: 150px;
         }
         h2 {
           font-size: 30px;
@@ -104,6 +121,7 @@
         .list_image {
           margin-bottom: 10px;
           position: relative;
+          border: 1px solid #e1e1e1;
           .offer_perct {
             position: absolute;
             top: 20px;
@@ -136,7 +154,7 @@
             right: 0;
             top: 0;
             font-size: 15px;
-            color: $primary-color;
+            color: gray;
           }
           @media only screen and (max-width: 480px) {
             font-size: 18px;

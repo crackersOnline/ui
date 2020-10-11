@@ -23,23 +23,14 @@ export class PaymentComponent implements OnInit {
     private productService: ProductService, private commonService: CommonService ) { }
 
   ngOnInit() {
-   
-
     this.productService.generateCaptcha().subscribe((res) => {
-      console.log('res', res);
-      /* svg.svgAsPngUri(document.getElementsByTagName('svg'), {}, (uri) => {
-        console.log('png base 64 encoded', uri);
-      }); */
     this.captcha = res;
-   //   this.svg = this.sanitizer.bypassSecurityTrustHtml('<!DOCTYPE HTML>' + res.data);
- 
     });
     this.singletonService.deliveryAddStatus.subscribe((res:any)=> {
       this.ifDeliveryAddressSelected = res;
       if(this.ifDeliveryAddressSelected){ 
         this.commonService.sendSpinnerStatus(true);
         setTimeout(()=>{
-              console.log("Delivery Address Status: ",res);
               this.commonService.sendSpinnerStatus(false);
               this.dataContainer.nativeElement.innerHTML = this.captcha.data ;
           },3000);
@@ -50,11 +41,10 @@ export class PaymentComponent implements OnInit {
   }  
   confirmOrder() {
     if(!this.paymentMethod) {
-      this.errorPayment="Select Payment"
+      this.errorPayment="Select Payment Method";
     } else
     if(this.confirmCaptcha) {
     this.errorCaptcha = '';
-    console.log('this.captcha.text', this.captcha.text, 'this.confirmCaptcha', this.confirmCaptcha);
     if(this.captcha.text === this.confirmCaptcha) {
       this.buttonClicked.emit(true);
     } else {
@@ -75,5 +65,8 @@ export class PaymentComponent implements OnInit {
     });
   }
 
+  paymentMtdSelect() {
+    this.errorPayment = '';
+  }
 
 }

@@ -44,7 +44,6 @@ export class CartComponent implements OnInit, DoCheck {
             this.totalMRPPrice = this.cartItem.reduce((a, b) => a + (parseFloat(b.productQuantity) * parseFloat(b.productMRP) || 0), 0);
             this.totalSavingPrice = this.totalMRPPrice - this.totalProductPrice;
             console.log('this.totalProductPrice', this.totalProductQuantity, this.totalProductPrice, this.totalMRPPrice);
-
             console.log('localStorage.getItem', localStorage.getItem('appliedCoupon'));
             if (localStorage.getItem('appliedCoupon')) {
               this.couponCode = localStorage.getItem('appliedCoupon');
@@ -106,6 +105,9 @@ export class CartComponent implements OnInit, DoCheck {
       this.commonService.saveCart(item).subscribe(res => console.log(res));
       this.singletonService.changeProductQuantity(item);
       this.singletonService.notifyMetaDataChanged(true);
+    } else {
+      console.log("Go to Product");
+      this.router.navigate(['products']);
     }
   }
   checkoutProduct() {
