@@ -16,6 +16,16 @@
 /* Header Start */
 .rl_header {
   height: 70px;
+  margin-bottom: 20px;
+  h1 {
+    img {
+      border: none;
+      outline: none;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    margin-bottom: 10px;
+  }
 }
 /* Header End*/
 .rl_wrapper {

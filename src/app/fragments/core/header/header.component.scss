@@ -69,6 +69,12 @@ header {
     }
     .logo {
       cursor: pointer;
+      outline: none;
+      border: none;
+      img {
+        outline: none;
+      border: none;
+      }
       @media only screen and (max-width: 480px) {
         margin-bottom: 10px;
       }

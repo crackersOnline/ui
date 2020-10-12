@@ -3,7 +3,9 @@
         <div class="row">
             <div class="container">
                 <nav class="header-nav">
-                    <h1 class="logo" [routerLink]="['products']">Crackers Online</h1>
+                    <h1 class="logo" [routerLink]="['products']">
+                        <img src="assets/images/logo_blue.png" width="150"/>
+                    </h1>
                     <button class="m-menu" (click)="drawer='active'"><i class="fas fa-bars"></i></button>
                     <ul class="list-right">
                         <li [matMenuTriggerFor]="menu" class="user-profile"><img src="assets/images/header/user.png" width="16"/> <span>{{userEmail}}</span></li>
